@@ -15,7 +15,8 @@
     <dt>生年月日</dt>
     <dd>1995/1/1</dd>
     <dt>メールアドレス</dt>
-    <dd>laravel@php.jp</dd>
+    <dd>laravel@pp.jp</dd>
+</dl>
 
 <a href ="">編集する</a>
 <form action="" method="post">
