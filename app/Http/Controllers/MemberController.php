@@ -14,7 +14,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        return view('index');
+        return view('members.index');
     }
 
     /**
@@ -46,7 +46,7 @@ class MemberController extends Controller
      */
     public function show(Member $member)
     {
-        //
+        return view('members.show');
     }
 
     /**

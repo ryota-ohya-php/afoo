@@ -29,5 +29,6 @@
                 <td>000‐0000‐0000</td>
             </tr>
         </tbody>
-    
+<hr>
+<a href="/">戻る</a>
 @endsection
