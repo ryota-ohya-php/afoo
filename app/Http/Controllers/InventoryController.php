@@ -24,7 +24,13 @@ class InventoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('inventories/create');
+    }
+
+    // 確認画面のアクション
+    public function confirm(Request $request)
+    {
+        
     }
 
     /**
