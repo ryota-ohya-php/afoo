@@ -20,7 +20,7 @@
 </dl>
 
 <a href ="{{route('members.edit',$member->id)}}">編集する</a>
-<form action="" method="post">
+<form action="{{route('members.destroy',$member->id)}}" method="post">
     @csrf
     @method('delete')
     <button type="submit">削除する</button>

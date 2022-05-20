@@ -3,7 +3,10 @@
 @section('content')
 
 <h1>会員情報の編集</h1> 
-    {{-- <form action="{{ route('members.update') }}" method="post"> --}}
+<form action="{{route('members.confirm')}}" method="post">
+    @include('members/form')
+</form>
+    <!--{{-- <form action="{{ route('members.update') }}" method="post"> --}}
     {{-- @csrf --}}
     {{-- @method('patch') --}}
         <dl>
@@ -21,7 +24,7 @@
             <dd><input type="email" name="email"></label></dd>
         </dl>
         <button type ="submit">登録する</button>
-{{-- </form> --}}
+{{-- </form> --}}-->
 <hr>
 <a href="/">戻る</a>
 @endsection

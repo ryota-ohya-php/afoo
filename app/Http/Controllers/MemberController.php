@@ -70,7 +70,11 @@ class MemberController extends Controller
      */
     public function edit(Member $member)
     {
-        return view('members.edit');
+        
+        $mem=Member::find($member);
+
+        return view('members.edit',['member'=>$mem]);
+       
     }
 
     /**
@@ -82,7 +86,8 @@ class MemberController extends Controller
      */
     public function update(Request $request, Member $member)
     {
-        $member= new Member;
+        echo $member;exit;
+        $member= Member::find($request);
         $member->name=$request->name;
         $member->address=$request->address;
         $member->tel=$request->tel;
