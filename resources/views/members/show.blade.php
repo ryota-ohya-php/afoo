@@ -1,6 +1,8 @@
+{{-- レイアウト挿入 --}}
 @extends('layouts.app')
 
 @section('content')
+
 
 <h2 class="title txt_center">会員詳細</h2>
 
@@ -19,12 +21,16 @@
     <dd>{{$member->email}}</dd>
 </dl>
 
+
 <a href ="{{route('members.edit',$member->id)}}">編集する</a>
+
 <form action="{{route('members.destroy',$member->id)}}" method="post">
+
     @csrf
     @method('delete')
     <button type="submit">削除する</button>
 </form>
+
 <hr>
 <a href="/">戻る</a>
 @endsection
