@@ -69,10 +69,14 @@ class MemberController extends Controller
      * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Member $member)
     {
-        $member = \App\Models\Member::find($id);
-        return view('members.edit');
+
+        
+        $mem=Member::find($member);
+
+        return view('members.edit',['member'=>$mem]);
+       
     }
 
     /**
@@ -84,7 +88,8 @@ class MemberController extends Controller
      */
     public function update(Request $request, Member $member)
     {
-        $member= new Member;
+        echo $member;exit;
+        $member= Member::find($request);
         $member->name=$request->name;
         $member->address=$request->address;
         $member->tel=$request->tel;
