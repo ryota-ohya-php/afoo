@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -12,10 +13,30 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::orderBy('created_at','desc')->paginate(20);
-        return view('books.index',['books' => $books]);
+        $query = Book::with('category');
+        if ($request->category_id) {
+            $query->where('category_id',$request->category_id);
+        }
+
+        if ($request->title) {
+            $query->where('title','LIKE','%'.$request->title . '%');
+        }
+
+        if ($request->author) {
+            $query->where('author','LIKE','%'.$request->author . '%');
+        }
+
+        if ($request->isbn) {
+            $query->where('isbn',$request->isbn);
+        }
+
+        $books = $query->orderBy('created_at',)->paginate(10);
+
+        $categories = Category::withCount('books')->get();
+
+        return view('books.index',['books' => $books,'categories' =>$categories]);
     }
 
     /**
@@ -38,6 +59,7 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $book = new Book;
+        $book->create($request->all());
         return redirect(route('books.index'));
     }
 
