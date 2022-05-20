@@ -23,7 +23,7 @@ Route::get('/', function () {
 });
 
 
-Route::post('lending/confirm', 'App\Http\Controllers\LendingController@confirm')->name('lending.confirm');
+Route::post('lendings/confirm', 'App\Http\Controllers\LendingController@confirm')->name('lendings.confirm');
 
 Route::resource('members', MemberController::class);
 Route::resource('books', BookController::class);

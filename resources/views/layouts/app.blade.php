@@ -15,7 +15,7 @@
         <ul>
             <li><a href="">会員管理</a></li>
             <li><a href="">資料管理</a></li>
-            <li><a href="{{route('lending.index')}}">貸出一覧</a></li>
+            <li><a href="{{route('lendings.index')}}">貸出一覧</a></li>
         </ul>
         
     </div>

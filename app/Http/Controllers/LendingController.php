@@ -14,7 +14,7 @@ class LendingController extends Controller
      */
     public function index(Request $request)
     {
-        return view('lending.index',['request'=>$request]);
+        return view('lendings.index',['request'=>$request]);
     }
 
     /**
@@ -24,13 +24,13 @@ class LendingController extends Controller
      */
     public function create()
     {
-        return view('lending.create');
+        return view('lendings.create');
     }
 
     public function confirm(Request $request)
     {
 
-        return view('lending.confirm',['request'=>$request]);
+        return view('lendings.confirm',['request'=>$request]);
     }
 
     /**
@@ -41,7 +41,7 @@ class LendingController extends Controller
      */
     public function store(Request $request)
     {
-        return view('lending.create');
+        return view('lendings.create');
     }
 
     /**
