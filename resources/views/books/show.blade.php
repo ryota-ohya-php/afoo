@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="{{route('inventories.index')}}">
+<a href="{{route('inventories.create')}}">
     ＋在庫登録</a> 
     <h1>書籍詳細</h1>
     <dl>
