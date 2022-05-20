@@ -4,13 +4,13 @@
             会員ID
         </dt>
             <dd>    
-                <input type="number" name="member_id" class="lending_inp">
+                <input type="number" name="member_id" class="lending_inp" min="0">
             </dd>
         <dt>
             在庫ID
         </dt>
             <dd> 
-                <input type="number" name="title" class="lending_inp">
+                <input type="number" name="inventory_id" class="lending_inp" min="0">
             </dd>
         <dt>
             
