@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Inventory;
 use Illuminate\Http\Request;
 
@@ -22,9 +23,10 @@ class InventoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('inventories.create');
+        
+        return view('inventories.create', ['request'=>$request]);
     }
 
     // 確認画面のアクション

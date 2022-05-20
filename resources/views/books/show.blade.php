@@ -1,8 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="{{route('inventories.create')}}">
-    ＋在庫登録</a> 
+<form action="{{ route('inventories.create') }}" method="get">
+    <input type="hidden" name="book_id" value="{{ $book->id }}">
+    <button type="submit">在庫登録</button>
+</form>
     <h1>書籍詳細</h1>
     <dl>
         <dt>ISBN番号</dt>

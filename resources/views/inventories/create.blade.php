@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+  @php
+    var_dump($request);
+  @endphp
     <h2 class="txt_center title">在庫登録</h2>
     <div class="main_content">
     <form action="{{ route('inventories.confirm') }}" method="post">
