@@ -21,7 +21,7 @@ use App\Http\Controllers\LendingController;
 Route::get('/', function () {
     return view('home.index');
 });
-Route::get('inventories/confirm', 'App\Http\Controllers\InventoryController@confirm')->name('inventories.confirm');
+Route::post('inventories/confirm', 'App\Http\Controllers\InventoryController@confirm')->name('inventories.confirm');
 
 
 

@@ -30,7 +30,7 @@ class InventoryController extends Controller
     // 確認画面のアクション
     public function confirm(Request $request)
     {
-		return view('inventories.confirm');
+		return view('inventories.confirm', ['request' =>$request]);
 	}	
 
     /**
@@ -41,7 +41,7 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

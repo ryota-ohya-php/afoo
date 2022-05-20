@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>在庫登録</h1>
+    <h2 class="txt_center title">在庫登録</h2>
+    <div class="main_content">
     <form action="{{ route('inventories.confirm') }}" method="post">
       @csrf
       <dl>
@@ -25,4 +26,6 @@
       <button type="submit">在庫登録確認画面へ</button>
     </form>
     <a href="/">戻る</a>
+    </div>
+    
 @endsection
