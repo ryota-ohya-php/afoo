@@ -1,3 +1,4 @@
+
 @csrf
 <!-- menber/createだったら valueが空のフォームを適応 -->
 @if($_SERVER['REQUEST_URI'] == '/members/create')
@@ -42,3 +43,4 @@
     <button type ="submit">入力確認する</button>
     @endforeach
 @endif
+

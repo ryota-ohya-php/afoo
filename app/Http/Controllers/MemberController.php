@@ -48,6 +48,7 @@ class MemberController extends Controller
         $member->birthday=$request->birthday;
         $member->save();
         return redirect(route('members.index'));
+
     }
 
     /**
@@ -70,6 +71,7 @@ class MemberController extends Controller
      */
     public function edit(Member $member)
     {
+
         
         $mem=Member::find($member);
 
