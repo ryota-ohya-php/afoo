@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>登録情報の確認</h1>
+<h1>変更の確認</h1>
 
 <hr>
 <a href="/">戻る</a>
