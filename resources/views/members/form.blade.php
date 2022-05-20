@@ -1,3 +1,4 @@
+
 @csrf
 <dl>
     <!--<dt>会員ID</dt>
@@ -14,3 +15,4 @@
     <dd><input type="email" name="email"></dd>
 </dl>
 <button type ="submit">入力確認する</button>
+

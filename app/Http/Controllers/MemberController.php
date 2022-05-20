@@ -48,6 +48,7 @@ class MemberController extends Controller
         $member->birthday=$request->birthday;
         $member->save();
         return redirect(route('members.index'));
+
     }
 
     /**
@@ -68,8 +69,9 @@ class MemberController extends Controller
      * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function edit(Member $member)
+    public function edit($id)
     {
+        $member = \App\Models\Member::find($id);
         return view('members.edit');
     }
 

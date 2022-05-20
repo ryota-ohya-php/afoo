@@ -1,6 +1,8 @@
+{{-- レイアウト挿入 --}}
 @extends('layouts.app')
 
 @section('content')
+
 
 <h2 class="txt_center title">会員一覧</h2>
 <div class="main_content">
@@ -34,6 +36,7 @@
         </table>
     </div>
 </div>
+
 <hr>
 <a href="/">戻る</a>
 @endsection
