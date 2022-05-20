@@ -22,7 +22,8 @@ class BookSeeder extends Seeder
                 'publisher' => '出版社' .$i,
                 'published_date' => date("Y/m/d",strtotime('-' .rand(0,27) .'day -' .rand(0,12).'month -' .rand(0,2).'year')),
             ]);
+            $book->save();
         }
-        $book->save();
+        
     }
 }

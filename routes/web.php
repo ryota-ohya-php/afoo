@@ -23,7 +23,7 @@ Route::get('/', function () {
 });
 Route::post('inventories/confirm', 'App\Http\Controllers\InventoryController@confirm')->name('inventories.confirm');
 
-
+Route::post('menbers/confirm', 'App\Http\Controllers\MemberController@confirm')->name('members.confirm');
 
 Route::post('lendings/confirm', 'App\Http\Controllers\LendingController@confirm')->name('lendings.confirm');
 Route::get('lendings/rebook', 'App\Http\Controllers\LendingController@rebook')->name('lendings.rebook');

@@ -14,7 +14,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        $books = Book::orderBy('created_at','desc')->paginate(20);
+        return view('books.index',['books' => $books]);
     }
 
     /**
@@ -24,7 +25,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return view('books.create');
     }
 
     /**
@@ -35,7 +36,9 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $book = new Book;
+
+        return redirect(route('books.index'));
     }
 
     /**
@@ -46,7 +49,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //
+        return view('books.show',['book'=>$book]);
     }
 
     /**
@@ -57,7 +60,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        return view('books.edit',['book'=>$book]);
     }
 
     /**
@@ -69,7 +72,7 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        return redirect(route('books.show',$book));
     }
 
     /**
@@ -80,6 +83,7 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $book->delete();
+        return redirect(route('books.index'));
     }
 }

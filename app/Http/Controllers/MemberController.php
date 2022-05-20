@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
+
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
@@ -14,7 +15,8 @@ class MemberController extends Controller
      */
     public function index()
     {
-        return view('members.index');
+        $members=Member::all();
+        return view('members.index',['members'=>$members]);
     }
 
     /**
@@ -26,7 +28,10 @@ class MemberController extends Controller
     {
         return view('members.create');
     }
-
+    public function confirm(Request $request)
+    {
+        return view('members.confirm',['request'=>$request]);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -35,7 +40,15 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $member= new Member;
+        $member->name=$request->name;
+        $member->address=$request->address;
+        $member->tel=$request->tel;
+        $member->email=$request->email;
+        $member->birthday=$request->birthday;
+        $member->save();
+        return redirect(route('members.index'));
+
     }
 
     /**
@@ -46,7 +59,8 @@ class MemberController extends Controller
      */
     public function show(Member $member)
     {
-        return view('members.show');
+        $test=Member::find($member);
+        return view('members.show',['member'=>$member]);
     }
 
     /**
@@ -57,7 +71,12 @@ class MemberController extends Controller
      */
     public function edit(Member $member)
     {
-        return view('members.edit');
+
+        
+        $mem=Member::find($member);
+
+        return view('members.edit',['member'=>$mem]);
+       
     }
 
     /**
@@ -69,7 +88,15 @@ class MemberController extends Controller
      */
     public function update(Request $request, Member $member)
     {
-        //
+        echo $member;exit;
+        $member= Member::find($request);
+        $member->name=$request->name;
+        $member->address=$request->address;
+        $member->tel=$request->tel;
+        $member->email=$request->email;
+        $member->birthday=$request->birthday;
+        $member->save();
+        return redirect(route('members.show'));
     }
 
     /**

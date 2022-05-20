@@ -1,34 +1,42 @@
+{{-- レイアウト挿入 --}}
 @extends('layouts.app')
 
 @section('content')
 
-<h1>会員一覧</h1>
 
-<form action="" method="get">
-    <p>
-        <label>キーワード</label>
-        <input type="text" name="keyword" value="">
-        <button type="submit">検索</button>
-    </p>
-</form>
+<h2 class="txt_center title">会員一覧</h2>
+<div class="main_content">
+    <div class="member_div ">
+      <button class="button is-success member_span" onclick="location.href='{{route('members.create')}}'" >＋会員登録</button>
+        <form action="{{route('members.index')}}" method="get">
+            <p>
+                <label>キーワード
+                <input type="text" name="keyword" value=""></label>
+                <button button type="submit" class="button is-primary mamber_button">検索</button>
+            </p>
+        </form>
     
-    <h1><a href="">＋会員登録</a></h1>
-    
-    <table border="1">
-        <thead>
-            <tr>
-                <th>会員ID</th>
-                <th>会員名</th>
-                <th>電話番号</th>
-            </tr>
-        </thead>
-        <tbody> 
-            <tr>
-                <td>0000‐0000</td>
-                <td><a>山田太郎</a></td>
-                <td>000‐0000‐0000</td>
-            </tr>
-        </tbody>
+        <table class="table_center margin-top">
+            <thead>
+                <tr>
+                    <th>会員ID</th>
+                    <th>会員名</th>
+                    <th>電話番号</th>
+                </tr>
+            </thead>
+            <tbody> 
+                @foreach($members as $member)
+                <tr>
+                    <td>{{$member->id}}</td>
+                    <td><a href="{{route('members.show',$member->id)}}">{{$member->name}}</a></td>
+                    <td>{{$member->tel}}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+
 <hr>
 <a href="/">戻る</a>
 @endsection
