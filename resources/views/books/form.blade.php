@@ -2,15 +2,15 @@
 <dl>
     <dt><label for="isbn">ISBN番号</label></dt>
     <dd>
-        <input type="number" name="isbn" id="isbn" pattern="^\d{13}$">
+        <input type="number" name="isbn" id="isbn" pattern="^\d{13}$" value="{{old('isbn',$book->isbn)}}">
     </dd>
     <dt><label for="title">タイトル</label></dt>
     <dd>
-        <input type="text" name="title" id="title" value="タイトル">
+        <input type="text" name="title" id="title" value="{{old('title',$book->title)}}">
     </dd>
     <dt><label for="author">著者</label></dt>
     <dd>
-        <input type="text" name="author" id="author" value="著者">
+        <input type="text" name="author" id="author" value="{{old('isbn',$book->author)}}">
     </dd>
     <dt><label for="category">分類コード</label></dt>
     <dd>
@@ -29,10 +29,10 @@
     </dd>
     <dt><label for="publisher">出版社</label></dt>
     <dd>
-        <input type="text" name="publisher" id="publisher" value="出版社">
+        <input type="text" name="publisher" id="publisher" value="{{old('publisher',$book->publisher)}}">
     </dd>
     <dt><label for="published_at">出版日</label></dt>
     <dd>
-        <input type="date" name="published_at" id="published_at" value="published_at">
+        <input type="date" name="published_at" id="published_at" value="{{old('published_at',$book->published_at)}}">
     </dd>
 </dl>

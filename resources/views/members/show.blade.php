@@ -3,28 +3,28 @@
 
 @section('content')
 
-<h1>会員詳細</h1>
-{{-- 会員情報表示 --}}
+
+<h2 class="title txt_center">会員詳細</h2>
+
 <dl>
     <dt>会員ID</dt>
-    <dd>0000‐0000</dd>
+    <dd>{{$member->id}}</dd>
     <dt>会員名</dt>
-    <dd>山田太郎</dd>
+    <dd>{{$member->name}}</dd>
     <dt>住所</dt>
-    <dd>東京都新宿区○○町△‐×</dd>
+    <dd>{{$member->address}}</dd>
     <dt>電話番号</dt>
-    <dd>000‐0000‐0000</dd>
+    <dd>{{$member->tel}}</dd>
     <dt>生年月日</dt>
-    <dd>1995/1/1</dd>
+    <dd>{{$member->birthday}}</dd>
     <dt>メールアドレス</dt>
-    <dd>laravel@pp.jp</dd>
+    <dd>{{$member->email}}</dd>
 </dl>
 
-{{-- 編集ボタン --}}
-<a href ="{{ route(membres.edit) }}">編集する</a>
 
-{{-- 削除ボタン --}}
-<form action="{{ route('members.destroy', $member->id) }}" method="post">
+<a href ="{{route('members.edit',$member->id)}}">編集する</a>
+<form action="" method="post">
+
     @csrf
     @method('delete')
     <button type="submit">削除する</button>
