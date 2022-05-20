@@ -41,11 +41,24 @@ ul li, ol li {
 .main_content{
     text-align: center;
     margin :auto;
+    
 }
 .top_button{
     width:200px;
     height:200px!important;
     margin:40px;
+}
+/*会員一覧画面*/
+.member_div{
+    margin :auto;
+    width:800px;
+}
+.mamber_button{
+    height:32px;
+}
+.member_span{
+    display:block;
+    margin: 0 0 0 auto;
 }
 
 /*貸出一覧画面*/
@@ -115,4 +128,8 @@ input.lending_inp{
 /*要素の下に余白を付ける*/
 .margin-bottom{
     margin-bottom: 15px;
+}
+/*要素の上に余白を付ける*/
+.margin-top{
+    margin-top: 15px;
 }

@@ -38,7 +38,8 @@
             @csrf
             <input type="hidden" name="member_id" value="{{$request->member_id}}">
             <input type="hidden" name="inventory_id" value="{{$request->inventory_id}}">
-            <input type="hidden" name="lend_date" value="{{$request->lend_date}}">
+            <input type="hidden" name="{{isset(($_POST['lent_date']))? $request->lent_date : $request->return_date;}}"
+             value="{{isset(($_POST['lent_date']))? $request->lent_date : $request->return_date;}}">
             <input type="hidden" name="remakes" value="{{$request->remarks}}">
         <button type="submit" class="button is-warning">登録する</button>
     </form>
