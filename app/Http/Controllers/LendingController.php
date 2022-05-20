@@ -12,9 +12,9 @@ class LendingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return view('lending.index',['request'=>$request]);
     }
 
     /**
@@ -24,7 +24,13 @@ class LendingController extends Controller
      */
     public function create()
     {
-        //
+        return view('lending.create');
+    }
+
+    public function confirm(Request $request)
+    {
+
+        return view('lending.confirm',['request'=>$request]);
     }
 
     /**
@@ -35,7 +41,7 @@ class LendingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('lending.create');
     }
 
     /**

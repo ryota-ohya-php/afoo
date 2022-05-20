@@ -1,7 +1,14 @@
-
+<!-- layouts.appのテンプレート取得-->
 @extends('layouts.app')
+
+<!-- body内の記述スタート-->
 @section('content')
-    <button class="button is-primary">予約</button>
-    <button class="button is-primary">貸出</button>
-    <button class="button is-primary">返却</button>
+
+<div class="main_content">
+   <button class="button top_button is-primary is-large">予約</button>
+    <button class="button top_button is-success is-large" onclick="location.href='{{route('lending.create')}}'">貸出</button>
+    <button class="button top_button is-danger is-large">返却</button>
+</div>
+
+<!-- body内の記述エンド-->
 @endsection
