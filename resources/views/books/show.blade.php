@@ -1,21 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-    <form action="">+在庫登録</form>
+    <form action="{{route('inventories.index')}}">+在庫登録</form>
     <h1>書籍詳細</h1>
     <dl>
         <dt>ISBN番号</dt>
-        <dd>0000000000001</dd>
+        <dd>{{$book->isbn}}</dd>
         <dt>タイトル</dt>
-        <dd>test</dd>
+        <dd>{{$book->title}}</dd>
         <dt>著者</dt>
-        <dd>おおや</dd>
+        <dd>{{$book->author}}</dd>
         <dt>カテゴリーID</dt>
-        <dd>9</dd>
+        <dd>{{$book->category_id}}</dd>
         <dt>出版社</dt>
-        <dd>A社</dd>
+        <dd>{{$book->publisher}}</dd>
         <dt>出版日</dt>
-        <dd>2022/5/19</dd>
+        <dd>{{$book->published_at}}</dd>
         <dt>在庫数</dt>
         <dd>2</dd>
     </dl>

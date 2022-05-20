@@ -60,7 +60,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        return view('books/edit',['book'=>$book]);
+        return view('books.edit',['book'=>$book]);
     }
 
     /**
