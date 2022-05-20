@@ -41,7 +41,7 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
-        
+        return view('books.show');
     }
 
     /**

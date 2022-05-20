@@ -12,9 +12,9 @@
         </label>
       </dl>
       <dl>
-        <label for="stock_date">
+        <label for="arrival_date">
           <dt>入荷年月日</dt>
-          <dd><input type="date" name="stock_date" id="stock_date" value="<?php echo date('Y-m-d'); ?>" required></dd>
+          <dd><input type="date" name="arrival_date" id="arrival_date" value="<?php echo date('Y-m-d'); ?>" required></dd>
         </label>
       </dl>
       <dl>
