@@ -45,15 +45,19 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>00000000000012</td>
+            @foreach ($books as $book)
+               <tr>
+                <td>{{$book->isbn}}</td>
                 <td>
-                    <a href=""></a> 
+                    <a href="{{route('books.show',$book->id)}}">
+                        {{$book->title}}</a> 
                 </td>
-                <td>山田屁太郎</td>
-                <td>9</td>
+                <td>{{$book->author}}</td>
+                <td>{{$book->category_id}}</td>
                 <td>1/3</td>
-            </tr>
+            </tr> 
+            @endforeach
         </tbody>
     </table>
+    {{$books ->links()}}
 @endsection

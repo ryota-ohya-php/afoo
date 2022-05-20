@@ -13,8 +13,11 @@
             <a href="/"><img src="/imgs/abe_img.png" /></a>
         
         <ul>
+
             <li><a href="{{route('members.index')}}">会員管理</a></li>
-            <li><a href="">資料管理</a></li>
+
+            <li><a href="{{route('books.index')}}">資料管理</a></li>
+
             <li><a href="{{route('lendings.index')}}">貸出一覧</a></li>
         </ul>
         
