@@ -40,9 +40,79 @@ ul li, ol li {
 /*TOP画面*/
 .main_content{
     text-align: center;
+    margin :auto;
 }
-button{
+.top_button{
     width:200px;
     height:200px!important;
     margin:40px;
+}
+
+/*貸出一覧画面*/
+.lending_dl{
+    width:500px;
+    margin:auto;
+
+}
+
+/*その他・共通クラス*/
+
+/*テーブルサイズクラス*/
+table{
+    width: 60%;
+    border-spacing: 0;
+  }
+  
+/*テーブル内部クラス*/
+table th{
+    border-bottom: solid 2px #c5f3df;
+    padding: 10px 0;
+  }
+/*テーブル内部クラス*/
+table td{
+    border-bottom: solid 2px #ddd;
+    text-align: center;
+    padding: 10px 0;
+  }
+
+/*文字のセンター揃え*/
+.txt_center{
+    text-align: center;
+}
+
+/*文字の左揃え*/
+.txt_left{
+    text-align: left;
+}
+
+/*文字の右揃え*/
+.txt_right{
+    text-align: right;
+}
+/*テーブル中央揃え*/
+.table_center{
+    margin: auto;
+}
+
+/*見出し*/
+h2.title{
+    font-size: 20px;
+    font-weight: bold;
+    border: solid 1px;
+    width: 30%;
+    margin: auto;
+    padding:10px;
+}
+
+input{
+    padding:5px;
+    text-align: center;
+}
+input.lending_inp{
+    width: 200px;
+    margin-bottom: 10px;
+}
+/*要素の下に余白を付ける*/
+.margin-bottom{
+    margin-bottom: 15px;
 }
