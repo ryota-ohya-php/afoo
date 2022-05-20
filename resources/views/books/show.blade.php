@@ -18,7 +18,7 @@
         <dt>出版社</dt>
         <dd>{{$book->publisher}}</dd>
         <dt>出版日</dt>
-        <dd>{{$book->published_at}}</dd>
+        <dd>{{$book->published_date}}</dd>
         <dt>在庫数</dt>
         <dd>2</dd>
     </dl>
@@ -38,4 +38,5 @@
                 }
             }
         </script>
+    <a href="{{route('books.index')}}">資料一覧に戻る</a>
 @endsection
