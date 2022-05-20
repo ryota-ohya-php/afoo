@@ -1,20 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>書籍一覧</h1>
+    <h2 class="txt_center title">書籍一覧</h2>
+    <div class="main_content">
+        <button class="button is-success member_span" onclick="location.href='{{route('books.create')}}'" >＋資料登録</button>
     <form action="{{route('books.index')}}" method="get">
         <dl>
             <dt><label for="isbn">ISBN番号</label></dt>
             <dd>
-                <input type="number" name="isbn" id="isbn" pattern="^\d{13}$">
+                <input type="number" name="isbn" id="isbn" pattern="^\d{13}$" placeholder="13桁の数字を入力してください">
             </dd>
             <dt><label for="title">タイトル</label></dt>
             <dd>
-                <input type="text" name="title" id="title" value="タイトル">
+                <input type="text" name="title" id="title" placeholder="タイトルを入力してください">
             </dd>
             <dt><label for="author">著者</label></dt>
             <dd>
-                <input type="text" name="author" id="author" value="著者">
+                <input type="text" name="author" id="author" placeholder="著者を入力してください">
             </dd>
             <dt><label for="category">分類コード</label></dt>
             <dd>
@@ -34,7 +36,8 @@
         </dl>
         <button type="submit">検索</button>
     </form>
-    <table border="1">
+    </div>
+    <table class="table_center margin-top">
         <thead>
             <tr>
                 <th>ISBN番号</th>
@@ -60,4 +63,6 @@
         </tbody>
     </table>
     {{$books ->links()}}
+</div>
+    
 @endsection

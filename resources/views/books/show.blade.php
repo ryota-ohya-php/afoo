@@ -3,7 +3,9 @@
 @section('content')
 <a href="{{route('inventories.create')}}">
     ＋在庫登録</a> 
-    <h1>書籍詳細</h1>
+    <h2 class="title txt_center">書籍詳細</h2>
+
+    <div class="main_content">
     <dl>
         <dt>ISBN番号</dt>
         <dd>{{$book->isbn}}</dd>
@@ -20,6 +22,7 @@
         <dt>在庫数</dt>
         <dd>2</dd>
     </dl>
+    </div>
 
     <a href="{{route('books.edit',$book)}}">編集する</a>
     <a href="#" onclick="deleteBook()">削除する</a>
