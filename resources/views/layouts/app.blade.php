@@ -10,12 +10,12 @@
 </head>
 <header>
     <div class="">
-            <a href=""><img src="/imgs/abe_img.png" /></a>
+            <a href="/"><img src="/imgs/abe_img.png" /></a>
         
         <ul>
             <li><a href="">会員管理</a></li>
             <li><a href="">資料管理</a></li>
-            <li><a href="">貸出一覧</a></li>
+            <li><a href="{{route('lending.index')}}">貸出一覧</a></li>
         </ul>
         
     </div>
@@ -25,5 +25,6 @@
     <main>
     @yield('content')
     </main>
+    
 </body>
 </html>

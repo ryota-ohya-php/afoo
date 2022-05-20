@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\LendingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home.index');
 });
+
+Route::post('lending/confirm', 'App\Http\Controllers\LendingController@confirm')->name('lending.confirm');
+Route::resource('lending',LendingController::class);
+
