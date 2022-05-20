@@ -26,7 +26,10 @@ class LendingController extends Controller
     {
         return view('lendings.create');
     }
-
+    public function rebook()
+    {
+        return view('lendings.rebook');
+    }
     public function confirm(Request $request)
     {
 
