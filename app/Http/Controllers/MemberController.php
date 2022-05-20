@@ -59,7 +59,7 @@ class MemberController extends Controller
      */
     public function show(Member $member)
     {
-        $test=Member::find($member);
+        /*$test=Member::find($member);*/
         return view('members.show',['member'=>$member]);
     }
 
@@ -88,15 +88,15 @@ class MemberController extends Controller
      */
     public function update(Request $request, Member $member)
     {
-        echo $member;exit;
-        $member= Member::find($request);
-        $member->name=$request->name;
-        $member->address=$request->address;
-        $member->tel=$request->tel;
-        $member->email=$request->email;
-        $member->birthday=$request->birthday;
-        $member->save();
-        return redirect(route('members.show'));
+       //echo $member->id;exit;
+        $members= Member::find($member->id);
+        $members->name=$request->name;
+        $members->address=$request->address;
+        $members->tel=$request->tel;
+        $members->email=$request->email;
+        $members->birthday=$request->birthday;
+        $members->save();
+        return redirect(route('members.show',$member->id));
     }
 
     /**
@@ -107,6 +107,8 @@ class MemberController extends Controller
      */
     public function destroy(Member $member)
     {
-        //
+        $members= Member::find($member->id);;
+        $members->delete();
+        return redirect(route('members.index'));
     }
 }

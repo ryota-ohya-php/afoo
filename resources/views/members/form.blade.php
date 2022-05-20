@@ -18,6 +18,7 @@
     <dt>メールアドレス</dt>
     <dd><input type="email" name="email"></dd>
 </dl>
+<input type="hidden" name="confirm" value="create">
 <button type ="submit">入力確認する</button>
 
 @else
@@ -37,6 +38,8 @@
         <dt>メールアドレス</dt>
         <dd><input type="email" name="email" value="{{$val->email}}"></dd>
     </dl>
+    <input type="hidden" name="confirm" value="updata">
+    <input type="hidden" name="member_id" value="{{$val->id}}">
     <button type ="submit">入力確認する</button>
     @endforeach
 @endif
