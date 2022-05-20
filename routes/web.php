@@ -23,5 +23,5 @@ Route::get('/', function () {
 
 Route::resource('members', MemberController::class);
 Route::resource('books', BookController::class);
-Route::resource('inventries', InventoryController::class);
+Route::resource('inventories', InventoryController::class);
 Route::resource('lendings', LendingController::class);
