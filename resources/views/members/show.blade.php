@@ -3,13 +3,20 @@
 @section('content')
 
 <h1>会員詳細</h1>
-
-<p>会員ID：0000‐0000</p>
-<p>会員名：山田太郎</p>
-<p>住所：東京都新宿区○○町△‐×</p>
-<p>電話番号：000‐0000‐0000</p>
-<p>生年月日：1995/1/1</p>
-<p>メールアドレス：</p>
+<dl>
+    <dt>会員ID</dt>
+    <dd>0000‐0000</dd>
+    <dt>会員名</dt>
+    <dd>山田太郎</dd>
+    <dt>住所</dt>
+    <dd>東京都新宿区○○町△‐×</dd>
+    <dt>電話番号</dt>
+    <dd>000‐0000‐0000</dd>
+    <dt>生年月日</dt>
+    <dd>1995/1/1</dd>
+    <dt>メールアドレス</dt>
+    <dd>laravel@pp.jp</dd>
+</dl>
 
 <a href ="">編集する</a>
 <form action="" method="post">
@@ -17,6 +24,6 @@
     @method('delete')
     <button type="submit">削除する</button>
 </form>
-
+<hr>
 <a href="/">戻る</a>
 @endsection
