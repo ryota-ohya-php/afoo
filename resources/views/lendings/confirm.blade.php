@@ -34,7 +34,7 @@
                     {{$request->remarks}}
                 </dd>
         </dl>
-        <form action="{{route('lending.store')}}" method="post">
+        <form action="{{route('lendings.store')}}" method="post">
             @csrf
             <input type="hidden" name="member_id" value="{{$request->member_id}}">
             <input type="hidden" name="inventory_id" value="{{$request->inventory_id}}">

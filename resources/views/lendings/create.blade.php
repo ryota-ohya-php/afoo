@@ -6,7 +6,7 @@
 <h2 class="txt_center title">貸出登録画面</h2>
 <div class="main_content">
     <!--貸出検索-->
-    <form action="{{route('lending.confirm')}}" method="post">
+    <form action="{{route('lendings.confirm')}}" method="post">
         @csrf
         <dl class="lending_dl margin-bottom">
             <dt>
@@ -36,6 +36,5 @@
         </dl>
         <button type="submit" class="button is-warning">入力確認画面へ</button>
     </form>
-<a href="{{route('lending.confirm')}}"
 </div>
 @endsection

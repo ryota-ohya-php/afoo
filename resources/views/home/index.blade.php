@@ -5,8 +5,8 @@
 @section('content')
 
 <div class="main_content">
-   <button class="button top_button is-primary is-large">予約</button>
-    <button class="button top_button is-success is-large" onclick="location.href='{{route('lending.create')}}'">貸出</button>
+    <button class="button top_button is-primary is-large">予約</button>
+    <button class="button top_button is-success is-large" onclick="location.href='{{route('lendings.create')}}'">貸出</button>
     <button class="button top_button is-danger is-large">返却</button>
 </div>
 
