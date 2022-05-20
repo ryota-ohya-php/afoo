@@ -26,7 +26,7 @@ Route::get('inventories/confirm', 'App\Http\Controllers\InventoryController@conf
 
 
 Route::post('lendings/confirm', 'App\Http\Controllers\LendingController@confirm')->name('lendings.confirm');
-
+Route::get('lendings/rebook', 'App\Http\Controllers\LendingController@rebook')->name('lendings.rebook');
 Route::resource('members', MemberController::class);
 Route::resource('books', BookController::class);
 Route::resource('inventories', InventoryController::class);

@@ -22,10 +22,10 @@
                     {{$request->inventory_id}}
                 </dd>
             <dt>
-                貸出日
+                {{isset(($_POST['lent_date'])) ? '貸出日' : '返却日';}}
             </dt>
                 <dd> 
-                    {{$request->lend_date}}
+                    {{isset(($_POST['lent_date']))? $request->lent_date : $request->return_date;}}
                 </dd>
             <dt>
                 備考
