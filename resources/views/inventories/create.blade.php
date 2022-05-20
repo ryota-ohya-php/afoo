@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>在庫登録</h1>
-    <form action="" method="post">
+    <form action="{{ route('inventories.confirm') }}" method="post">
       @csrf
       <dl>
         <label for="inventory_num">
@@ -24,5 +24,5 @@
       </dl>
       <button type="submit">在庫登録確認画面へ</button>
     </form>
-    <a href="#">戻る</a>
+    <a href="/">戻る</a>
 @endsection
