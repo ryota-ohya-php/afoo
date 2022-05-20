@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\InventoryController;
@@ -21,7 +22,11 @@ Route::get('/', function () {
     return view('home.index');
 });
 
+
+Route::post('lending/confirm', 'App\Http\Controllers\LendingController@confirm')->name('lending.confirm');
+
 Route::resource('members', MemberController::class);
 Route::resource('books', BookController::class);
 Route::resource('inventories', InventoryController::class);
 Route::resource('lendings', LendingController::class);
+
