@@ -14,7 +14,8 @@ class MemberController extends Controller
      */
     public function index()
     {
-        return view('members.index');
+        $members = \App\Models\Member::all();
+        return view('members.index', ['members' => $members]);
     }
 
     /**
@@ -35,7 +36,7 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $member = new \App\Models\Member;
     }
 
     /**
@@ -44,8 +45,9 @@ class MemberController extends Controller
      * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function show(Member $member)
+    public function show($id)
     {
+        $book = \App\Models\Member::find($id);
         return view('members.show');
     }
 
@@ -55,8 +57,9 @@ class MemberController extends Controller
      * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function edit(Member $member)
+    public function edit($id)
     {
+        $member = \App\Models\Member::find($id);
         return view('members.edit');
     }
 

@@ -1,8 +1,10 @@
+{{-- レイアウト挿入 --}}
 @extends('layouts.app')
 
 @section('content')
 
 <h1>会員詳細</h1>
+{{-- 会員情報表示 --}}
 <dl>
     <dt>会員ID</dt>
     <dd>0000‐0000</dd>
@@ -18,12 +20,16 @@
     <dd>laravel@pp.jp</dd>
 </dl>
 
-<a href ="">編集する</a>
-<form action="" method="post">
+{{-- 編集ボタン --}}
+<a href ="{{ route(membres.edit) }}">編集する</a>
+
+{{-- 削除ボタン --}}
+<form action="{{ route('members.destroy', $member->id) }}" method="post">
     @csrf
     @method('delete')
     <button type="submit">削除する</button>
 </form>
+
 <hr>
 <a href="/">戻る</a>
 @endsection
