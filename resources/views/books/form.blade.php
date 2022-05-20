@@ -10,7 +10,7 @@
     </dd>
     <dt><label for="author">著者</label></dt>
     <dd>
-        <input type="text" name="author" id="author" value="タイトル">
+        <input type="text" name="author" id="author" value="著者">
     </dd>
     <dt><label for="category">分類コード</label></dt>
     <dd>
@@ -27,8 +27,12 @@
             <option value="10">文学</option>
         </select>
     </dd>
-    <dt><label for="review">在庫数</label></dt>
+    <dt><label for="publisher">出版社</label></dt>
     <dd>
-        <textarea name="review" id="review" rows="5"></textarea>
+        <input type="text" name="publisher" id="publisher" value="出版社">
+    </dd>
+    <dt><label for="published_at">出版日</label></dt>
+    <dd>
+        <input type="date" name="published_at" id="published_at" value="published_at">
     </dd>
 </dl>
