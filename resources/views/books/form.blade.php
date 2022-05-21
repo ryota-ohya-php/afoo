@@ -5,18 +5,18 @@
     <dt><label for="isbn">ISBN番号</label></dt>
     <dd>
         {{-- <form action="{{route('books.create')}}" method="GET"> --}}
-            <input type="number" name="isbn" id="isbn" pattern="^\d{13}$" value="" autofocus>
+            <input type="number" name="isbn" id="isbn" pattern="^\d{13}$" value="{{old('isbn',$book->isbn)}}" autofocus>
             <button id="getBookInfo">ISBN番号で自動補完</button>
         {{-- <button type="submit">ISBN番号で検索する</button>  --}}
         {{-- </form> --}}
     </dd>
     <dt><label for="title">タイトル</label></dt>
     <dd>
-        <input type="text" name="title" id="title" value="">
+        <input type="text" name="title" id="title" value="{{old('title',$book->title)}}">
     </dd>
     <dt><label for="author">著者</label></dt>
     <dd>
-        <input type="text" name="author" id="author" value="">
+        <input type="text" name="author" id="author" value="{{old('author',$book->author)}}">
     </dd>
     <dt><label for="category">分類コード(現段階自分で手入力)</label></dt>
     <dd>
@@ -35,11 +35,11 @@
     </dd>
     <dt><label for="publisher">出版社</label></dt>
     <dd>
-        <input type="text" name="publisher" id="publisher" value="">
+        <input type="text" name="publisher" id="publisher" value="{{old('publisher',$book->publisher)}}">
     </dd>
     <dt><label for="published_date">出版日(上手く補完されない)</label></dt>
     <dd>
-        <input type="date" name="published_date" id="published_date" value="">
+        <input type="date" name="published_date" id="published_date" value="{{old('published_date',$book->published_date)}}">
     </dd>
 </dl>
 <input type="hidden" name="book_id" value="{{$book->id}}">
