@@ -1,11 +1,13 @@
 @csrf
+{{-- booksのフォーム部分部品化 --}}
 <dl>
+    {{-- old関数で一つ前の値を表示 --}}
     <dt><label for="isbn">ISBN番号</label></dt>
     <dd>
         {{-- <form action="{{route('books.create')}}" method="GET"> --}}
             <input type="number" name="isbn" id="isbn" pattern="^\d{13}$" value="{{old('isbn',$book->isbn)}}">
         {{-- <button type="submit">ISBN番号で検索する</button>  --}}
-    </form>
+    {{-- </form> --}}
     </dd>
     <dt><label for="title">タイトル</label></dt>
     <dd>
@@ -36,6 +38,6 @@
     </dd>
     <dt><label for="published_date">出版日</label></dt>
     <dd>
-        <input type="date" name="published_date" id="published_date" value="{{old('published_date',$book->published_at)}}">
+        <input type="date" name="published_date" id="published_date" value="{{old('published_date',$book->published_date)}}">
     </dd>
 </dl>
