@@ -1,3 +1,5 @@
+{{-- <div class="column"> --}}
+{{-- 検索する内容のinput --}}
 <dl>
     <dt><label for="isbn" >ISBN番号</label></dt>
     <dd>
@@ -16,9 +18,10 @@
     <select name="category_id" id="category_id">
         <option value=""></option>
         @foreach ($categories as $category)
-            <option value="{{$category->id}}">
-                {{request('category_id') == $category->id ? '' : ''}}
-                >
+            {{-- なぜかidが0の際検索できなかったので条件分岐 --}}
+            <option value="{{ $category->id == 0 ? '%0' : $category->id}} "
+                {{request('category_id') == $category->id ? 'selected' : ' '}}
+            >
                 {{$category->name}} ({{$category->books_count}})  
                 {{-- books_countはwithCount関数の値が入っている --}}
             </option>
@@ -26,3 +29,4 @@
     </select>
     </dd>
 </dl>
+{{-- </div> --}}
