@@ -7,7 +7,7 @@
         {{-- <form action="{{route('books.create')}}" method="GET"> --}}
             <input type="number" name="isbn" id="isbn" pattern="^\d{13}$" value="{{old('isbn',$book->isbn)}}">
         {{-- <button type="submit">ISBN番号で検索する</button>  --}}
-    {{-- </form> --}}
+        {{-- </form> --}}
     </dd>
     <dt><label for="title">タイトル</label></dt>
     <dd>
@@ -41,3 +41,4 @@
         <input type="date" name="published_date" id="published_date" value="{{old('published_date',$book->published_date)}}">
     </dd>
 </dl>
+<input type="hidden" name="book_id" value="{{$book->id}}">

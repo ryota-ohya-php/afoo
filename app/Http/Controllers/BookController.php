@@ -50,6 +50,11 @@ class BookController extends Controller
         return view('books.create',['book'=>$book]);
     }
 
+    public function confirm_create(Request $request)
+    {
+        return view('books.confirm-create',['request'=>$request]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -85,6 +90,12 @@ class BookController extends Controller
         return view('books.edit',['book'=>$book]);
     }
 
+    public function confirm_edit(Request $request)
+    {
+        return view('books.confirm-edit',['request'=>$request]);
+    }
+
+
     /**
      * Update the specified resource in storage.
      *
@@ -94,6 +105,7 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
+        $book->update($request->all());
         return redirect(route('books.show',$book));
     }
 
