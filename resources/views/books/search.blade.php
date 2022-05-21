@@ -16,10 +16,10 @@
     <dt><label for="category">分類コード</label></dt>
     <dd>
     <select name="category_id" id="category_id">
-        <option value=""></option>
+        <option value="カテゴリーを選択してください"></option>
         @foreach ($categories as $category)
             {{-- なぜかidが0の際検索できなかったので条件分岐 --}}
-            <option value="{{ $category->id == 0 ? '%0' : $category->id}} "
+            <option value="{{ $category->id == 0 ? '%0' : $category->id}}"
                 {{request('category_id') == $category->id ? 'selected' : ' '}}
             >
                 {{$category->name}} ({{$category->books_count}})  
