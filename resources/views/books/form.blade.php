@@ -45,29 +45,37 @@
 <input type="hidden" name="book_id" value="{{$book->id}}">
 
 <script>
+    // この関数でisbn番号からデータ取得して代入
     $(function() {
         $('#getBookInfo').click( function( e ) {
             e.preventDefault();
+            // 定数isbnにidがisbnのvalueを代入している
             const isbn = $("#isbn").val();
+            // isbn番号をopenbd(webapi)にgetで送信するurl
             const url = "https://api.openbd.jp/v1/get?isbn=" + isbn;
 
+            // isbn番号に対するレスポンスがdata[0]に入っている
             $.getJSON( url, function( data ) {
                 if( data[0] == null ) {
                     alert("データが見つかりません");
                 } else {
+
+                    // $("代入する箇所のcssセレクタ").val(代入する値)で各value属性に代入
+                    $("#title").val(data[0].summary.title);
+                    $("#publisher").val(data[0].summary.publisher);
+                    $("#author").val(data[0].summary.author);
+                    $("#published_date").val(data[0].summary.pubdate);
+                    
                     // if( data[0].summary.cover == "" ){
                     //     $("#thumbnail").html('<img src=\"\" />');
                     // } else {
                     //     $("#thumbnail").html('<img src=\"' + data[0].summary.cover + '\" style=\"border:solid 1px #000000\" />');
                     // }
-                    $("#title").val(data[0].summary.title);
-                    $("#publisher").val(data[0].summary.publisher);
                     // $("#volume").val(data[0].summary.volume);
                     // $("#series").val(data[0].summary.series);
-                    $("#author").val(data[0].summary.author);
-                    $("#published_date").val(data[0].summary.pubdate);
                     // $("#cover").val(data[0].summary.cover);
                     // $("#description").val(data[0].onix.CollateralDetail.TextContent[0].Text);
+                    
                 }
             });
         });
