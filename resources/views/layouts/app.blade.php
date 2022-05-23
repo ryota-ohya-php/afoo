@@ -11,7 +11,7 @@
 </head>
 <header>
     <div class="">
-            <a href="/"><img src="/imgs/abe_img.png" /></a>
+            <a href="/"><img src="/imgs/abe_img.png" alt="afoo!"/></a>
         
         <ul class="app_ul">
 
@@ -27,6 +27,7 @@
 </header>
 <body>
     <main>
+    @include('layouts/flash')
     @yield('content')
     </main>
     

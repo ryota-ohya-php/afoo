@@ -156,3 +156,7 @@ div.justify-between,p.text-sm{
     display: none;
 
 } 
+span.span_red{
+    color: red;
+    font-weight: bold;
+}
