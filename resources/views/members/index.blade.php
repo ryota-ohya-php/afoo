@@ -11,7 +11,9 @@
         <form action="{{route('members.index')}}" method="get">
             <p>
                 <label>キーワード
-                <input type="text" name="keyword" value=""></label>
+                <input type="text" name="keyword" 
+                value="{{(isset($keyword)) ? $keyword : '';}}"
+                placeholder="会員ID、会員名、電話番号を入力してください"></label>
                 <button button type="submit" class="button is-primary mamber_button">検索</button>
             </p>
         </form>
@@ -36,7 +38,7 @@
         </table>
     </div>
 </div>
-
+{{$members->links()}}
 <hr>
 <a href="/">戻る</a>
 @endsection

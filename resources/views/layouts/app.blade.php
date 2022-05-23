@@ -11,15 +11,15 @@
 </head>
 <header>
     <div class="">
-            <a href="/"><img src="/imgs/abe_img.png" /></a>
+            <a href="/"><img src="/imgs/abe_img.png" alt="afoo!"/></a>
         
-        <ul>
+        <ul class="app_ul">
 
-            <li><a href="{{route('members.index')}}">会員管理</a></li>
+            <li class="app_li"><a href="{{route('members.index')}}">会員管理</a></li>
 
-            <li><a href="{{route('books.index')}}">資料管理</a></li>
+            <li class="app_li"><a href="{{route('books.index')}}">資料管理</a></li>
 
-            <li><a href="{{route('lendings.index')}}">貸出一覧</a></li>
+            <li class="app_li"><a href="{{route('lendings.index')}}">貸出一覧</a></li>
         </ul>
         
     </div>
@@ -27,6 +27,7 @@
 </header>
 <body>
     <main>
+    @include('layouts/flash')
     @yield('content')
     </main>
     

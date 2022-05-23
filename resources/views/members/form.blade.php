@@ -6,13 +6,13 @@
 <dl>
     <!--<dt>会員ID</dt>
     <dd><input type="text" name="member_id"></dd>-->
-    <dt>会員名</dt>
+    <dt>会員名　<span class="span_red">[必須]</span></dt>
     <dd><input type="text" name="name" 
-        value=""></dd>
+        value=""maxlength="25" required oninvalid="this.setCustomValidity('会員名を入力して下さい')" onkeyup="setCustomValidity('')"></dd>
     <dt>住所</dt>
     <dd><input type="text" name="address"></dd>
-    <dt>電話番号</dt>
-    <dd><input type="tel" name="tel"></dd>
+    <dt>電話番号 <span class="span_red">[必須]</span></dt>
+    <dd><input type="tel" name="tel" required oninvalid="this.setCustomValidity('電話番号を入力して下さい')" onkeyup="setCustomValidity('')"></dd>
     <dt>生年月日</dt>
     <dd><input type="date" name="birthday"></dd>
     <dt>メールアドレス</dt>
@@ -26,12 +26,12 @@
 <dl>
         <!--<dt>会員ID</dt>
         <dd><input type="text" name="member_id"></dd>-->
-        <dt>会員名</dt>
+        <dt>会員名 <span class="span_red">[必須]</span></dt>
         <dd><input type="text" name="name" 
-            value="{{$val->name}}"></dd>
+            value="{{$val->name}}" maxlength="15" required="会員名は必須です"></dd>
         <dt>住所</dt>
         <dd><input type="text" name="address" value="{{$val->address}}"></dd>
-        <dt>電話番号</dt>
+        <dt>電話番号 <span class="span_red">[必須]</span></dt>
         <dd><input type="tel" name="tel" value="{{$val->tel}}"></dd>
         <dt>生年月日</dt>
         <dd><input type="date" name="birthday" value="{{$val->birthday}}"></dd>

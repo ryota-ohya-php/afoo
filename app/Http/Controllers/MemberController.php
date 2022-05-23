@@ -13,10 +13,23 @@ class MemberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $members=Member::all();
-        return view('members.index',['members'=>$members]);
+        $mem=Member::select('id','name','tel');  
+        if(isset($request->keyword)){      
+            $mem=Member::select('id','name','tel');   
+            $mem->where('id','LIKE',"%$request->keyword%");
+            $mem->orwhere('name','LIKE',"%$request->keyword%");
+            $mem->orwhere('tel','LIKE',"%$request->keyword%");
+            $members=$mem->get();
+        }else{
+            $members = $mem->orderBy('id',)->paginate(10);
+            /*$members=Member::all()->paginate(10);*/
+        }
+        return view('members.index',[
+            'members'=>$members,
+            'keyword'=>$request->keyword,
+        ]);
     }
 
     /**
