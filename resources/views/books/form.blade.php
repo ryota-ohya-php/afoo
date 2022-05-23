@@ -73,8 +73,7 @@
                     $("#publisher").val(data[0].summary.publisher);
                     $("#author").val(data[0].summary.author);
                     $("#published_date").val(new Date(data[0].summary.pubdate));
-                    
-                    
+
                     // $("#volume").val(data[0].summary.volume);
                     // $("#series").val(data[0].summary.series);
                     // $("#cover").val(data[0].summary.cover);
@@ -84,4 +83,5 @@
             });
         });
     });
+    
 </script>
