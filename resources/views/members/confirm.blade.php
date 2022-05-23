@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<h2 class="txt_center title">会員新規登録</h2>
+
+<h2 class="txt_center title">入力確認画面</h2>
     <div class="main_content">
         <dl>
             <!--<dt>会員ID</dt>
@@ -18,8 +19,15 @@
             <dd>{{$request->email}}</dd>
         </dl>
 
-    <form action="{{route('members.store')}}" method="post">
+    <form action="{{($request->confirm == 'create') ? route('members.store') : route('members.update',$request->member_id);}}" method="post">
         @csrf
+
+        @if($request->confirm != 'create')
+        
+        @method('patch')
+
+        @endif
+
         <input type="hidden" name="member_id" value="{{$request->member_id}}">
         <input type="hidden" name="name" value="{{$request->name}}">
         <input type="hidden" name="address" value="{{$request->address}}">
