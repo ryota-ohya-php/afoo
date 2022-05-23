@@ -1,22 +1,25 @@
 @csrf
 {{-- booksのフォーム部分部品化 --}}
+<div>
+    <p id = "book_img"></p>
+</div>
 <dl>
     {{-- old関数で一つ前の値を表示 --}}
     <dt><label for="isbn">ISBN番号</label></dt>
     <dd>
         {{-- <form action="{{route('books.create')}}" method="GET"> --}}
-            <input type="number" name="isbn" id="isbn" pattern="^\d{13}$" value="{{old('isbn',$book->isbn)}}" autofocus>
+            <input type="number" name="isbn" id="isbn" maxlength="13" pattern="^\d{13}$" value="{{old('isbn',$book->isbn)}}" autofocus>
             <button id="getBookInfo">ISBN番号で自動補完</button>
         {{-- <button type="submit">ISBN番号で検索する</button>  --}}
         {{-- </form> --}}
     </dd>
     <dt><label for="title">タイトル</label></dt>
     <dd>
-        <input type="text" name="title" id="title" value="{{old('title',$book->title)}}">
+        <input type="text" name="title" id="title" size="20" value="{{old('title',$book->title)}}">
     </dd>
     <dt><label for="author">著者</label></dt>
     <dd>
-        <input type="text" name="author" id="author" value="{{old('author',$book->author)}}">
+        <input type="text" name="author" id="author" size="20" value="{{old('author',$book->author)}}">
     </dd>
     <dt><label for="category">分類コード(現段階自分で手入力)</label></dt>
     <dd>
@@ -59,18 +62,19 @@
                 if( data[0] == null ) {
                     alert("データが見つかりません");
                 } else {
+                    if( data[0].summary.cover == "" ){
+                        $("#book_img").html('<img src=\"\" />');
+                    } else {
+                        $("#book_img").html('<img src=\"' + data[0].summary.cover + '\" style=\"border:solid 1px #000000\" />');
+                    }
 
                     // $("代入する箇所のcssセレクタ").val(代入する値)で各value属性に代入
                     $("#title").val(data[0].summary.title);
                     $("#publisher").val(data[0].summary.publisher);
                     $("#author").val(data[0].summary.author);
-                    $("#published_date").val(data[0].summary.pubdate);
+                    $("#published_date").val(new Date(data[0].summary.pubdate));
                     
-                    // if( data[0].summary.cover == "" ){
-                    //     $("#thumbnail").html('<img src=\"\" />');
-                    // } else {
-                    //     $("#thumbnail").html('<img src=\"' + data[0].summary.cover + '\" style=\"border:solid 1px #000000\" />');
-                    // }
+                    
                     // $("#volume").val(data[0].summary.volume);
                     // $("#series").val(data[0].summary.series);
                     // $("#cover").val(data[0].summary.cover);
