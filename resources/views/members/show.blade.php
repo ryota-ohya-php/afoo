@@ -36,10 +36,10 @@
 
             @csrf
             @method('delete')
-            <button type="submit" class="mamber_button button is-danger">削除する</button>
+            <button class="mamber_button button is-danger" onclick="deleteMember()">削除する</button>
         </form>
-        <script>
-            function deleteBook() {
+        <script type="text/javascript">
+            function deleteMember() {
                 event.preventDefault();
                 if (window.confirm('本当に削除しますか？')) {
                     document.getElementById('delete-form').submit();
