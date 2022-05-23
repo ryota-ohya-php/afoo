@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lending;
+use App\Models\Member;
+use App\Models\Inventory;
 use Illuminate\Http\Request;
 
 class LendingController extends Controller
@@ -14,7 +16,8 @@ class LendingController extends Controller
      */
     public function index(Request $request)
     {
-        return view('lendings.index',['request'=>$request]);
+        $lending=Lending::all();
+        return view('lendings.index',['lending'=>$lending]);
     }
 
     /**
@@ -44,6 +47,12 @@ class LendingController extends Controller
      */
     public function store(Request $request)
     {
+        $lend= new Lending;
+        $lend->member_id=$request->member_id;
+        $lend->inventory_id=$request->inventory_id;
+        $lend->lent_date=$request->lent_date;
+        $lend->remarks=$request->remarks;
+        $lend->save();
         return view('lendings.create');
     }
 
@@ -90,5 +99,15 @@ class LendingController extends Controller
     public function destroy(Lending $lending)
     {
         //
+    }
+    public function add($id)
+    {
+        $mem=Lending::select('lendings.id','member_id','inventory_id','books.title','lent_date','due_date');
+        $mem->where('member_id','=',$id);
+        $mem->join('members', 'lendings.member_id', '=', 'members.id');
+        $mem->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
+        $mem->join('books', 'inventories.book_id', '=', 'books.id');
+        $member=$mem->get();
+        return response()->json($member);
     }
 }

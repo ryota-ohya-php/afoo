@@ -34,7 +34,8 @@ Route::get('lendings/rebook', 'App\Http\Controllers\LendingController@rebook')->
 
 Route::post('books/create/confirm', 'App\Http\Controllers\BookController@confirm_create')->name('books.confirm-create');
 Route::post('books/edit/confirm', 'App\Http\Controllers\BookController@confirm_edit')->name('books.confirm-edit');
-
+//ajax処理
+Route::get('/lendings/add/{id}', 'App\Http\Controllers\LendingController@add')->name('lendings.add');
 // resourceのルーティング、最後に記述！！
 Route::resource('members', MemberController::class);
 Route::resource('books', BookController::class);

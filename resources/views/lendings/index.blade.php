@@ -38,22 +38,15 @@
             </tr>
         </thead>
         <tbody>
-            
+            @foreach($lending as $lend)
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{$lend->member_id}}</td>
+                <td>{{$lend->inventory_id}}</td>
+                <td>{{$lend->lent_date}}</td>
+                <td>{{$lend->return_date}}</td>
+                <td>{{$lend->remarks}}</td>
             </tr>
-            
-            <tr>
-                <td>foreachで回す</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            @endforeach
         </tbody>
     </table>
 </div>

@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Lending extends Model
 {
     use HasFactory;
+    const CREATED_AT=null;
+    const UPDATED_AT=null;
+
+    public function members(){
+        return $this->belongTo(Member::class);
+    }
 }

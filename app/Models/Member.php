@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Member extends Model
 {
     use HasFactory;
+    public function lendings(){
+        return $this->hasMany(Lending::class);
+    }
 }
