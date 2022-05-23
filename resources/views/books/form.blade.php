@@ -24,23 +24,23 @@
     <dt><label for="category">分類コード(現段階自分で手入力)</label></dt>
     <dd>
         <select name="category_id" id="category_id">
-            <option value="0">総記</option>
-            <option value="1">哲学</option>
-            <option value="2">歴史</option>
-            <option value="3">社会科学</option>
-            <option value="4">自然科学</option>
-            <option value="5">技術</option>
-            <option value="6">産業</option>
-            <option value="7">芸術</option>
-            <option value="8">言語</option>
-            <option value="9">文学</option>
+            <option value="0">0(総記)</option>
+            <option value="1">1(哲学)</option>
+            <option value="2">2(歴史)</option>
+            <option value="3">3(社会科学)</option>
+            <option value="4">4(自然科学)</option>
+            <option value="5">5(技術)</option>
+            <option value="6">6(産業)</option>
+            <option value="7">7(芸術)</option>
+            <option value="8">8(言語)</option>
+            <option value="9">9(文学)</option>
         </select>
     </dd>
     <dt><label for="publisher">出版社</label></dt>
     <dd>
         <input type="text" name="publisher" id="publisher" value="{{old('publisher',$book->publisher)}}">
     </dd>
-    <dt><label for="published_date">出版日(上手く補完されない)</label></dt>
+    <dt><label for="published_date">出版日</label></dt>
     <dd>
         <input type="date" name="published_date" id="published_date" value="{{old('published_date',$book->published_date)}}">
     </dd>
@@ -69,10 +69,45 @@
                     }
 
                     // $("代入する箇所のcssセレクタ").val(代入する値)で各value属性に代入
+
                     $("#title").val(data[0].summary.title);
                     $("#publisher").val(data[0].summary.publisher);
                     $("#author").val(data[0].summary.author);
-                    $("#published_date").val(new Date(data[0].summary.pubdate));
+
+                    console.log(data[0].summary.pubdate);
+                    let data_date = String(data[0].summary.pubdate);
+                    console.log(data[0].summary.pubdate.length);
+                    let year = data[0].summary.pubdate.slice(0,4);
+                    // let month = data[0].summary.pubdate.slice(4,6);
+                    if (data[0].summary.pubdate.length == 8) {
+                        console.log("a");
+                        let month = data[0].summary.pubdate.slice(4,6);
+                        console.log(month);
+                        let day = data[0].summary.pubdate.slice(6,8);
+                        let date = String(year + '-' + month + '-' + day);
+                        $("#published_date").val(date);
+                    }
+                    if(data[0].summary.pubdate.length == 7){
+                        let month = data_date.slice(5,7);
+                        let day = "01";
+                        let date = String(year + '-' + month + '-' + day);
+                        $("#published_date").val(date);
+                    }
+
+                    // console.log(month);
+                    // let date = new Date(year + "/" + month + "/" + day);
+
+                    // let date = String(year + '-' + month + '-' + day);
+
+                    // console.log(year);
+                    // console.log(month);
+                    // console.log(day);
+                    // console.log("year + '/' + month + '/' + day");
+                    // console.log(date);
+                    // $("#published_date").val(date);
+                    console.log(data[0]);
+                    
+                    
 
                     // $("#volume").val(data[0].summary.volume);
                     // $("#series").val(data[0].summary.series);
