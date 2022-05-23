@@ -1,11 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+
 <form action="{{ route('inventories.create') }}" method="get">
     <input type="hidden" name="book_id" value="{{ $book->id }}">
     <button type="submit">在庫登録</button>
 </form>
     <h1>書籍詳細</h1>
+
+
+    <div class="main_content">
+
     <dl>
         <dt>ISBN番号</dt>
         <dd>{{$book->isbn}}</dd>
@@ -18,10 +23,11 @@
         <dt>出版社</dt>
         <dd>{{$book->publisher}}</dd>
         <dt>出版日</dt>
-        <dd>{{$book->published_at}}</dd>
+        <dd>{{$book->published_date}}</dd>
         <dt>在庫数</dt>
         <dd>2</dd>
     </dl>
+    </div>
 
     <a href="{{route('books.edit',$book)}}">編集する</a>
     <a href="#" onclick="deleteBook()">削除する</a>
@@ -37,4 +43,5 @@
                 }
             }
         </script>
+    <a href="{{route('books.index')}}">資料一覧に戻る</a>
 @endsection
