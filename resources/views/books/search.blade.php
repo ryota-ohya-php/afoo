@@ -1,3 +1,5 @@
+{{-- <div class="column"> --}}
+{{-- 検索する内容のinput --}}
 <dl>
     <dt><label for="isbn" >ISBN番号</label></dt>
     <dd>
@@ -14,25 +16,17 @@
     <dt><label for="category">分類コード</label></dt>
     <dd>
     <select name="category_id" id="category_id">
-        <option value=""></option>
+        <option value="カテゴリーを選択してください"></option>
         @foreach ($categories as $category)
-            <option value="{{$category->id}}">
-                {{request('category_id') == $category->id ? '' : ''}}
-                >
-                {{$category->name}} ({{$category->books_count}})
+            {{-- なぜかidが0の際検索できなかったので条件分岐 --}}
+            <option value="{{ $category->id == 0 ? '%0' : $category->id}}"
+                {{request('category_id') == $category->id ? 'selected' : ' '}}
+            >
+                {{$category->name}} ({{$category->books_count}})  
+                {{-- books_countはwithCount関数の値が入っている --}}
             </option>
         @endforeach
-    
-        {{-- <option value="0">総記</option>
-    <option value="1">哲学</option>
-    <option value="2">歴史</option>
-    <option value="3">社会科学</option>
-    <option value="4">自然科学</option>
-    <option value="5">技術</option>
-    <option value="6">産業</option>
-    <option value="7">芸術</option>
-    <option value="8">言語</option>
-    <option value="9">文学</option> --}}
     </select>
     </dd>
 </dl>
+{{-- </div> --}}
