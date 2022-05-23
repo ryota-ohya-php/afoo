@@ -6,7 +6,7 @@
 
 <h2 class="txt_center title">会員一覧</h2>
 <div class="main_content">
-    <div class="member_div ">
+    <div class="member_div">
       <button class="button is-success member_span" onclick="location.href='{{route('members.create')}}'" >＋会員登録</button>
         <form action="{{route('members.index')}}" method="get">
             <p>

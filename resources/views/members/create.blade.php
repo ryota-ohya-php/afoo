@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="main_content">
-<h1>会員の新規登録</h1> 
+    <h2 class="title txt_center">会員の新規登録</h2> 
 
      <form action="{{route('members.confirm')}}" method="post">
         @include('members/form')
