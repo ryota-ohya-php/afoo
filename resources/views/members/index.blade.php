@@ -37,8 +37,9 @@
             </tbody>
         </table>
     </div>
-</div>
+
 {{$members->links()}}
 <hr>
 <a href="/">戻る</a>
+</div>
 @endsection
