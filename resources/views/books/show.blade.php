@@ -25,7 +25,7 @@
         <dt>出版日</dt>
         <dd>{{$book->published_date}}</dd>
         <dt>在庫数</dt>
-        <dd>2</dd>
+        <dd>{{ $book->inventories->count() }}</dd>
     </dl>
     </div>
 
