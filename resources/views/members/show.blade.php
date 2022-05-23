@@ -22,24 +22,26 @@
             <dd>{{$member->email}}</dd>
         </dl>
     </div>
-
     <div class="block">
+        {{-- 会員一覧画面に戻る --}}
         <button class="button is-primary mamber_button" 
         onclick="location.href='{{ route('members.index') }}'">会員一覧画面に戻る</button>
 
+        {{-- 編集ボタン  --}}
         <button class="button is-link mamber_button" 
         onclick="location.href='{{ route('members.edit', $member->id)}}'">編集する</button>
     </div>
-
+    
+    {{-- 会員情報削除ボタン --}}
     <div class="block">
         <form action="{{route('members.destroy',$member->id)}}" method="post" id="delete-form">
 
             @csrf
             @method('delete')
-            <button type="submit" class="mamber_button button is-danger">削除する</button>
+            <button class="mamber_button button is-danger" onclick="deleteMember()">削除する</button>
         </form>
-        <script>
-            function deleteBook() {
+        <script type="text/javascript">
+            function deleteMember() {
                 event.preventDefault();
                 if (window.confirm('本当に削除しますか？')) {
                     document.getElementById('delete-form').submit();

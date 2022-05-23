@@ -8,7 +8,7 @@
         <dl>
             <!--<dt>会員ID</dt>
             <dd><input type="text" name="member_id"></dd>-->
-            <dt>会員名　<span class="span_red">[必須]</span></dt>
+            <dt>会員名 <span class="span_red">[必須]</span></dt>
             <dd><input type="text" name="name" 
                 value=""maxlength="25" required oninvalid="this.setCustomValidity('会員名を入力して下さい')" onkeyup="setCustomValidity('')"></dd>
             <dt>住所</dt>

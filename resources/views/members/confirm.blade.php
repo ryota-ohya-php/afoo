@@ -52,7 +52,8 @@
     </form>
     </div>
     
-</div>
+
 <hr>
 <a href="/">戻る</a>
+</div>
 @endsection
