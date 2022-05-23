@@ -5,7 +5,7 @@
 
 
 <h2 class="title txt_center">会員詳細</h2>
-
+<div class="main_content">
 <dl>
     <dt>会員ID</dt>
     <dd>{{$member->id}}</dd>
@@ -28,9 +28,10 @@
 
     @csrf
     @method('delete')
-    <button type="submit">削除する</button>
+    <button type="submit" class="mamber_button button is-warning">削除する</button>
 </form>
 
 <hr>
 <a href="/">戻る</a>
+</div>
 @endsection
