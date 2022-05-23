@@ -4,28 +4,18 @@
 <h2 class="txt_center title">在庫登録</h2>
 <div class="main_content">
       <dl>
-        <label for="inventory_num">
           <dt>在庫数</dt>
-          <dd></dd>
-        </label>
-      </dl>
-      <dl>
-        <label for="arrival_date">
+          <dd>{{ $request->inventory_num }}</dd>
           <dt>入荷年月日</dt>
-          <dd></dd>
-        </label>
-      </dl>
-      <dl>
-        <label for="remarks">
+          <dd>{{ $request->arrival_date }}</dd>
           <dt>備考</dt>
-          <dd></dd>
-        </label>
+          <dd>{{ $request->remarks }}</dd>
       </dl>
+    <!-- hiddenでstoreメソッドに送る -->
     <form action="{{ route('inventories.store') }}" method="post">
       @csrf
-      <input type="hidden" name="book_id" value="">
+      <input type="hidden" name="book_id" value="{{ $request->book_id }}">
       <input type="hidden" name="arrival_date" value="{{$request->arrival_date}}">
-      <input type="hidden" name="disposal_date">
       <input type="hidden" name="remarks" value="{{$request->remarks}}">
       <input type="hidden" name="inventory_num" value="{{$request->inventory_num}}">
       <button type="submit">在庫登録</button>

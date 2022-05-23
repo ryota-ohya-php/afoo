@@ -3,23 +3,25 @@ header{
     background-color: #c5f3df;
 }
 
-ul{
+ul.app_ul{
     display:inline-block;
     position: absolute;
     top: 55px;
     right: 20px;
     
 }
-li {
+li.app_li {
     display: inline;
 }
 a{
     color:#e79ae5;
 }
+
 a:hover{
     color:#f56477;
 }
-ul li, ol li {
+
+ul.app_ul li.app_li {
     padding: 0.5em 0.5em 0.5em 0.5em;
     margin-bottom: 5px;
     line-height: 1.5;
@@ -28,7 +30,7 @@ ul li, ol li {
     color: #505050;
     border-radius: 15px 15px 0px 15px;/*左側の角丸く*/
   }
-  ul li:before{ 
+  ul.app_ul li.app_li:before{ 
 
     content:'';
     width:1em;
@@ -135,6 +137,7 @@ input.lending_inp{
 .margin-top{
     margin-top: 15px;
 }
+
 .info_dl{
     width: 700px;
     margin: auto;
@@ -165,3 +168,18 @@ input.lending_inp{
   div.sub_block{
       display: inline-block;
   }
+
+.w-5{
+    width:20px;
+}
+nav.flex{
+    text-align: center;
+}
+div.justify-between,p.text-sm{
+    display: none;
+
+} 
+span.span_red{
+    color: red;
+    font-weight: bold;
+}

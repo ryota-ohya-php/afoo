@@ -17,7 +17,8 @@
             {{($_SERVER['REQUEST_URI'] == '/lendings/create') ? '貸出日' : '返却';}}
         </dt>
             <dd> 
-                <input type="date" name="{{($_SERVER['REQUEST_URI'] == '/lendings/create') ? 'lent_date' : 'return_date';}}" value="{{date('Y-m-j')}}" class="lending_inp">
+                <input type="date" name="{{($_SERVER['REQUEST_URI'] == '/lendings/create') ? 'lent_date' : 'return_date';}}" 
+                value="{{date('Y-m-j')}}" class="lending_inp">
             </dd>
         <dt>
             備考
