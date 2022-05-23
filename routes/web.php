@@ -24,7 +24,8 @@ Route::get('/', function () {
     return view('home.index');
 });
 
-Route::get('inventories/confirm', 'App\Http\Controllers\InventoryController@confirm')->name('inventories.confirm');
+Route::post('inventories/confirm', 'App\Http\Controllers\InventoryController@confirm')->name('inventories.confirm');
+
 
 Route::post('menbers/confirm', 'App\Http\Controllers\MemberController@confirm')->name('members.confirm');
 
