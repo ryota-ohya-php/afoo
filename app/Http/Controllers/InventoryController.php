@@ -23,10 +23,10 @@ class InventoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(Request $id)
     {
-        
-        return view('inventories.create', ['request'=>$request]);
+        $book = \App\Models\Book::find($id);  
+        return view('inventories.create', ['book'=>$book]);
     }
 
     // 確認画面のアクション
@@ -43,7 +43,16 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
-        return view('books.show');
+        $inventory_num = $request->inventory_num;
+        for ($i=0; $i < $inventory_num ; $i++) { 
+            $inventory = new Inventory;
+            $inventory->book_id = $request->book_id;
+            $inventory->arrival_date = $request->arrival_date;
+            $inventory->remarks = $request->remarks;
+            $inventory->save();
+
+        }
+        return redirect(route('books.show', $request->book_id));
     }
 
     /**
