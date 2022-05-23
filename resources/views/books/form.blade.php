@@ -73,6 +73,7 @@
                     $("#title").val(data[0].summary.title);
                     $("#publisher").val(data[0].summary.publisher);
                     $("#author").val(data[0].summary.author);
+
                     console.log(data[0].summary.pubdate);
                     let data_date = String(data[0].summary.pubdate);
                     console.log(data[0].summary.pubdate.length);
@@ -107,6 +108,7 @@
                     console.log(data[0]);
                     
                     
+
                     // $("#volume").val(data[0].summary.volume);
                     // $("#series").val(data[0].summary.series);
                     // $("#cover").val(data[0].summary.cover);
@@ -116,4 +118,5 @@
             });
         });
     });
+    
 </script>
