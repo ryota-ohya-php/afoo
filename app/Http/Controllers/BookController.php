@@ -15,6 +15,9 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
+        $this->validate($request,[
+            'isbn' => 'max:13|mix:13',
+        ]);
         $query = Book::with('category');
         if ($request->category_id) {
             $query->where('category_id',$request->category_id);
@@ -63,6 +66,9 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'isbn' => 'max:13|mix:13',
+        ]);
         $book = new Book;
         $book->create($request->all());
         return redirect(route('books.index'));
@@ -105,6 +111,9 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
+        $this->validate($request,[
+            'isbn' => 'max:13|mix:13',
+        ]);
         $book->update($request->all());
         return redirect(route('books.show',$book));
     }
