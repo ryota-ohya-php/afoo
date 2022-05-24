@@ -57,12 +57,14 @@
             <dd>    
                 <input type="number" name="member_id" id="member_id" min="0">
             </dd>
+            @if($_SERVER['REQUEST_URI'] != '/lendings/rebook')
         <dt>
             在庫
         </dt>
             <dd> 
                 <input type="number" name="inventory_id" id="inventory_id" min="0">
             </dd>
+            @endif
         <dt>
             
             {{($_SERVER['REQUEST_URI'] == '/lendings/create') ? '貸出日' : '返却';}}
@@ -80,12 +82,11 @@
                 <input type="text" name="remarks" class="lending_inp">
             </dd>
     </dl>
-    <p class="member_name">会員名が表示されます。</p>
+    <p class="member_name"></p>
     <!--<select  id="member" size="5" multiple style="width:400px; height:300px">
         会員ID検索
     </select>-->
     <ul id="member">
         
     </ul>
-    <input type="hidden" name="lend_or_rebook" value="{{($_SERVER['REQUEST_URI'] == '/lendings/create') ? "lend" : "rebook" }}">
     <button type="submit" class="button is-warning">入力確認画面へ</button>

@@ -7,7 +7,7 @@
 <div class="main_content">
     <!--貸出検索-->
     <form action="{{route('lendings.confirm')}}" method="post">
-        @include('lendings/form')
+        @include('lendings/returnform')
     </form>
 
 </div>
