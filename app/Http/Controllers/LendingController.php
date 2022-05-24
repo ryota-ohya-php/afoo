@@ -16,7 +16,33 @@ class LendingController extends Controller
      */
     public function index(Request $request)
     {
-        $lending=Lending::all();
+       $keyword=$request->keyword;
+        if(isset($keyword)){
+            $lend=Lending::select('lendings.id','member_id','members.name',
+            'books.author','inventory_id','books.title','lendings.lent_date','lendings.due_date');
+            $lend->whereNull('return_date')
+            ->where(function($q) use ($keyword){
+                $q->orwhere('member_id','LIKE',"%$keyword%");
+                $q->orwhere('title','LIKE',"%$keyword%");
+            });
+            $lend->join('members', 'lendings.member_id', '=', 'members.id');
+            $lend->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
+            $lend->join('books', 'inventories.book_id', '=', 'books.id');
+
+        }else{
+
+        $lend=Lending::select('lendings.id','member_id','members.name',
+        'books.author','inventory_id','books.title','lent_date','due_date');
+        $lend->whereNull('return_date');
+
+        $lend->join('members', 'lendings.member_id', '=', 'members.id');
+        $lend->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
+        $lend->join('books', 'inventories.book_id', '=', 'books.id');
+
+        }
+        $lending=$lend->get();
+
+        
         return view('lendings.index',['lending'=>$lending]);
     }
 
@@ -78,7 +104,7 @@ class LendingController extends Controller
         
        
         return view('lendings.confirm',[
-            'request'=>$request,
+        'request'=>$request,
         'data'=>$data]);
 
     }
