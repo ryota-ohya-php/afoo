@@ -102,12 +102,13 @@ class LendingController extends Controller
     }
     public function add($id)
     {
-        $mem=Lending::select('lendings.id','member_id','inventory_id','books.title','lent_date','due_date');
+        $mem=Lending::select('lendings.id','member_id','members.name','members.tel','inventory_id','books.title','lent_date','due_date');
         $mem->where('member_id','=',$id);
         $mem->join('members', 'lendings.member_id', '=', 'members.id');
         $mem->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
         $mem->join('books', 'inventories.book_id', '=', 'books.id');
         $member=$mem->get();
+        
         return response()->json($member);
     }
 }
