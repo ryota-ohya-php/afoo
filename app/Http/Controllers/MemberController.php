@@ -56,6 +56,7 @@ class MemberController extends Controller
             'name.required' => '会員名は必須です。',
             'name.max' => '会員名は20文字以内です。',
             'tel.required' => '電話番号は必須です。',
+            'address.max' => '住所は255文字以内です。',  
             'email.max' => 'メールアドレスは255文字以内です。',  
         ]);  
         return view('members.confirm',['request'=>$request]);
@@ -116,6 +117,22 @@ class MemberController extends Controller
      */
     public function update(Request $request, Member $member)
     {
+        // validationを追加,確認画面に遷移させない
+        $validated = $request->validate([
+            'name' => ['required','max:20',],
+            'address' => ['nullable','string','max:255',],
+            'tel' => ['required','max:255',],
+            'birthday' => ['nullable', 'date',],
+            'email' => ['nullable','string','max:255',],
+        ],
+        [
+            // エラーメッセージカスタマイズ
+            'name.required' => '会員名は必須です。',
+            'name.max' => '会員名は20文字以内です。',
+            'tel.required' => '電話番号は必須です。',
+            'address.max' => '住所は255文字以内です。',  
+            'email.max' => 'メールアドレスは255文字以内です。',  
+        ]);  
        //echo $member->id;exit;
         $members= Member::find($member->id);
         $members->name=$request->name;

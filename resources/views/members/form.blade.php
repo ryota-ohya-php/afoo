@@ -10,7 +10,7 @@
             <dd><input type="text" name="member_id"></dd>-->
             <dt>会員名 <span class="span_red">[必須]</span></dt>
             <dd><input type="text" name="name" 
-                value="{{ old('name') }}"maxlength="25" required oninvalid="this.setCustomValidity('会員名を入力して下さい')" onkeyup="setCustomValidity('')"></dd>
+                value="{{ old('name') }}"maxlength="20" required oninvalid="this.setCustomValidity('会員名を入力して下さい')" onkeyup="setCustomValidity('')"></dd>
             <dt>住所</dt>
             <dd><input type="text" name="address" value="{{ old('address') }}"></dd>
             <dt>電話番号 <span class="span_red">[必須]</span></dt>
