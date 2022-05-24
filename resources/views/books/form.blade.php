@@ -3,48 +3,47 @@
 <div>
     <p id = "book_img"></p>
 </div>
-<dl>
-    {{-- old関数で一つ前の値を表示 --}}
-    <dt><label for="isbn">ISBN番号</label></dt>
-    <dd>
-        {{-- <form action="{{route('books.create')}}" method="GET"> --}}
-            <input type="number" name="isbn" id="isbn" maxlength="13" pattern="^\d{13}$" value="{{old('isbn',$book->isbn)}}" autofocus>
-            <button id="getBookInfo">ISBN番号で自動補完</button>
-        {{-- <button type="submit">ISBN番号で検索する</button>  --}}
-        {{-- </form> --}}
-    </dd>
-    <dt><label for="title">タイトル</label></dt>
-    <dd>
-        <input type="text" name="title" id="title" size="20" value="{{old('title',$book->title)}}">
-    </dd>
-    <dt><label for="author">著者</label></dt>
-    <dd>
-        <input type="text" name="author" id="author" size="20" value="{{old('author',$book->author)}}">
-    </dd>
-    <dt><label for="category">分類コード(現段階自分で手入力)</label></dt>
-    <dd>
-        <select name="category_id" id="category_id">
-            <option value="0">0(総記)</option>
-            <option value="1">1(哲学)</option>
-            <option value="2">2(歴史)</option>
-            <option value="3">3(社会科学)</option>
-            <option value="4">4(自然科学)</option>
-            <option value="5">5(技術)</option>
-            <option value="6">6(産業)</option>
-            <option value="7">7(芸術)</option>
-            <option value="8">8(言語)</option>
-            <option value="9">9(文学)</option>
-        </select>
-    </dd>
-    <dt><label for="publisher">出版社</label></dt>
-    <dd>
-        <input type="text" name="publisher" id="publisher" value="{{old('publisher',$book->publisher)}}">
-    </dd>
-    <dt><label for="published_date">出版日</label></dt>
-    <dd>
-        <input type="date" name="published_date" id="published_date" value="{{old('published_date',$book->published_date)}}">
-    </dd>
-</dl>
+<div class="info_dl">
+    <dl>
+        {{-- old関数で一つ前の値を表示 --}}
+        <dt><label for="isbn">ISBN番号</label></dt>
+        <dd>
+            {{-- <form action="{{route('books.create')}}" method="GET"> --}}
+                <input type="number" name="isbn" id="isbn" maxlength="13" pattern="^\d{13}$" value="{{old('isbn',$book->isbn)}}" autofocus>
+                <button id="getBookInfo">ISBN番号で自動補完</button>
+            {{-- <button type="submit">ISBN番号で検索する</button>  --}}
+            {{-- </form> --}}
+        </dd>
+        <dt><label for="title">タイトル</label></dt>
+        <dd>
+            <input type="text" name="title" id="title" size="20" value="{{old('title',$book->title)}}">
+        </dd>
+        <dt><label for="author">著者</label></dt>
+        <dd>
+            <input type="text" name="author" id="author" size="20" value="{{old('author',$book->author)}}">
+        </dd>
+        <dt><label for="category">分類コード(現段階自分で手入力)</label></dt>
+        <dd>
+            <select name="category_id" id="category_id">
+                @for ($i = 0; $i < 10; $i++)
+                    @if ($i == $book->category_id)
+                        <option value= "{{$i}}" selected>{{$categories[$i]->id}}({{$categories[$i]->name}})</option>
+                    @else
+                        <option value="{{$i}}">{{$categories[$i]->id}}({{$categories[$i]->name}})</option>
+                    @endif 
+                @endfor
+            </select>
+        </dd>
+        <dt><label for="publisher">出版社</label></dt>
+        <dd>
+            <input type="text" name="publisher" id="publisher" value="{{old('publisher',$book->publisher)}}">
+        </dd>
+        <dt><label for="published_date">出版日</label></dt>
+        <dd>
+            <input type="date" name="published_date" id="published_date" value="{{old('published_date',$book->published_date)}}">
+        </dd>
+    </dl>
+</div>
 <input type="hidden" name="book_id" value="{{$book->id}}">
 
 <script>

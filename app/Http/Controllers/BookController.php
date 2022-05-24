@@ -17,7 +17,7 @@ class BookController extends Controller
     public function index(Request $request)
     {
         $this->validate($request,[
-            'isbn' => 'max:13|mix:13',
+            'isbn' => 'max:13',
         ]);
         $query = Book::with('category');
         if ($request->category_id) {
@@ -36,7 +36,7 @@ class BookController extends Controller
             $query->where('isbn',$request->isbn);
         }
 
-        $books = $query->orderBy('created_at',)->paginate(10);
+        $books = $query->orderBy('created_at','desc')->paginate(10);
 
         $categories = Category::withCount('books')->get();
 
@@ -50,8 +50,9 @@ class BookController extends Controller
      */
     public function create()
     {
+        $categories = Category::get();
         $book = new Book;
-        return view('books.create',['book'=>$book]);
+        return view('books.create',['book'=>$book,'categories'=>$categories]);
     }
 
     public function confirm_create(Request $request)
@@ -68,7 +69,7 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'isbn' => 'max:13|mix:13',
+            'isbn' => 'max:13',
         ]);
         $book = new Book;
         $book->create($request->all());
@@ -94,7 +95,9 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        return view('books.edit',['book'=>$book]);
+        $categories = Category::get();
+        // dd($categories);
+        return view('books.edit',['book'=>$book,'categories'=>$categories]);
     }
 
     public function confirm_edit(Request $request)
@@ -113,7 +116,7 @@ class BookController extends Controller
     public function update(Request $request, Book $book)
     {
         $this->validate($request,[
-            'isbn' => 'max:13|mix:13',
+            'isbn' => 'max:13',
         ]);
         $book->update($request->all());
         return redirect(route('books.show',$book));
