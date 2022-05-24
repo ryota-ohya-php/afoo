@@ -87,4 +87,5 @@
     <ul id="member">
         
     </ul>
+    <input type="hidden" name="lend_or_rebook" value="{{($_SERVER['REQUEST_URI'] == '/lendings/create') ? "lend" : "rebook" }}">
     <button type="submit" class="button is-warning">入力確認画面へ</button>

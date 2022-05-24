@@ -34,7 +34,7 @@
                     {{$request->remarks}}
                 </dd>
         </dl>
-        <form action="{{route('lendings.store')}}" method="post">
+        <form action=" {{($request->lend_or_rebook == 'lend') ? route('lendings.store') : route('lendings.update')}}" method="post">
             @csrf
             <input type="hidden" name="member_id" value="{{$request->member_id}}">
             <input type="hidden" name="inventory_id" value="{{$request->inventory_id}}">
