@@ -27,15 +27,39 @@ class LendingController extends Controller
      */
     public function create()
     {
-        return view('lendings.create');
+        if (Lending::get()->has('id') == false) {
+            
+        }
+        $inventory = Inventory::select('inventories.id','books.id','books.title');
+        $inventory->join('books', 'inventories.book_id', '=', 'books.id');
+        $inventories = $inventory->get();
+
+        // $inventory=Lending::select('lendings.id,,
+        //'inventory_id','books.title','lent_date','due_date','return_date');
+        // $inventory->whereNull('return_date);
+        // $inventory->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
+        // $inventory->join('books', 'inventories.book_id', '=', 'books.id');
+        // $inventories = $inventory->get();
+        // dd($inventories);
+        return view('lendings.create',['inventories'=>$inventories]);
     }
+    
+    // $mem=Lending::select('lendings.id','member_id','members.name','members.tel',
+    //     'inventory_id','books.title','lent_date','due_date','return_date');
+    //     $mem->where('member_id')
+    //      ->whereNull('return_date');
+    //     $mem->join('members', 'lendings.member_id', '=', 'members.id');
+    //     $mem->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
+    //     $mem->join('books', 'inventories.book_id', '=', 'books.id');
+    //     $member=$mem->get();
+
     public function rebook()
     {
         return view('lendings.rebook');
     }
     public function confirm(Request $request)
     {
-
+        // dd($request);
         return view('lendings.confirm',['request'=>$request]);
     }
 
@@ -47,6 +71,7 @@ class LendingController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
         $lend= new Lending;
         $lend->member_id=$request->member_id;
         $lend->inventory_id=$request->inventory_id;
