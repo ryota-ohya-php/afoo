@@ -22,10 +22,9 @@ class MemberController extends Controller
             $mem->orwhere('name','LIKE',"%$request->keyword%");
             $mem->orwhere('tel','LIKE',"%$request->keyword%");
             $members=$mem->get();
-        }else{
-            $members = $mem->orderBy('id',)->paginate(10);
+            
             /*$members=Member::all()->paginate(10);*/
-        }
+        }$members = $mem->orderBy('id',)->paginate(10);
         return view('members.index',[
             'members'=>$members,
             'keyword'=>$request->keyword,
