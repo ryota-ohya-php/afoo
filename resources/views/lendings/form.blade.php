@@ -4,34 +4,48 @@
             $('#member_id').change( function( ) {
                 var id=$(this).val();
                 console.log(id);
-                $.ajax({
-                        headers: {
-                                // POSTのときはトークンの記述がないと"419 (unknown status)"になるので注意
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                                },
-                            // POSTだけではなく、GETのメソッドも呼び出せる
-                            type:'get',
-                            // ルーティングで設定したURL
-                            url:'add/' + id, // 引数も渡せる
-                            dataType: 'json',
-                            data:{id:id},
-                        }).done(function (data,status,xhr){
-                            var a_count=data.length;
-                            var li="";
-                            var ch_box='';
-                           
-                            for (i=0;i<a_count; i++){
-                                ch_box='<input type="checkbox" name="lend[]" value="'+data[i]['id']+'">';
-                             li='<li>'+ch_box+' 資料名:'+data[i]['title']+ '貸出日'+data[i]['lent_date']+'貸出期限日'+data[i]['due_date']+'</li>';
-                            $('#member').append(li);
-                            }
-                            console.log(data);
-                        }).fail(function(jqXHR, textStatus, errorThrown){
-                            alert("sippai");
-                            // 失敗したときのコールバック
-                        }).always(function() {
-                            // 成否に関わらず実行されるコールバック
-                        });
+    if(id!=""){
+    $.ajax({
+        headers: {
+                // POSTのときはトークンの記述がないと"419 (unknown status)"になるので注意
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+            // POSTだけではなく、GETのメソッドも呼び出せる
+            type:'get',
+            // ルーティングで設定したURL
+            url:'add/' + id, // 引数も渡せる
+            dataType: 'json',
+            data:{id:id},
+        }).done(function (data,status,xhr){
+            var a_count=data.length;
+            var li="";
+            var ch_box='';
+                    
+            if(data[0]['id'] != ""){
+                var member='会員ID　'+data[0]['member_id']+'会員名　'+data[0]['name']+'電話番号　'+ data[0]['tel'] ;
+                if(!confirm('こちらの会員で間違えないでしょうか？\r\n'+member)){
+                    /*　キャンセルの時の処理 */
+                    return false;
+                }else{
+                    /*　OKの時の処理  */
+                    for (i=0;i<a_count; i++){
+                        ch_box='<input type="checkbox" name="lend[]" value="'+data[i]['id']+'">';
+                    li='<li class="inv_li">'+ch_box+' 資料名:'+data[i]['title']+ '貸出日'+data[i]['lent_date']+'貸出期限日'+data[i]['due_date']+'</li>';
+                    $('#member').append(li);
+                    }
+                    
+                }
+            }
+                console.log(data);
+            }).fail(function(jqXHR, textStatus, errorThrown){
+                alert("接続に失敗しました。");
+                // 失敗したときのコールバック
+            }).always(function() {
+                // 成否に関わらず実行されるコールバック
+            });
+    }else{
+        $('.inv_li').remove();
+    }
             });
         });
     
