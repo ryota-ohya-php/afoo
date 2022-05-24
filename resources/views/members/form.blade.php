@@ -23,7 +23,7 @@
     </div>
     {{-- 一覧画面に戻るボタン --}}
     <button type="button" class="button is-primary mamber_button"
-            onclick="location.href='{{ route('members.index')}}'">一覧画面に戻る</button>
+            onclick="location.href='{{ route('members.index')}}'">会員一覧画面に戻る</button>
     {{-- 入力確認ボタン --}}
     <input type="hidden" name="confirm" value="create">
     <button type ="submit" class="mamber_button button is-warning">入力確認する</button>
