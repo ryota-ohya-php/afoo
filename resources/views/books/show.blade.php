@@ -2,15 +2,26 @@
 
 @section('content')
 
-<form action="{{ route('inventories.create') }}" method="get">
-    <input type="hidden" name="book_id" value="{{ $book->id }}">
-    <button type="submit">在庫登録</button>
+
 </form>
-    <h1>書籍詳細</h1>
 
+<div class="main_content">
+    <div class="book_div">
+        <h2 class="title txt_center">書籍詳細</h2>
+      
+        {{-- 在庫登録ボタン --}}
+        <form action="{{ route('inventories.create') }}" method="get">
+            <input type="hidden" name="book_id" value="{{ $book->id }}">
+            <button type="submit" class="button is-success book_span">＋在庫登録</button>
+        </form>
+        
+         {{-- 書籍イメージ --}}
+        <div class="block">
+            <p id="book_img"></p>
+        </div>
 
-    <div class="main_content">
-        <p id="book_img"></p>
+        {{-- 書籍詳細情報 --}}
+        <div class="block">
             <div class="info_dl">
                 <dl>
                     <dt>ISBN番号</dt>
@@ -29,18 +40,23 @@
                     <dd>{{ $book->inventories->count() }}</dd>
                 </dl>
             </div>
-</div>
+        </div>
+    </div>
 
-
-    <a href="{{route('books.index')}}">資料一覧に戻る</a>
-
-    <a href="{{route('books.edit',$book)}}">編集する</a>
-    {{-- <button class="button is-link mamber_button"  --}}
-        {{-- onclick="location.href='{{ route('books.edit',$book)}}'">編集する</button> --}}
-    <a href="#" onclick="deleteBook()">削除する</a>
+    <div class="block">
+        {{-- 書籍一覧画面に戻るボタン --}}
+        <button class="button is-primary mamber_button" 
+            onclick="location.href='{{ route('books.index') }}'">書籍一覧画面に戻る</button>
+        {{-- 編集ボタン --}}
+        <button class="button is-link mamber_button" 
+            onclick="location.href='{{ route('books.edit',$book)}}'">編集する</button>
+    </div>
+    {{-- 削除ボタン --}}
+    <div class="block">
         <form action="{{route('books.destroy',$book)}}" method="POST" id="delete-form">
             @csrf
             @method('delete')
+            <button class="mamber_button button is-danger" onclick="deleteBook()">削除する</button>
         </form>
         <script>
             function deleteBook() {
@@ -50,7 +66,7 @@
                 }
             }
         </script>
-    
+    </div>
 
     <script>
         // この関数でisbn番号からデータ取得して代入
@@ -76,3 +92,4 @@
         
     </script>
 @endsection
+</div>

@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h2 class="txt_center title">入力確認画面</h2>
+<h2 class="txt_center title">入力確認</h2>
 <div class="main_content">
     <div class="info_dl">
         <dl>

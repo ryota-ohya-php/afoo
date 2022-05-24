@@ -65,11 +65,24 @@ ul.app_ul li.app_li {
 .member_dd{
     margin-left: 80px;
 }
+/*資料一覧画面*/
+.book_div{
+    margin :auto;
+    width:800px;
+}
+.book_bottun{
+    height:32px;
+}
 
 /*貸出一覧画面*/
 .lending_dl{
     width:500px;
     margin:auto;
+}
+/*資料詳細画面*/
+.book_span{
+    display:block;
+    margin: 0 0 0 auto;
 }
 
 /*その他・共通クラス*/
