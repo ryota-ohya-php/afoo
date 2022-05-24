@@ -2,6 +2,7 @@
 
 @section('content')
 <h2 class="txt_center title">在庫登録</h2>
+@include('commons/flash')
     <div class="main_content">
       <form action="{{ route('inventories.confirm') }}" method="post">
         @csrf
@@ -28,7 +29,7 @@
           </label>
           <label for="remarks">
             <dt>備考</dt>
-            <dd><input type="text" name="remarks" id="remarks"></dd>
+            <dd><input type="text" name="remarks" id="remarks" value="{{ old('remarks') }}"></dd>
           </label>
         </dl>
         <button type="submit">在庫登録確認画面へ</button>
