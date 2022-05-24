@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2 class="txt_center title">書籍一覧</h2>
-    <div class="main_content">
-        <button class="button is-success member_span" onclick="location.href='{{route('books.create')}}'" >＋資料登録</button>
+<h2 class="txt_center title">書籍一覧</h2>
+<div class="main_content">
+    <div class="book_div">
+        <button class="button is-success member_span" onclick="location.href='{{route('books.create')}}'" >＋書籍登録</button>
     <form action="{{route('books.index')}}" method="get">
         @include('books.search')
-        <button type="submit">検索</button>
+        <button type="submit" class="button is-primary book_button">検索</button>
     </form>
     </div>
     <table class="table_center margin-top">
@@ -35,6 +36,7 @@
         </tbody>
     </table>
     {{$books -> appends(Request::all())->links()}}
+    </div>
 </div>
     
 @endsection

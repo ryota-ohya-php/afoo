@@ -38,8 +38,6 @@
         </table>
     </div>
 
-{{$members->links()}}
-<hr>
-<a href="/">戻る</a>
+{{ $members->appends(Request::all())->links() }}
 </div>
 @endsection
