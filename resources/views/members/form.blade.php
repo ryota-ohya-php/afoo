@@ -10,15 +10,16 @@
             <dd><input type="text" name="member_id"></dd>-->
             <dt>会員名 <span class="span_red">[必須]</span></dt>
             <dd><input type="text" name="name" 
-                value=""maxlength="25" required oninvalid="this.setCustomValidity('会員名を入力して下さい')" onkeyup="setCustomValidity('')"></dd>
+                value="{{ old('name') }}"maxlength="25" required oninvalid="this.setCustomValidity('会員名を入力して下さい')" onkeyup="setCustomValidity('')"></dd>
             <dt>住所</dt>
-            <dd><input type="text" name="address"></dd>
+            <dd><input type="text" name="address" value="{{ old('address') }}"></dd>
             <dt>電話番号 <span class="span_red">[必須]</span></dt>
-            <dd><input type="tel" name="tel" required oninvalid="this.setCustomValidity('電話番号を入力して下さい')" onkeyup="setCustomValidity('')"></dd>
+            <dd><input type="tel" name="tel" required oninvalid="this.setCustomValidity('電話番号を入力して下さい')"
+             onkeyup="setCustomValidity('')" value="{{ old('tel') }}"></dd>
             <dt>生年月日</dt>
-            <dd><input type="date" name="birthday"></dd>
+            <dd><input type="date" name="birthday" value="{{ old('birthday') }}"></dd>
             <dt>メールアドレス</dt>
-            <dd><input type="email" name="email"></dd>
+            <dd><input type="email" name="email" value="{{ old('email') }}"></dd>
         </dl>
     </div>
     <input type="hidden" name="confirm" value="create">
