@@ -6,23 +6,19 @@
 <h2 class="txt_center title">貸出一覧画面</h2>
 <div class="main_content">
     <!--貸出検索-->
-    <form action="{{route('lendings.index')}}" method="post">
-        @csrf
-        <dl class="lending_dl margin-bottom">
-            <dt>
-                会員ID
-            </dt>
-                <dd>    
-                    <input type="number" name="member_id" >
-                </dd>
-            <dt>
-                資料名
-            </dt>
-                <dd> 
-                    <input type="text" name="title" ><div class="txt_right"><button type="submit" class="button is-primary">検索</button></div>
-                </dd>
+    <form action="{{route('lendings.index')}}" method="get">
+        
+        <div class="info_dl">
+            <dl class="lending_dl margin-bottom">
+                <dt>
+                    keyword
+                </dt>
+                    <dd> 
+                        <input type="text" name="keyword"><div class="txt_right"><button type="submit" class="button is-primary">検索</button></div>
+                    </dd>
 
-        </dl>
+            </dl>
+        </div>
         
     </form>
 
@@ -41,10 +37,10 @@
             @foreach($lending as $lend)
             <tr>
                 <td>{{$lend->member_id}}</td>
-                <td>{{$lend->inventory_id}}</td>
+                <td>{{$lend->title}}</td>
+                <td>{{$lend->author}}</td>
                 <td>{{$lend->lent_date}}</td>
-                <td>{{$lend->return_date}}</td>
-                <td>{{$lend->remarks}}</td>
+                <td>{{$lend->due_date}}</td>
             </tr>
             @endforeach
         </tbody>
