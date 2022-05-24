@@ -51,7 +51,7 @@
     </div>
     {{-- 詳細画面に戻るボタン --}}
     <button type="button" class="button is-primary mamber_button"
-            onclick="location.href='{{ route('members.show', $val->id)}}'">詳細画面に戻る</button>
+            onclick="location.href='{{ route('members.show', $val->id)}}'">会員詳細画面に戻る</button>
     {{-- 入力確認ボタン --}}
     <input type="hidden" name="confirm" value="updata">
     <input type="hidden" name="member_id" value="{{$val->id}}">
