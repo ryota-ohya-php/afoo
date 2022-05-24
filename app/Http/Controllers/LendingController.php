@@ -35,8 +35,23 @@ class LendingController extends Controller
     }
     public function confirm(Request $request)
     {
-
-        return view('lendings.confirm',['request'=>$request]);
+        //print_r($_POST['lend'][0]);
+        foreach($_POST['lend'] as $num){
+            
+        
+             $n=Lending::select('lendings.id','member_id','members.name','members.tel','inventory_id','books.title','lent_date','due_date');
+             $n->where('lendings.id','=',$num);
+             $n->join('members', 'lendings.member_id', '=', 'members.id');
+             $n->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
+             $n->join('books', 'inventories.book_id', '=', 'books.id');
+             $data[]=$n->get();
+            }
+             
+        
+       
+        return view('lendings.confirm',[
+            'request'=>$request,
+        'data'=>$data]);
     }
 
     /**
@@ -87,7 +102,16 @@ class LendingController extends Controller
      */
     public function update(Request $request, Lending $lending)
     {
-        //
+        
+        foreach($request->id as $val){
+            $lend= Lending::find($val);
+            $lend->return_date=$request->return_date;
+            $lend->remarks=$request->remarks;
+            $lend->save();
+        }
+        
+        return redirect('lendings/rebook');
+        
     }
 
     /**
@@ -102,8 +126,11 @@ class LendingController extends Controller
     }
     public function add($id)
     {
-        $mem=Lending::select('lendings.id','member_id','members.name','members.tel','inventory_id','books.title','lent_date','due_date');
-        $mem->where('member_id','=',$id);
+        $mem=Lending::select('lendings.id','member_id','members.name','members.tel',
+        'inventory_id','books.title','lent_date','due_date','return_date');
+        $mem->where('member_id','=',$id)
+        ->whereNull('return_date');
+
         $mem->join('members', 'lendings.member_id', '=', 'members.id');
         $mem->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
         $mem->join('books', 'inventories.book_id', '=', 'books.id');
