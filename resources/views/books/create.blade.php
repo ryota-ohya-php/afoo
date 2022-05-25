@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<h2 class="title txt_center">書籍の新規登録</h2>
-@include('commons/flash')
+<h2 class="title txt_center">書籍の新規登録</h2> 
     <div class="main_content">
+    @include('commons/flash')  
         <div class="block">
             <form action="{{route('books.confirm-create')}}" method="POST">
                 @include('books.form')

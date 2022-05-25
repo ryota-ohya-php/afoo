@@ -237,3 +237,9 @@ span.span_red{
 .form-sizing{
     width: 250px;
 }
+/* フラッシュメッセージ */
+.flash_message{
+    text-align: center;
+    font-size: 30px;
+    color: red;
+}
