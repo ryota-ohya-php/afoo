@@ -31,23 +31,20 @@
         <button class="button is-link mamber_button" 
         onclick="location.href='{{ route('members.edit', $member->id)}}'">編集する</button>
     </div>
-    
-    {{-- 会員情報削除ボタン --}}
-    {{-- <div class="block"> --}}
-        <form action="{{route('members.destroy',$member->id)}}" method="post" id="delete-form">
 
-            @csrf
-            @method('delete')
-            <button class="mamber_button button is-danger" onclick="deleteMember()">削除する</button>
-        </form>
-        <script type="text/javascript">
-            function deleteMember() {
-                event.preventDefault();
-                if (window.confirm('本当に削除しますか？')) {
-                    document.getElementById('delete-form').submit();
-                }
+    <form action="{{route('members.destroy',$member->id)}}" method="post" id="delete-form">
+        @csrf
+        @method('delete')
+        {{-- 会員情報削除ボタン --}}
+        <button class="button is-danger" onclick="deleteMember()">削除する</button>
+    </form>
+    <script type="text/javascript">
+        function deleteMember() {
+            event.preventDefault();
+            if (window.confirm('本当に削除しますか？')) {
+                document.getElementById('delete-form').submit();
             }
-        </script>
-    {{-- </div> --}}
+        }
+    </script>
 </div>
 @endsection

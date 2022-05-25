@@ -66,6 +66,9 @@ ul.app_ul li.app_li {
 .member_dd{
     margin-left: 80px;
 }
+.member_search-button{
+    height: 40px;
+}
 
 /*資料一覧画面*/
 .book_span{
