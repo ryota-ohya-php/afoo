@@ -8,7 +8,7 @@
     <!--貸出検索-->
     
     <form action="{{route('lendings.confirm')}}" method="post">
-        @include('lendings/form')
+        @include('lendings/lendform')
     </form>
 </div>
 @endsection

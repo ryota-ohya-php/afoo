@@ -26,7 +26,10 @@
             @if($request->confirm == 'create')
                 {{-- 新規登録の時：登録画面に戻るボタン --}}
                 <button class="button is-primary mamber_button"
-                onclick="history.back()">登録画面に戻る</button>
+
+                onclick="location.href='{{ route('members.create')}}';history.back()">登録画面に戻る</button>
+
+
             @else
                 {{-- 編集の時：編集画面に戻るボタン --}}
                 <button class="button is-primary mamber_button"

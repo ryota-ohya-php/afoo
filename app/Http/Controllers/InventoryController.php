@@ -32,6 +32,19 @@ class InventoryController extends Controller
     // 確認画面のアクション
     public function confirm(Request $request)
     {
+        // validationを追加,確認画面に遷移させない
+        $validated = $request->validate([
+            'inventory_num' => ['required', 'digits_between:1,2'],
+            'arrival_date' => ['required', 'date'],
+            'remarks' => ['nullable','string','max:100',],
+        ],
+        [
+            // エラーメッセージカスタマイズ
+            'inventory_num.required' => '1回の登録は1～99冊までです。',
+            'inventory_num.digits_between' => '1回の登録は1～99冊までです。',
+            'arrival_date.date' => '日付が正しくありません。',
+            'remarks.max' => '備考は100文字以内です。',  
+        ]);       
 		return view('inventories.confirm', ['request' =>$request]);
 	}	
 
@@ -43,6 +56,8 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
+
+        // 在庫テーブルにフォーム内容を登録
         $inventory_num = $request->inventory_num;
         for ($i=0; $i < $inventory_num ; $i++) { 
             $inventory = new Inventory;

@@ -5,13 +5,10 @@
 
 <div class="main_content">
     <h2 class="title txt_center">会員の新規登録</h2> 
-
-    {{-- 登録フォーム --}}
-    
-    <form action="{{route('members.confirm')}}" method="post">
-        @include('members/form')
-    </form>
-    
+            @include('commons/flash')
+        <form action="{{route('members.confirm')}}" method="post">
+            @include('members/form')
+        </form>
 
 </div>
 @endsection

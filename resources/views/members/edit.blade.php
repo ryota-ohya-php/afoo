@@ -5,12 +5,10 @@
 
 <div class="main_content">
     <h2 class="title txt_center">会員情報の編集</h2> 
-
-    {{-- 編集フォーム --}}
-   
-    <form action="{{route('members.confirm')}}" method="post">
-        @include('members/form')
-    </form>
+            @include('commons/flash')   
+        <form action="{{route('members.confirm')}}" method="post">
+            @include('members/form')
+        </form>
     
 
 </div>
