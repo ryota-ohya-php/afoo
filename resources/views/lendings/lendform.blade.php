@@ -23,7 +23,7 @@
                         <option value="{{$member->id}}">{{$member->name}}(ID:{{$member->id}})</option>
                         @endforeach  
                     </select>
-                    <input type="hidden" name="member_name" value="{{$member->name}}">
+                    {{-- <input type="hidden" name="member_name" value="{{$member->name}}"> --}}
                 {{-- <input type="number" name="member_id" id="member_id" min="0" required> --}}
             </dd>
         <dt>
