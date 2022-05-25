@@ -121,7 +121,7 @@ class MemberController extends Controller
         $validated = $request->validate([
             'name' => ['required','max:20',],
             'address' => ['nullable','string','max:255',],
-            'tel' => ['required','max:255',],
+            'tel' => ['required','digits:11'],
             'birthday' => ['nullable', 'date',],
             'email' => ['nullable','string','max:255',],
         ],
@@ -130,6 +130,7 @@ class MemberController extends Controller
             'name.required' => '会員名は必須です。',
             'name.max' => '会員名は20文字以内です。',
             'tel.required' => '電話番号は必須です。',
+            'tel.digits' => '電話番号は11桁,ハイフンなしで入力してください。',
             'address.max' => '住所は255文字以内です。',  
             'email.max' => 'メールアドレスは255文字以内です。',  
         ]);  
