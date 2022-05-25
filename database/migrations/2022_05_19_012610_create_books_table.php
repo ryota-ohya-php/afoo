@@ -16,11 +16,11 @@ class CreateBooksTable extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('isbn')->unsigned()->nullable();
-            $table->string('title', 100)->nullable();
-            $table->string('author', 100)->nullable();
+            $table->string('title', 500)->nullable();
+            $table->string('author', 255 )->nullable();
             $table->bigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->cascadeOnDelete();
-            $table->string('publisher', 50)->nullable();
+            $table->string('publisher', 100)->nullable();
             $table->date('published_date')->nullable();
             $table->timestamps();
         });

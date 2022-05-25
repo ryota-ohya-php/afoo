@@ -16,11 +16,13 @@ class LendingController extends Controller
      */
     public function index(Request $request)
     {
-        $keyword=$request->keyword;
+
+       $keyword=$request->keyword;
         if(isset($keyword)){
             $lend=Lending::select('lendings.id','member_id','members.name',
             'books.author','inventory_id','books.title','lendings.lent_date','lendings.due_date');
-            $lend->whereNull('return_date')
+            $lend->where('lend_flag', '=',1)
+
             ->where(function($q) use ($keyword){
                 $q->orwhere('member_id','LIKE',"%$keyword%");
                 $q->orwhere('title','LIKE',"%$keyword%");
@@ -32,17 +34,16 @@ class LendingController extends Controller
         }else{
 
         $lend=Lending::select('lendings.id','member_id','members.name',
-        'books.author','inventory_id','books.title','lent_date','due_date');
-        $lend->whereNull('return_date');
 
+        'books.author','inventory_id','books.title','inventories.lend_flag','lent_date','due_date');
+        $lend->where('lend_flag', '=',1);
         $lend->join('members', 'lendings.member_id', '=', 'members.id');
         $lend->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
         $lend->join('books', 'inventories.book_id', '=', 'books.id');
 
         }
-        $lending=$lend->get();
 
-        
+        $lending=$lend->get();
         return view('lendings.index',['lending'=>$lending]);
     }
 
@@ -59,6 +60,7 @@ class LendingController extends Controller
         $inventory->join('books', 'inventories.book_id', '=', 'books.id');
         $inventory->where('lend_flag','=',0);
         $inventories = $inventory->get();
+
         // dd($inventories);
         // メンバーの情報もってくる
         $member = Member::select('members.id','members.name');
@@ -66,6 +68,7 @@ class LendingController extends Controller
         
         return view('lendings.create',['inventories'=>$inventories,'members'=>$members]);
     }
+
 
     public function rebook()
     {
@@ -105,10 +108,7 @@ class LendingController extends Controller
                 'request'=>$request,
             'data'=>$data]); 
         }
-        // return view('lendings.confirm',[
-        //     'request'=>$request,
-        // 'data'=>$data]);
-
+  
     }
 
     /**
@@ -119,6 +119,7 @@ class LendingController extends Controller
      */
     public function store(Request $request)
     {
+
         // dd($request);
         // 貸出テーブルに値をインサート
         foreach ($request->id as $val)
@@ -137,6 +138,33 @@ class LendingController extends Controller
         }
         
         return redirect('lendings');
+
+        foreach($request->id as $val){
+            $in=Inventory::select('inventoryies.id','book_id','books.published_date');
+            $in->where('inventoryies.id','=',$val);
+            $in->join('books', 'inventories.book_id', '=', 'books.id');
+            $publised_date[]=$in->published_date;
+        }
+        $today=date('Y-m-d');
+        /* */ 
+        foreach($publised_date as $pub){
+            $pub_month=date('m', strtotime($pub))-date('m', strtotime($today));
+        
+            $lend= new Lending;
+            $lend->member_id=$request->member_id;
+            $lend->inventory_id=$request->inventory_id;
+            $lend->lent_date=$request->lent_date;
+            /*返却期限日の登録*/ 
+            if($pub_month >= 3){
+                $lend->due_date=date('Y-m-d',strtotime("day +15"));
+            }else{
+                $lend->due_date=date('Y-m-d',strtotime("day +10"));
+            }
+            $lend->remarks=$request->remarks;
+            $lend->save();
+        }
+        return view('lendings.create');
+
     }
 
     /**
@@ -170,12 +198,18 @@ class LendingController extends Controller
      */
     public function update(Request $request, Lending $lending)
     {
-        
+       
         foreach($request->id as $val){
+            
             $lend= Lending::find($val);
             $lend->return_date=$request->return_date;
             $lend->remarks=$request->remarks;
             $lend->save();
+            
+            $inv= Inventory::find($request->inventory_id);
+            $inv->lend_flag=0;
+            $inv->save();
+
         }
         
         return redirect('lendings/rebook');
@@ -198,7 +232,6 @@ class LendingController extends Controller
         'inventory_id','books.title','lent_date','due_date','return_date');
         $mem->where('member_id','=',$id)
         ->whereNull('return_date');
-
         $mem->join('members', 'lendings.member_id', '=', 'members.id');
         $mem->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
         $mem->join('books', 'inventories.book_id', '=', 'books.id');
