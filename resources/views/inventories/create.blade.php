@@ -1,12 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<<<<<<< HEAD
 <h2 class="txt_center title">在庫登録</h2>
 @include('commons/flash')
-=======
-<h2 class="txt_center title">在庫の新規登録</h2>
->>>>>>> 51f303aa384e5760b0bd3873f97261ebcad5e92d
     <div class="main_content">
       {{-- 書誌情報表示 --}}
       <form action="{{ route('inventories.confirm') }}" method="post">

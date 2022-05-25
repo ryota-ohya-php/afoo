@@ -2,7 +2,7 @@
 
 @section('content')
 <h2 class="title txt_center">書籍の新規登録</h2>
-@include('books.flash')
+@include('commons/flash')
     <div class="main_content">
         <div class="block">
         <form action="{{route('books.confirm-create')}}" method="POST">

@@ -57,6 +57,32 @@ class BookController extends Controller
 
     public function confirm_create(Request $request)
     {
+        // validationを追加,確認画面に遷移させない
+        $validated = $request->validate([
+            'isbn' => ['required', 'digits:13'],
+            'title' => ['required','string','max:500',],
+            'author' => ['required','string','max:255',],
+            'category_id' => ['required','string',],
+            'publisher' => ['required','string','max:100',],
+        ],
+        [
+            // エラーメッセージカスタマイズ
+            'isbn.required' => 'isbn番号を入力してください。',
+            'isbn.digits' => '13桁のisbn番号を入力してください。',
+            
+            'title.required' => 'タイトルは必須です。',
+            'title.max' => 'タイトルは500文字以内です。',
+            
+            'author.required' => '著者は必須です。',
+            'author.max' => '著者は255文字以内です。',
+
+            'category_id.required' => 'カテゴリーIDは必須です。',
+
+            'publisher.required' => '出版社は必須です。',
+            'publisher.max' => '著者は100文字以内です。',
+
+            
+        ]);
         return view('books.confirm-create',['request'=>$request]);
     }
 
@@ -102,6 +128,28 @@ class BookController extends Controller
 
     public function confirm_edit(Request $request)
     {
+        // validationを追加,確認画面に遷移させない
+        $validated = $request->validate([
+            'isbn' => ['required', 'digits:13'],
+            'title' => ['required','string','max:500',],
+            'author' => ['required','string','max:255',],
+            'category_id' => ['required','string',],
+            'publisher' => ['required','string','max:100',],
+        ],
+        [
+            // エラーメッセージカスタマイズ
+            'isbn.required' => 'isbn番号を入力してください。',
+            'isbn.digits' => '13桁のisbn番号を入力してください。',
+            
+            'title.required' => 'タイトルは必須です。',
+            'title.max' => 'タイトルは500文字以内です。',
+            
+            'author.required' => '著者は必須です。',
+            'author.max' => '著者は255文字以内です。',
+            'category_id.required' => 'カテゴリーIDは必須です。',
+            'publisher.required' => '出版社は必須です。',
+            'publisher.max' => '著者は100文字以内です。',             
+        ]);
         return view('books.confirm-edit',['request'=>$request]);
     }
 
