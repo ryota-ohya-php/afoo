@@ -26,10 +26,11 @@
             data:{id:id},
         }).done(function (data,status,xhr){
             var a_count=data.length;
-            var li="";
+            
             var ch_box='';
             var m_name=""; 
             
+            console.log(data);
             if(data!="" && data[0]['id'] != ""){
                 var member='会員ID'+data[0]['member_id']+'　会員名'+data[0]['name']+'　電話番号　'+ data[0]['tel'] ;
                 if(!confirm('こちらの会員で間違えないでしょうか？\r\n'+member)){
@@ -40,11 +41,10 @@
                     m_name= $('.member_name').text(data[0]['name']+'　様の貸出情報\n');
                     
                     for (i=0;i<a_count; i++){
-                        ch_box='<input type="checkbox" class="chk_lend" name="lend[]" value="'+data[i]['id']+'">';
-                    li='<li class="inv_li">'+ch_box+' 資料名:'+data[i]['title'];
-                        li+='貸出日'+data[i]['lent_date']+'貸出期限日'+data[i]['due_date']+'</li>';
-
-                    
+                        var inp_hid='<input type="hidden" name="inventory_id" value='+data[i]['inventory_id']+'>'
+                            ch_box='<input type="checkbox" class="chk_lend" name="lend[]" value="'+data[i]['id']+'">';
+                                var li='<li class="inv_li">'+ch_box+' 資料名:'+data[i]['title'];
+                                    li+='貸出日'+data[i]['lent_date']+'貸出期限日'+data[i]['due_date']+'</li>'+inp_hid;
                     $('#member').append(li);
                     }
                     var num=$('.arr_num').text('現在'+i+'冊借りています');

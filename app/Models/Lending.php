@@ -14,4 +14,8 @@ class Lending extends Model
     public function members(){
         return $this->belongTo(Member::class);
     }
+
+    public function inventory(){
+        return $this->belongsTo(Inventory::class);
+    }
 }

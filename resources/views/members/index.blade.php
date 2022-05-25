@@ -7,17 +7,24 @@
 <h2 class="txt_center title">会員一覧</h2>
 <div class="main_content">
     <div class="member_div">
-      <button class="button is-success member_span" onclick="location.href='{{route('members.create')}}'" >＋会員登録</button>
-        <form action="{{route('members.index')}}" method="get">
-            <p>
-                <label>キーワード
-                <input type="text" name="keyword" 
-                value="{{(isset($keyword)) ? $keyword : '';}}"
-                placeholder="会員ID、会員名、電話番号を入力してください"></label>
-                <button button type="submit" class="button is-primary mamber_button">検索</button>
-            </p>
-        </form>
-    
+        {{-- 会員登録ボタン --}}
+        <button class="button is-success member_span" onclick="location.href='{{route('members.create')}}'" >＋会員登録</button>
+                {{-- 会員検索フォーム --}}
+                <form action="{{route('members.index')}}" method="get">
+                    <p>
+                    <div class="field">
+                        <label class="label">キーワード</label>
+                        <div class="control">
+                        <input type="text" name="keyword" 
+                        value="{{(isset($keyword)) ? $keyword : '';}}"
+                        placeholder="会員ID、会員名、電話番号" class="input form-sizing">
+                        {{-- 検索ボタン --}}
+                        <button button type="submit" class="button is-primary member_search-button">検索</button>
+                        </div>
+                    </div>
+                    </p>
+                </form>
+        {{--  会員一覧表示--}}
         <table class="table_center margin-top">
             <thead>
                 <tr>

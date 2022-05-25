@@ -45,18 +45,17 @@
 
     <div class="block">
         {{-- 書籍一覧画面に戻るボタン --}}
-        <button class="button is-primary mamber_button" 
+        <button class="button is-primary page_button" 
             onclick="location.href='{{ route('books.index') }}'">書籍一覧画面に戻る</button>
         {{-- 編集ボタン --}}
-        <button class="button is-link mamber_button" 
+        <button class="button is-link page_button" 
             onclick="location.href='{{ route('books.edit',$book)}}'">編集する</button>
     </div>
     {{-- 削除ボタン --}}
-    <div class="block">
         <form action="{{route('books.destroy',$book)}}" method="POST" id="delete-form">
             @csrf
             @method('delete')
-            <button class="mamber_button button is-danger" onclick="deleteBook()">削除する</button>
+            <button class="button is-danger" onclick="deleteBook()">削除する</button>
         </form>
         <script>
             function deleteBook() {
@@ -66,7 +65,6 @@
                 }
             }
         </script>
-    </div>
 
     <script>
         // この関数でisbn番号からデータ取得して代入

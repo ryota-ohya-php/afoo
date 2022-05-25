@@ -4,13 +4,17 @@
 <h2 class="txt_center title">書籍一覧</h2>
 <div class="main_content">
     <div class="book_div">
-        <button class="button is-success member_span" onclick="location.href='{{route('books.create')}}'" >＋書籍登録</button>
-    <form action="{{route('books.index')}}" method="get">
+        {{-- 書籍登録ボタン --}}
+        <button class="button is-success book_span" onclick="location.href='{{route('books.create')}}'" >＋書籍登録</button>
+    </div>   
+        <form action="{{route('books.index')}}" method="get">
         @include('books.search')
-        <button type="submit" class="button is-primary book_button">検索</button>
-    </form>
-    </div>
-    <table class="table_center margin-top">
+        {{-- 検索ボタン --}}
+        <button type="submit" class="button is-primary page_button">検索</button>
+        </form>
+    
+
+    <table class="table_center margin-top margin-bottom">
         <thead>
             <tr>
                 <th>ISBN番号</th>
@@ -35,8 +39,9 @@
             @endforeach
         </tbody>
     </table>
+    
     {{$books -> appends(Request::all())->links()}}
-    </div>
+    
 </div>
     
 @endsection

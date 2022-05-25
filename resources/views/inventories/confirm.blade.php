@@ -23,12 +23,12 @@
       <input type="hidden" name="inventory_num" value="{{$request->inventory_num}}">
 
       {{-- 登録画面に戻るボタン --}}
-      <button type="button" class="button is-primary mamber_button"
+      <button type="button" class="page_button button is-primary"
         onclick="history.back()">登録画面に戻る</button>
         {{-- <a href='{{ route('inventories.create') }}">在庫登録画面に戻る</a> --}}
 
       {{-- 登録ボタン --}}
-      <button type="submit" class="mamber_button button is-success">登録する</button>
+      <button type="submit" class="page_button button is-success">登録する</button>
     </form>
     
 </div>

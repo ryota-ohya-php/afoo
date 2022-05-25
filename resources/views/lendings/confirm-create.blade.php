@@ -10,16 +10,10 @@
     <div  class="info_dl">
         <dl>
             <dt>
-                会員ID
+                会員情報
             </dt>
                 <dd>    
-                    {{$request->member_id}}
-                </dd>
-            <dt>
-                {{isset(($_POST['lent_date'])) ? '貸出日' : '返却日';}}
-            </dt>
-                <dd> 
-                    {{isset(($_POST['lent_date']))? $request->lent_date : $request->return_date;}}
+                    {{$request->member_name}}(ID:{{$request->member_id}})
                 </dd>
             <dt>
                 備考
@@ -33,7 +27,6 @@
         <table class="table_center" style="width:700px" >
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>資料名</th>
                     <th>貸出日</th>
                     <th>貸出期限日</th>
@@ -41,29 +34,28 @@
             </thead>
             @foreach($data as $val)
                 @foreach($val as $s)
-            <tr>
-                <td>{{$s->id}}</td>
+            {{-- @for ($i = 0; $i < $data->count(); $i++) --}}
+                <tr>
                 <td>{{$s->title}}</td>
-                <td>{{$s->lent_date}}</td>
-                <td>{{$s->due_date}}</td>
+                <td>{{$request->lent_date}}</td>
+                <td>NULL</td>
             </tr>
+            {{-- @endfor --}}
+            
                 @endforeach
             @endforeach
         </table>
-        <form action=" {{($request->lend_or_rebook == 'lend') ? route('lendings.store') : route('lendings.update',$request->member_id)}}" method="post">
+        <form action=" {{route('lendings.store')}}" method="post">
             @csrf
-            @if($request->lend_or_rebook != 'lend')
-        
-            @method('patch')
-    
-            @endif
             @foreach($data as $val)
                 @foreach($val as $s)
                  <input type="hidden" name="id[]" value="{{$s->id}}">
+                 {{-- <input type="hidden" name="book_id[]" value="{{$s->book_id}}"> --}}
                 @endforeach
             @endforeach
+
             <input type="hidden" name="member_id" value="{{$request->member_id}}">
-            <input type="hidden" name="inventory_id" value="{{$request->inventory_id}}">
+            {{-- <input type="hidden" name="inventory_id" value="{{$request->inventory_id}}"> --}}
             <input type="hidden" name="{{isset(($_POST['lent_date']))? 'lent_date' : 'return_date';}}"
              value="{{isset(($_POST['lent_date']))? $request->lent_date : $request->return_date;}}">
             <input type="hidden" name="remarks" value="{{$request->remarks}}">

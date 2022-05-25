@@ -10,11 +10,11 @@
             @csrf
             @method('patch')
             @include('books.confirm-hidden')
-            {{-- 編集画面に戻るボタン --}}
-            <button type="button" class="button is-primary mamber_button"
-                    onclick="history.back()">編集画面に戻る</button>
-            {{-- 登録ボタン --}}
-            <button type="submit" class="mamber_button button is-success">登録する</button>
+                {{-- 編集画面に戻るボタン --}}
+                <button type="button" class="page_button button is-primary"
+                        onclick="history.back()">編集画面に戻る</button>
+                {{-- 登録ボタン --}}
+                <button type="submit" class="page_button button is-success">登録する</button>
         </form>
 
     </div>

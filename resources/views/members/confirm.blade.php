@@ -24,9 +24,11 @@
         <div class="sub_block">
 
             @if($request->confirm == 'create')
+                {{-- 新規登録の時：登録画面に戻るボタン --}}
                 <button class="button is-primary mamber_button"
                 onclick="location.href='{{ route('members.create')}}';history.back()">登録画面に戻る</button>
             @else
+                {{-- 編集の時：編集画面に戻るボタン --}}
                 <button class="button is-primary mamber_button"
                 onclick="location.href='{{ route('members.edit', $request->member_id)}}'">編集画面に戻る</button>
             @endif
@@ -48,6 +50,7 @@
                 <input type="hidden" name="tel" value="{{$request->tel}}">
                 <input type="hidden" name="birthday" value="{{$request->birthday}}">
                 <input type="hidden" name="email" value="{{$request->email}}">
+                {{-- 登録ボタン --}}
                 <button type ="submit" class="mamber_button button is-success">登録する</button>
             </form>
         </div>
