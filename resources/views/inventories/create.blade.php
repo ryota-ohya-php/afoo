@@ -25,13 +25,6 @@
             <dd><input type="number" name="inventory_num" id="inventory_num" value="1" required></dd>
             <dt><label for="arrival_date">入荷年月日</label></dt>
             <dd><input type="date" name="arrival_date" id="arrival_date" value="<?php echo date('Y-m-d'); ?>" required></dd>
-          </label>
-          <label for="remarks">
-            <dt>備考</dt>
-            <dd><input type="text" name="remarks" id="remarks" value="{{ old('remarks') }}"></dd>
-          </label>
-        </dl>
-        <button type="submit">在庫登録確認画面へ</button>
             <dt><label for="remarks">備考</label></dt>
             <dd><input type="text" name="remarks" id="remarks"></dd>
           </dl>

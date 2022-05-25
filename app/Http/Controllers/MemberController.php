@@ -45,18 +45,26 @@ class MemberController extends Controller
         // validationを追加,確認画面に遷移させない
         $validated = $request->validate([
             'name' => ['required','max:20',],
-            'address' => ['nullable','string','max:255',],
-            'tel' => ['required','digits:11'],
-            'birthday' => ['nullable', 'date',],
-            'email' => ['nullable','string','max:255',],
+            'address' => ['required','string','max:255',],
+            'tel' => ['required','regex:/^(0{1}\d{1,4}-{0,1}\d{1,4}-{0,1}\d{4})$/'],
+            'birthday' => ['required', 'date',],
+            'email' => ['required','string','max:255',],
         ],
         [
             // エラーメッセージカスタマイズ
             'name.required' => '会員名は必須です。',
             'name.max' => '会員名は20文字以内です。',
+
+            'address.required' => '住所を入力してください。',
+            'address.max' => '住所は255文字以内です。',
+
             'tel.required' => '電話番号は必須です。',
-            'tel.digits' => '電話番号は11桁,ハイフンなしで入力してください。',
-            'address.max' => '住所は255文字以内です。',  
+            'tel.regex' => '電話番号をもう一度入力してください。',
+
+            'birthday.required' => '生年月日を入力してください。',
+            'birthday.date' => '生年月日を正しい形式で入力してください。',
+
+            'email.required' => 'メールアドレスを入力してください。',
             'email.max' => 'メールアドレスは255文字以内です。',  
         ]);  
         return view('members.confirm',['request'=>$request]);
@@ -120,18 +128,26 @@ class MemberController extends Controller
         // validationを追加,確認画面に遷移させない
         $validated = $request->validate([
             'name' => ['required','max:20',],
-            'address' => ['nullable','string','max:255',],
-            'tel' => ['required','digits:11'],
-            'birthday' => ['nullable', 'date',],
-            'email' => ['nullable','string','max:255',],
+            'address' => ['required','string','max:255',],
+            'tel' => ['required','regex:/^(0{1}\d{1,4}-{0,1}\d{1,4}-{0,1}\d{4})$/'],
+            'birthday' => ['required', 'date',],
+            'email' => ['required','string','max:255',],
         ],
         [
             // エラーメッセージカスタマイズ
             'name.required' => '会員名は必須です。',
             'name.max' => '会員名は20文字以内です。',
+
+            'address.required' => '住所を入力してください。',
+            'address.max' => '住所は255文字以内です。',
+
             'tel.required' => '電話番号は必須です。',
-            'tel.digits' => '電話番号は11桁,ハイフンなしで入力してください。',
-            'address.max' => '住所は255文字以内です。',  
+            'tel.regex' => '電話番号をもう一度入力してください。',
+
+            'birthday.required' => '生年月日を入力してください。',
+            'birthday.date' => '生年月日を正しい形式で入力してください。',
+
+            'email.required' => 'メールアドレスを入力してください。',
             'email.max' => 'メールアドレスは255文字以内です。',  
         ]);  
        //echo $member->id;exit;

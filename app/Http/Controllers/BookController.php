@@ -146,7 +146,9 @@ class BookController extends Controller
             
             'author.required' => '著者は必須です。',
             'author.max' => '著者は255文字以内です。',
+
             'category_id.required' => 'カテゴリーIDは必須です。',
+            
             'publisher.required' => '出版社は必須です。',
             'publisher.max' => '著者は100文字以内です。',             
         ]);

@@ -25,7 +25,7 @@
 
             @if($request->confirm == 'create')
                 <button class="button is-primary mamber_button"
-                onclick="location.href='{{ route('members.create')}}'">登録画面に戻る</button>
+                onclick="location.href='{{ route('members.create')}}';history.back()">登録画面に戻る</button>
             @else
                 <button class="button is-primary mamber_button"
                 onclick="location.href='{{ route('members.edit', $request->member_id)}}'">編集画面に戻る</button>
