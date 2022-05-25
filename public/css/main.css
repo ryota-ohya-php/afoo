@@ -43,6 +43,7 @@ ul.app_ul li.app_li {
 .main_content{
     text-align: center;
     margin :auto;
+    margin-bottom: 15px;
     
 }
 .top_button{
@@ -67,18 +68,30 @@ ul.app_ul li.app_li {
 }
 
 /*資料一覧画面*/
+.book_span{
+    display:block;
+    margin: 0 0 0 auto;
+}
 .book_div{
     margin :auto;
     width:800px;
 }
-.book_bottun{
-    height:32px;
+/* .book-search_dl{
+    width: 500px;
+    margin: auto;
 }
+    .book-search_dl dl{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .book-search_dl dt {
+    width: 50%;
+    }
+    .book-search_dl dd {
+    width: 50%;
+    } */
 
-/*会員詳細*/
-div.block{
-    display: inline-block;
-}
+
 
 /*貸出一覧画面*/
 .lending_dl{
@@ -167,7 +180,11 @@ input.lending_inp{
 .margin-top{
     margin-top: 15px;
 }
-
+/* ページ進む・戻るボタン */
+.page_button{
+    height:32px;
+}
+/* 詳細情報の表示 */
 .info_dl{
     width: 700px;
     margin: auto;
@@ -212,4 +229,8 @@ div.justify-between,p.text-sm{
 span.span_red{
     color: red;
     font-weight: bold;
+}
+/* 入力フォームのサイジング */
+.form-sizing{
+    width: 250px;
 }

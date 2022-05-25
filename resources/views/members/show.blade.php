@@ -33,7 +33,7 @@
     </div>
     
     {{-- 会員情報削除ボタン --}}
-    <div class="block">
+    {{-- <div class="block"> --}}
         <form action="{{route('members.destroy',$member->id)}}" method="post" id="delete-form">
 
             @csrf
@@ -48,6 +48,6 @@
                 }
             }
         </script>
-    </div>
+    {{-- </div> --}}
 </div>
 @endsection
