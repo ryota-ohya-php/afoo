@@ -35,12 +35,22 @@ class BookController extends Controller
         if ($request->isbn) {
             $query->where('isbn',$request->isbn);
         }
-
+        
         $books = $query->orderBy('created_at','desc')->paginate(10);
-
         $categories = Category::withCount('books')->get();
 
-        return view('books.index',['books' => $books,'categories' =>$categories]);
+        foreach($books as $book){
+            $in=Inventory::select('id','lend_flag');
+            $in->where('book_id','=',$book->id);
+            $in->where('lend_flag','=',0);
+        }
+        $count_inv=$in->get();
+
+        return view('books.index',[
+            'books' => $books,
+            'categories' =>$categories,
+            'count_inv'=>$count_inv
+        ]);
     }
 
     /**
@@ -84,7 +94,14 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        return view('books.show',['book'=>$book]);
+        /**現在の在庫数表示 */
+        
+        $in=Inventory::select('id','lend_flag');
+        $in->where('book_id','=',$book->id);
+        $in->where('lend_flag','=',0);
+        $count_inv=$in->get();
+        
+        return view('books.show',['book'=>$book,'count_inv'=>$count_inv]);
     }
 
     /**
