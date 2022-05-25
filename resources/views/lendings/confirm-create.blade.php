@@ -13,7 +13,8 @@
                 会員情報
             </dt>
                 <dd>    
-                    {{$request->member_name}}(ID:{{$request->member_id}})
+                    {{-- {{$request->member_name}} --}}
+                    会員ID:{{$request->member_id}}
                 </dd>
             <dt>
                 備考
@@ -29,7 +30,7 @@
                 <tr>
                     <th>資料名</th>
                     <th>貸出日</th>
-                    <th>貸出期限日</th>
+                    {{-- <th>貸出期限日</th> --}}
                 </tr>
             </thead>
             @foreach($data as $val)
@@ -38,7 +39,7 @@
                 <tr>
                 <td>{{$s->title}}</td>
                 <td>{{$request->lent_date}}</td>
-                <td>NULL</td>
+                {{-- <td>NULL</td> --}}
             </tr>
             {{-- @endfor --}}
             

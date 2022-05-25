@@ -122,48 +122,70 @@ class LendingController extends Controller
 
         // dd($request);
         // 貸出テーブルに値をインサート
-        foreach ($request->id as $val)
-        {
-            $lend= new Lending;
-            $lend->member_id=$request->member_id;
-            $lend->inventory_id=$val;
-            $lend->lent_date=$request->lent_date;
-            // $lend->due_date=$request->due_date;
-            $lend->remarks=$request->remarks;
-            $lend->save();
-            // 在庫テーブルの貸出情報を貸出中にする
-            $inventory= Inventory::find($val);
-            $inventory->lend_flag = 1;
-            $inventory->save();
-        }
+        // foreach ($request->id as $val)
+        // {
+        //     $lend= new Lending;
+        //     $lend->member_id=$request->member_id;
+        //     $lend->inventory_id=$val;
+        //     $lend->lent_date=$request->lent_date;
+        //     // $lend->due_date=$request->due_date;
+        //     $lend->remarks=$request->remarks;
+        //     $lend->save();
+        //     // 在庫テーブルの貸出情報を貸出中にする
+        //     $inventory= Inventory::find($val);
+        //     $inventory->lend_flag = 1;
+        //     $inventory->save();
+        // }
         
-        return redirect('lendings');
+        // return redirect('lendings');
 
-        foreach($request->id as $val){
-            $in=Inventory::select('inventoryies.id','book_id','books.published_date');
-            $in->where('inventoryies.id','=',$val);
+        foreach($request->id as $val_id){
+            $in=Inventory::select('books.published_date');
+            $in->where('inventories.id','=',$val_id);
             $in->join('books', 'inventories.book_id', '=', 'books.id');
-            $publised_date[]=$in->published_date;
-        }
+            $published_date[] = $in->get();
+            // $publised_date[]=$in->published_date;
+            // echo $in->published_date;
+            // exit;
+         
+        //  print_r($published_date);
         $today=date('Y-m-d');
+
         /* */ 
-        foreach($publised_date as $pub){
-            $pub_month=date('m', strtotime($pub))-date('m', strtotime($today));
+        foreach($published_date as $key=>$pub){
+            foreach($pub as $val){
+            // echo $val->published_date;
+            // exit;
+            // dd(date($val->published_date));
+            $pub_date = (strtotime($today) - strtotime($val->published_date))/86400;
+            // echo $pub_date .'<br>';
+            
+            $pub_mon = $pub_date/30;
+            $pub_month = floor($pub_mon);
+
+            // $pub_month=date('m', strtotime(date($val->published_date)))-date('m', strtotime($today));
         
             $lend= new Lending;
             $lend->member_id=$request->member_id;
-            $lend->inventory_id=$request->inventory_id;
+            $lend->inventory_id=$val_id;
             $lend->lent_date=$request->lent_date;
             /*返却期限日の登録*/ 
             if($pub_month >= 3){
-                $lend->due_date=date('Y-m-d',strtotime("day +15"));
+                $lend->due_date=date('Y-m-d',strtotime("+15 day"));
             }else{
-                $lend->due_date=date('Y-m-d',strtotime("day +10"));
+                $lend->due_date=date('Y-m-d',strtotime("+10 day"));
             }
             $lend->remarks=$request->remarks;
+
             $lend->save();
+
+            $inventory= Inventory::find($val_id);
+            $inventory->lend_flag = 1;
+            $inventory->save();
+                }
+            }
         }
-        return view('lendings.create');
+        return redirect('lendings');
 
     }
 
