@@ -15,14 +15,6 @@
                 <dd>    
                     {{$request->member_id}}
                 </dd>
-            <!--<dt>
-                在庫ID
-            </dt>
-                <dd> 
-                    {{--$request->inventory_id--}}
-                </dd>
-            -->
-
             <dt>
                 {{isset(($_POST['lent_date'])) ? '貸出日' : '返却日';}}
             </dt>
