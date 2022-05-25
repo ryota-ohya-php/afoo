@@ -2,8 +2,8 @@
 
 @section('content')
     <h2 class="title txt_center">書籍情報の編集</h2>
-@include('commons/flash')
     <div class="main_content">
+        @include('commons/flash')       
         <form action="{{ route('books.confirm-edit',$book->id)}}" method="POST">
             @include('books.form')
             {{-- 詳細画面に戻るボタン --}}
