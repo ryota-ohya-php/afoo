@@ -34,7 +34,7 @@
                 </td>
                 <td>{{$book->author}}</td>
                 <td>{{$book->category_id}}({{$book->category->name}})</td>
-                <td>{{ $book->inventories->count() }}</td>
+                <td>{{--$count_inv->count()--}}/{{ $book->inventories->count()}}</td>
             </tr> 
             @endforeach
         </tbody>
