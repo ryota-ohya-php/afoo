@@ -30,10 +30,10 @@
         </div>
 
         {{-- 書籍詳細画面に戻るボタン --}}
-        <button type="button" class="button is-primary mamber_button"
+        <button type="button" class="page_button button is-primary"
         onclick="history.back()">書籍詳細画面に戻る</button>
         {{-- 登録ボタン --}}
-        <button type="submit" class="mamber_button button is-warning">入力確認する</button>
+        <button type="submit" class="page_button button is-warning">入力確認する</button>
 
         <!-- book_idをhiddenで確認画面へ送る -->
         <input type="hidden" name="book_id" 
@@ -41,7 +41,6 @@
                 {{ $book_info->id }}
               @endforeach">
       </form>
-    
-    
+
 @endsection
 </div>
