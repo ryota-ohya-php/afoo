@@ -83,7 +83,14 @@ class BookController extends Controller
 
             
         ]);
-        return view('books.confirm-create',['request'=>$request]);
+        // booksテーブルに同じisbn番号を持つ場合、登録を許可せず書籍一覧に遷移
+        if (Book::where('isbn', $request->isbn)->get()) {
+            return redirect(route('books.index'))
+            ->with('flash_message', 'すでに書籍登録されています。検索後、在庫登録をしてください。');
+        } else{
+            return view('books.confirm-create',['request'=>$request]);
+        }
+        
     }
 
     /**
