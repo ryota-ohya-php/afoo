@@ -3,7 +3,7 @@
 @section('content')
 <h2 class="txt_center title">書籍一覧</h2>
 <!-- フラッシュメッセージ -->
-<div class="flash_message notification is-danger is-light">
+<div class="flash_message">
     {{ session('flash_message') }}
 </div>
 <div class="main_content">
@@ -38,7 +38,7 @@
                 </td>
                 <td>{{$book->author}}</td>
                 <td>{{$book->category_id}}({{$book->category->name}})</td>
-                <td>{{--$count_inv->count()--}}/{{ $book->inventories->count()}}</td>
+                <td>{{$count_inv[$book->id]->count()}}/{{ $book->inventories->count()}}</td>
             </tr> 
             @endforeach
         </tbody>

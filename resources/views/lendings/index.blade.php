@@ -36,7 +36,8 @@
         <tbody>
             @foreach($lending as $lend)
             <tr>
-                <td>{{$lend->member_id}}</td>
+                <td>{{$lend->member_id}}<br>
+                在庫ID{{$lend->inventory_id}}</td>
                 <td>{{$lend->title}}</td>
                 <td>{{$lend->author}}</td>
                 <td>{{$lend->lent_date}}</td>
