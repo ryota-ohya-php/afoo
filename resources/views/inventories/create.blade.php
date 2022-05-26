@@ -38,10 +38,9 @@
           </dl>
         </div>
 
-        <!-- 詳細画面に戻るボタン -->
+        <!-- ボタン -->
         <button type="button" class="page_button button is-primary"
         onclick="history.back()">書籍詳細画面に戻る</button>
-        <!-- 登録ボタン -->
         <button type="submit" class="page_button button is-warning">入力確認する</button>
 
         <!-- book_idをhiddenで確認画面へ送る -->
@@ -50,6 +49,5 @@
                   {{ $book_info->id }}
                 @endforeach">
       </form>
-
 @endsection
 </div>

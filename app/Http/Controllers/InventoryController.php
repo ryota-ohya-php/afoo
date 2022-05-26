@@ -22,11 +22,11 @@ class InventoryController extends Controller
     // 確認画面のアクション
     public function confirm(Request $request)
     {
-        // validation処理
+        // バリデーション（フォーム送信内容）
         $validated = $request->validate([
             'inventory_num' => ['required', 'digits_between:1,2'],
             'arrival_date'  => ['required', 'date'],
-            'remarks'       => ['nullable',  'string','max:100',],
+            'remarks'       => ['nullable', 'string','max:100',],
         ],
         // エラーメッセージ
         [
@@ -48,14 +48,13 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
-
         // 在庫テーブルにフォーム内容を登録
         $inventory_num = $request->inventory_num;
         for ($i=0; $i < $inventory_num ; $i++) { 
             $inventory = new Inventory;
-            $inventory->book_id = $request->book_id;
+            $inventory->book_id      = $request->book_id;
             $inventory->arrival_date = $request->arrival_date;
-            $inventory->remarks = $request->remarks;
+            $inventory->remarks      = $request->remarks;
             $inventory->save();
 
         }
