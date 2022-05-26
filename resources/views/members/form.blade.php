@@ -6,8 +6,6 @@
 <div class="main_content">
     <div class="info_dl">
         <dl>
-            <!--<dt>会員ID</dt>
-            <dd><input type="text" name="member_id"></dd>-->
             <dt>会員名 <span class="span_red">[必須]</span></dt>
             <dd><input type="text" name="name" 
                 value="{{ old('name') }}"maxlength="20" required oninvalid="this.setCustomValidity('会員名を入力して下さい')" onkeyup="setCustomValidity('')"></dd>
@@ -35,8 +33,6 @@
 <div class="main_content">
     <div class="info_dl">
         <dl>
-            <!--<dt>会員ID</dt>
-            <dd><input type="text" name="member_id"></dd>-->
             <dt>会員名 <span class="span_red">[必須]</span></dt>
             <dd><input type="text" name="name" 
                 value="{{$val->name}}" maxlength="15" required="会員名は必須です"></dd>
