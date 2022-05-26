@@ -140,24 +140,26 @@ class LendingController extends Controller
         // return redirect('lendings');
 
         foreach($request->id as $val_id){
+            // echo ($val_id);
             $in=Inventory::select('books.published_date');
             $in->where('inventories.id','=',$val_id);
             $in->join('books', 'inventories.book_id', '=', 'books.id');
-            $published_date[] = $in->get();
+            $published_date[$val_id] = $in->get();
             // $publised_date[]=$in->published_date;
             // echo $in->published_date;
             // exit;
-         
+            // dd($published_date);
         //  print_r($published_date);
-        $today=date('Y-m-d');
+            $today=date('Y-m-d');
 
         /* */ 
-        foreach($published_date as $key=>$pub){
-            foreach($pub as $val){
+        // foreach($published_date as $key=>$pub){
+        //     foreach($pub as $val){
+            //    dd($published_date[$val_id]);
             // echo $val->published_date;
             // exit;
             // dd(date($val->published_date));
-            $pub_date = (strtotime($today) - strtotime($val->published_date))/86400;
+            $pub_date = (strtotime($today) - strtotime($published_date[$val_id]))/86400;
             // echo $pub_date .'<br>';
             
             $pub_mon = $pub_date/30;
@@ -178,13 +180,15 @@ class LendingController extends Controller
             $lend->remarks=$request->remarks;
 
             $lend->save();
-
+            // echo $lend->toSql();
             $inventory= Inventory::find($val_id);
             $inventory->lend_flag = 1;
             $inventory->save();
-                }
-            }
+            //     }
+            // }
         }
+        
+        // exit;
         return redirect('lendings');
 
     }
@@ -228,6 +232,7 @@ class LendingController extends Controller
             $lend->remarks=$request->remarks;
             $lend->save();
             
+            dd($val);
             $inv= Inventory::find($request->inventory_id);
             $inv->lend_flag=0;
             $inv->save();
