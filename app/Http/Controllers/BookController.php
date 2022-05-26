@@ -35,12 +35,22 @@ class BookController extends Controller
         if ($request->isbn) {
             $query->where('isbn',$request->isbn);
         }
-
+        
         $books = $query->orderBy('created_at','desc')->paginate(10);
-
         $categories = Category::withCount('books')->get();
 
-        return view('books.index',['books' => $books,'categories' =>$categories]);
+        foreach($books as $book){
+            $in=Inventory::select('id','lend_flag');
+            $in->where('book_id','=',$book->id);
+            $in->where('lend_flag','=',0);
+        }
+        $count_inv=$in->get();
+
+        return view('books.index',[
+            'books' => $books,
+            'categories' =>$categories,
+            'count_inv'=>$count_inv
+        ]);
     }
 
     /**
@@ -83,7 +93,14 @@ class BookController extends Controller
 
             
         ]);
-        return view('books.confirm-create',['request'=>$request]);
+        // booksテーブルに同じisbn番号を持つ場合、登録を許可せず書籍一覧に遷移
+        if (Book::where('isbn', $request->isbn)->get()) {
+            return redirect(route('books.index'))
+            ->with('flash_message', 'すでに書籍登録されています。検索後、在庫登録をしてください。');
+        } else{
+            return view('books.confirm-create',['request'=>$request]);
+        }
+        
     }
 
     /**
@@ -110,7 +127,14 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        return view('books.show',['book'=>$book]);
+        /**現在の在庫数表示 */
+        
+        $in=Inventory::select('id','lend_flag');
+        $in->where('book_id','=',$book->id);
+        $in->where('lend_flag','=',0);
+        $count_inv=$in->get();
+        
+        return view('books.show',['book'=>$book,'count_inv'=>$count_inv]);
     }
 
     /**
