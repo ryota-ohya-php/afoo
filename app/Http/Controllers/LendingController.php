@@ -75,7 +75,7 @@ class LendingController extends Controller
         $inve->groupBy('members.id');
         $test=$inve->get();
         
-        echo $inve->toSql();
+       
         return view('lendings.create',[
             'inventories'=>$inventories,
             'members'=>$members,
@@ -245,14 +245,13 @@ class LendingController extends Controller
             $lend->remarks=$request->remarks;
             $lend->save();
             
-            dd($val);
             $inv= Inventory::find($request->inventory_id);
             $inv->lend_flag=0;
             $inv->save();
 
         }
         
-        return redirect('lendings/rebook');
+        return view('lendings.rebook');
         
     }
 
