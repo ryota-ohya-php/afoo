@@ -35,11 +35,14 @@ class LendingController extends Controller
 
         $lend=Lending::select('lendings.id','member_id','members.name',
 
-        'books.author','inventory_id','books.title','inventories.lend_flag','lent_date','due_date');
-        $lend->where('lend_flag', '=',1);
+        'books.author','books.title','inventories.lend_flag','lent_date','due_date');
+        
         $lend->join('members', 'lendings.member_id', '=', 'members.id');
         $lend->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
         $lend->join('books', 'inventories.book_id', '=', 'books.id');
+        $lend->where('lend_flag', '=',1);
+
+
         }
 
         $lending=$lend->get();
@@ -235,24 +238,32 @@ class LendingController extends Controller
      * @param  \App\Models\Lending  $lending
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lending $lending)
+    public function rebooks(Request $request, Lending $lending)
     {
-       
+    //    dd($request);
         foreach($request->id as $val){
-            
+            //->id
+            // dd($request->inventory_id);
             $lend= Lending::find($val);
             $lend->return_date=$request->return_date;
             $lend->remarks=$request->remarks;
             $lend->save();
             
-            dd($val);
-            $inv= Inventory::find($request->inventory_id);
-            $inv->lend_flag=0;
-            $inv->save();
+            $inv = Lending::select('lendings.id','inventory_id');
+            $inv->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
+            $inv->where('lendings.id','=',$val);
+            $invs[$val] = $inv->get();
+            $ii = $invs[$val]->pluck('inventory_id');
+            // echo $ii[0];
+            // echo 58;
+            // exit;
+            $inven= Inventory::find($ii[0]);
+            $inven->lend_flag=0;
+            $inven->save();
 
         }
         
-        return redirect('lendings/rebook');
+        return redirect('lendings');
         
     }
 

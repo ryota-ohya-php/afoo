@@ -39,6 +39,7 @@ class BookController extends Controller
         $books = $query->orderBy('published_date','desc')->paginate(10);
         $categories = Category::withCount('books')->get();
 
+
         foreach($books as $book){
             // dd($book->id);
             $in=Inventory::select('id','lend_flag');
