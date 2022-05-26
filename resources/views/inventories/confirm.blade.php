@@ -3,7 +3,7 @@
 @section('content')
 <h2 class="txt_center title">入力確認</h2>
 <div class="main_content">
-  <!-- 入力情報表示 -->
+  <!-- 確認情報表示欄 -->
   <div class="info_dl">
       <dl>
           <dt>在庫数</dt>

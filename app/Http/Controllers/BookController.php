@@ -183,11 +183,9 @@ class BookController extends Controller
             return redirect(route('books.index'))
             ->with('flash_message', 'すでに書籍登録されています。検索後、在庫登録をしてください。');
         } else{
-            // 登録確認画面へ遷移
-            return view('books.confirm-create',['request'=>$request]);
+            // 編集確認画面へ遷移
+            return view('books.confirm-edit',['request'=>$request]);
         }
-
-        return view('books.confirm-edit',['request'=>$request]);
     }
 
 
