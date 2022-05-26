@@ -1,14 +1,20 @@
 @csrf
-
 <script>
-    $(function(){
-        $('#member_id').change( function( ) {
-                    var id=$(this).val();
+    $(function() {
+        $('input:checkbox').change(function() {
+            var cnt = $('#count input:checkbox:checked').length;
+           
+            if (cnt > 5) {
+                alert('5冊以上貸出できません');
+                $('input:checkbox').prop('checked', false);
+            }
+        }).trigger('change');
+
+        $('#member_id').change( function() {
+            var id=$(this).text();
+            console.log(id);
         });
 
-        $.ajax({
-
-        })
     });
 </script>
 
@@ -20,7 +26,14 @@
             <dd> 
                     <select name="member_id" id="member_id">
                         @foreach ($members as $member)
-                        <option value="{{$member->id}}">{{$member->name}}(ID:{{$member->id}})</option>
+                        <option value="{{$member->id}}">{{$member->name}}(ID:{{$member->id}})
+                         @foreach($test as $vval)
+                                @if($member->id == $vval->id)
+                                <span>{{$vval->inv_coun}}</span>
+                                @endif
+                        
+                            @endforeach  
+                        </option>
                         @endforeach  
                     </select>
                     {{-- <input type="hidden" name="member_name" value="{{$member->name}}"> --}}
@@ -38,18 +51,7 @@
                         <br>
                 @endfor
                 </p>
-                <script>
-                    $(function() {
-                        $('input:checkbox').change(function() {
-                            var cnt = $('#count input:checkbox:checked').length;
-                            console.log(cnt);
-                            if (cnt > 5) {
-                                alert('5冊以上貸出できません');
-                                $('input:checkbox').prop('checked', false);
-                            }
-                        }).trigger('change');
-                    });
-                </script>
+
                     
             </dd>
         <dt>

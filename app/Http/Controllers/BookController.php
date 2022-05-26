@@ -36,20 +36,29 @@ class BookController extends Controller
             $query->where('isbn',$request->isbn);
         }
         
-        $books = $query->orderBy('created_at','desc')->paginate(10);
+        $books = $query->orderBy('published_date','desc')->paginate(10);
         $categories = Category::withCount('books')->get();
 
+
         foreach($books as $book){
+            // dd($book->id);
             $in=Inventory::select('id','lend_flag');
+            // $in->join('books', 'inventories.book_id', '=', 'books.id');
             $in->where('book_id','=',$book->id);
             $in->where('lend_flag','=',0);
+            $count_inv[$book->id]=$in->get();
+            // $count = array($count_inv->count());
+            // dd($counn);
+            // 
         }
-        $count_inv=$in->get();
+        //  dd($count_inv);
 
         return view('books.index',[
+
             'books'      => $books,
             'categories' => $categories,
             'count_inv'  => $count_inv
+
         ]);
     }
 
