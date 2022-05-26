@@ -32,6 +32,8 @@ Route::post('menbers/confirm', 'App\Http\Controllers\MemberController@confirm')-
 Route::post('lendings/confirm', 'App\Http\Controllers\LendingController@confirm')->name('lendings.confirm');
 Route::get('lendings/rebook', 'App\Http\Controllers\LendingController@rebook')->name('lendings.rebook');
 
+Route::post('lendings/rebooks', 'App\Http\Controllers\LendingController@rebooks')->name('lendings.rebooks');
+
 Route::post('books/create/confirm', 'App\Http\Controllers\BookController@confirm_create')->name('books.confirm-create');
 Route::post('books/edit/confirm', 'App\Http\Controllers\BookController@confirm_edit')->name('books.confirm-edit');
 //ajax処理
