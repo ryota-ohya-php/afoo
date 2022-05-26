@@ -19,7 +19,7 @@ class InventoryController extends Controller
         return view('inventories.create', ['book'=>$book]);
     }
 
-    // 確認画面のアクション
+    // 登録確認画面
     public function confirm(Request $request)
     {
         // バリデーション（フォーム送信内容）

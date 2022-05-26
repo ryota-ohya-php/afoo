@@ -47,9 +47,9 @@ class BookController extends Controller
         $count_inv=$in->get();
 
         return view('books.index',[
-            'books' => $books,
-            'categories' =>$categories,
-            'count_inv'=>$count_inv
+            'books'      => $books,
+            'categories' => $categories,
+            'count_inv'  => $count_inv
         ]);
     }
 
@@ -186,7 +186,7 @@ class BookController extends Controller
             // 登録確認画面へ遷移
             return view('books.confirm-create',['request'=>$request]);
         }
-        
+
         return view('books.confirm-edit',['request'=>$request]);
     }
 

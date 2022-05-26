@@ -3,7 +3,6 @@
 
 @section('content')
 
-
 <h2 class="txt_center title">会員一覧</h2>
 <div class="main_content">
     <div class="member_div">
@@ -44,7 +43,6 @@
             </tbody>
         </table>
     </div>
-
 {{ $members->appends(Request::all())->links() }}
 </div>
 @endsection

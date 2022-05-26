@@ -5,7 +5,6 @@
   <div class="main_content">
      <!-- バリデーションのエラーメッセージ -->
     @include('commons/flash')
-
       <!-- 在庫登録フォーム -->
       <form action="{{ route('inventories.confirm') }}" method="post">
         @csrf

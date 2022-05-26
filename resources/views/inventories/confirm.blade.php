@@ -24,8 +24,7 @@
       <input type="hidden" name="inventory_num" value="{{$request -> inventory_num}}">
 
      <!-- ボタン -->
-      <button type="button" class="page_button button is-primary"
-        onclick="history.back()">登録画面に戻る</button>
+      <button type="button" class="page_button button is-primary"onclick="history.back()">登録画面に戻る</button>
       <button type="submit" class="page_button button is-success">登録する</button>
     </form>
 </div>

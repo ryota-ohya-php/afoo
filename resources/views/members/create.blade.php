@@ -9,6 +9,5 @@
         <form action="{{route('members.confirm')}}" method="post">
             @include('members/form')
         </form>
-
 </div>
 @endsection
