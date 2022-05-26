@@ -40,7 +40,6 @@ class LendingController extends Controller
         $lend->join('members', 'lendings.member_id', '=', 'members.id');
         $lend->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
         $lend->join('books', 'inventories.book_id', '=', 'books.id');
-
         }
 
         $lending=$lend->get();
@@ -61,12 +60,27 @@ class LendingController extends Controller
         $inventory->where('lend_flag','=',0);
         $inventories = $inventory->get();
 
-        // dd($inventories);
+        
         // メンバーの情報もってくる
         $member = Member::select('members.id','members.name');
         $members=$member->get();
+
+        // メンバーの在庫情報取得
+        $inve = Member::select('members.id','members.name','inventories.lend_flag');
+        $inve->selectRaw('COUNT(members.id) as inv_coun');
+        $inve->leftjoin('lendings', 'members.id', '=', 'lendings.member_id');
+        $inve->leftjoin('inventories', 'lendings.inventory_id', '=', 'inventories.id');
+        $inve->where('inventories.lend_flag','=',1);
+        $inve->orwhere('inventories.lend_flag','=',0);
+        $inve->groupBy('members.id');
+        $test=$inve->get();
         
-        return view('lendings.create',['inventories'=>$inventories,'members'=>$members]);
+        echo $inve->toSql();
+        return view('lendings.create',[
+            'inventories'=>$inventories,
+            'members'=>$members,
+            'test'=>$test,
+        ]);
     }
 
 
@@ -253,7 +267,7 @@ class LendingController extends Controller
         $mem=Lending::select('lendings.id','member_id','members.name','members.tel',
         'inventory_id','books.title','lent_date','due_date','return_date');
         $mem->where('member_id','=',$id)
-        ->whereNull('return_date');
+        ->where('inventories.lend_flag','=',1);
         $mem->join('members', 'lendings.member_id', '=', 'members.id');
         $mem->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
         $mem->join('books', 'inventories.book_id', '=', 'books.id');
