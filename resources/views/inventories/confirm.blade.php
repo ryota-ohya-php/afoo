@@ -3,7 +3,7 @@
 @section('content')
 <h2 class="txt_center title">入力確認</h2>
 <div class="main_content">
-  {{-- 入力情報表示 --}}
+  <!-- 入力情報表示 -->
   <div class="info_dl">
       <dl>
           <dt>在庫数</dt>
@@ -14,6 +14,7 @@
           <dd>{{ $request->remarks }}</dd>
       </dl>
   </div>
+
     <!-- hiddenでstoreメソッドに送る -->
     <form action="{{ route('inventories.store') }}" method="post">
       @csrf
@@ -30,7 +31,5 @@
       {{-- 登録ボタン --}}
       <button type="submit" class="page_button button is-success">登録する</button>
     </form>
-    
 </div>
-    
 @endsection
