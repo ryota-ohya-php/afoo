@@ -3,7 +3,7 @@
 @section('content')
 <h2 class="txt_center title">書籍一覧</h2>
 <!-- フラッシュメッセージ -->
-<div class="flash_message notification is-danger is-light">
+<div class="flash_message">
     {{ session('flash_message') }}
 </div>
 <div class="main_content">

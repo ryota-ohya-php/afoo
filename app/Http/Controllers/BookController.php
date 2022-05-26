@@ -72,7 +72,7 @@ class BookController extends Controller
             'isbn' => ['required', 'digits:13'],
             'title' => ['required','string','max:500',],
             'author' => ['required','string','max:255',],
-            'category_id' => ['required','string',],
+            'category_id' => ['required',],
             'publisher' => ['required','string','max:100',],
         ],
         [
