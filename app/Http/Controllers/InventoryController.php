@@ -9,16 +9,6 @@ use Illuminate\Http\Request;
 class InventoryController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -32,19 +22,21 @@ class InventoryController extends Controller
     // 確認画面のアクション
     public function confirm(Request $request)
     {
-        // validationを追加,確認画面に遷移させない
+        // validation処理
         $validated = $request->validate([
             'inventory_num' => ['required', 'digits_between:1,2'],
-            'arrival_date' => ['required', 'date'],
-            'remarks' => ['nullable','string','max:100',],
+            'arrival_date'  => ['required', 'date'],
+            'remarks'       => ['nullable',  'string','max:100',],
         ],
+        // エラーメッセージ
         [
-            // エラーメッセージカスタマイズ
-            'inventory_num.required' => '1回の登録は1～99冊までです。',
-            'inventory_num.digits_between' => '1回の登録は1～99冊までです。',
-            'arrival_date.date' => '日付が正しくありません。',
-            'remarks.max' => '備考は100文字以内です。',  
-        ]);       
+            'inventory_num.required'        => '1回の登録は1～99冊までです。',
+            'inventory_num.digits_between'  => '1回の登録は1～99冊までです。',
+            'arrival_date.date'             => '日付が正しくありません。',
+            'remarks.max'                   => '備考は100文字以内です。',  
+        ]);
+
+        // 確認画面へ遷移       
 		return view('inventories.confirm', ['request' =>$request]);
 	}	
 
