@@ -44,7 +44,7 @@
                             var cnt = $('#count input:checkbox:checked').length;
                             console.log(cnt);
                             if (cnt > 5) {
-                                alert('5冊以上貸出できません');
+                                alert('6冊以上貸出できません');
                                 $('input:checkbox').prop('checked', false);
                             }
                         }).trigger('change');
