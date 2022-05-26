@@ -78,7 +78,7 @@ class LendingController extends Controller
         $inve->groupBy('members.id');
         $test=$inve->get();
         
-        echo $inve->toSql();
+       
         return view('lendings.create',[
             'inventories'=>$inventories,
             'members'=>$members,
@@ -249,6 +249,7 @@ class LendingController extends Controller
             $lend->remarks=$request->remarks;
             $lend->save();
             
+
             $inv = Lending::select('lendings.id','inventory_id');
             $inv->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
             $inv->where('lendings.id','=',$val);
@@ -264,6 +265,7 @@ class LendingController extends Controller
         }
         
         return redirect('lendings');
+
         
     }
 
