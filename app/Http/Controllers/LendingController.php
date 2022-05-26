@@ -76,7 +76,7 @@ class LendingController extends Controller
     }
     public function confirm(Request $request)
     {
-        //print_r($_POST['lend'][0]);
+        //返却確認;
         if (isset($_POST['lend'])) 
         {
             foreach($_POST['lend'] as $num){
@@ -92,7 +92,7 @@ class LendingController extends Controller
                     'request'=>$request,
                 'data'=>$data]);
         }
-
+        // 貸出確認
         if (isset($_POST['inventory'])) 
         {
             foreach($_POST['inventory'] as $num){
@@ -103,7 +103,6 @@ class LendingController extends Controller
                 $data[]=$n->get();
                }
                $member = Member::find($request->member_id);
-            //    dd($data);
                return view('lendings.confirm-create',[
                 'request'=>$request,
             'data'=>$data]); 

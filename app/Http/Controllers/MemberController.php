@@ -42,7 +42,7 @@ class MemberController extends Controller
     }
     public function confirm(Request $request)
     {
-        // validationを追加,確認画面に遷移させない
+    // validationを追加,確認画面に遷移させない
         $validated = $request->validate([
             'name' => ['required','max:20',],
             'address' => ['required','string','max:255',],
@@ -125,7 +125,7 @@ class MemberController extends Controller
      */
     public function update(Request $request, Member $member)
     {
-        // validationを追加,確認画面に遷移させない
+    // validationを追加,確認画面に遷移させない
         $validated = $request->validate([
             'name' => ['required','max:20',],
             'address' => ['required','string','max:255',],
