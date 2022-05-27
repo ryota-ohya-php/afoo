@@ -5,6 +5,10 @@
 @section('content')
 <h2 class="txt_center title">貸出一覧画面</h2>
 <div class="main_content">
+    <div class="book_div">
+        {{-- 書籍登録ボタン --}}
+        <button class="button is-success book_span" onclick="location.href='{{route('lendings.create')}}'" style="margin-bottom: 10px">貸出手続きをする</button>
+    </div>
     <!--貸出検索-->
     <form action="{{route('lendings.index')}}" method="get">
         
