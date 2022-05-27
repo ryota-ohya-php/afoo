@@ -75,7 +75,7 @@ class MemberController extends Controller
             return redirect(route('members.index'))
             ->with('flash_message', 'すでに会員登録されています。会員検索を行ってください');
         } else{
-            // 編集確認画面へ遷移
+            // 登録確認画面へ遷移
             return view('members.confirm',['request'=>$request]);
         }
         
@@ -95,7 +95,8 @@ class MemberController extends Controller
         $member->email    = $request->email;
         $member->birthday = $request->birthday;
         $member->save();
-        return redirect(route('members.index'));
+        return redirect(route('members.index'))
+        ->with('flash_message', '会員登録が完了しました。');
 
     }
 
@@ -185,7 +186,8 @@ class MemberController extends Controller
          $members->email    = $request->email;
          $members->birthday = $request->birthday;
          $members->save();
-         return redirect(route('members.show',$member->id));
+         return redirect(route('members.show',$member->id))
+         ->with('flash_message', '編集が完了しました。');
      }
        
 

@@ -8,7 +8,10 @@
 <div class="main_content">
     <div class="book_div">
         <h2 class="title txt_center">書籍詳細</h2>
-      
+        <!-- フラッシュメッセージ -->
+        <div class="flash_message">
+        {{ session('flash_message') }}
+        </div>
         {{-- 在庫登録ボタン --}}
         <form action="{{ route('inventories.create') }}" method="get">
             <input type="hidden" name="book_id" value="{{ $book->id }}">

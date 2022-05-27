@@ -115,7 +115,7 @@ class BookController extends Controller
         if (Book::where('isbn', $request->isbn)->get()->count()) {
             // 書籍一覧画面に遷移
             return redirect(route('books.index'))
-            ->with('flash_message', 'すでに書籍登録されています。検索後、在庫登録をしてください。');
+            ->with('flash_message', 'すでに書籍登録されています。書籍検索後、在庫登録をしてください。');
         } else{
             // 登録確認画面へ遷移
             return view('books.confirm-create',['request'=>$request]);
@@ -135,7 +135,8 @@ class BookController extends Controller
         ]);
         $book = new Book;
         $book->create($request->all());
-        return redirect(route('books.index'));
+        return redirect(route('books.index'))
+        ->with('flash_message', '書籍登録が完了しました。続いて詳細ページより在庫登録を行ってください。');
     }
 
     /**
@@ -196,15 +197,15 @@ class BookController extends Controller
             'publisher.max'        => '出版社は100文字以内です。',
         ]);
 
-        // バリデーション（同一書籍の新規登録）
-        if (Book::where('isbn', $request->isbn)->get()->count()) {
-            // 書籍一覧画面に遷移
-            return redirect(route('books.index'))
-            ->with('flash_message', 'すでに書籍登録されています。検索後、在庫登録をしてください。');
-        } else{
-            // 編集確認画面へ遷移
+        // // バリデーション（同一書籍の編集からの登録）
+        // if (Book::where('isbn', $request->isbn)->get()->count()) {
+        //     // 書籍一覧画面に遷移
+        //     return redirect(route('books.index'))
+        //     ->with('flash_message', 'すでに書籍登録されています。検索後、在庫登録をしてください。');
+        // } else{
+        //     // 編集確認画面へ遷移
             return view('books.confirm-edit',['request'=>$request]);
-        }
+        // }
     }
 
 
@@ -221,7 +222,8 @@ class BookController extends Controller
             'isbn' => 'max:13',
         ]);
         $book->update($request->all());
-        return redirect(route('books.show',$book));
+        return redirect(route('books.show',$book))
+        ->with('flash_message', '書籍情報の変更が完了しました。');
     }
 
     /**
