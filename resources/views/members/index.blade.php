@@ -5,6 +5,10 @@
 
 <h2 class="txt_center title">会員一覧</h2>
 <div class="main_content">
+    <!-- フラッシュメッセージ -->
+    <div class="flash_message">
+        {{ session('flash_message') }}
+    </div>
     <div class="member_div">
         {{-- 会員登録ボタン --}}
         <button class="button is-success member_span" onclick="location.href='{{route('members.create')}}'" >＋会員登録</button>

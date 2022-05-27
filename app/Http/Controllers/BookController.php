@@ -76,7 +76,7 @@ class BookController extends Controller
 
     public function confirm_create(Request $request)
     {
-        // バリデーション（フォーム送信内容）
+        // バリデーション（フォーム入力内容）
         $validated = $request->validate([
             'isbn'        => ['required', 'digits:13'],
             'title'       => ['required', 'string','max:500',],
@@ -86,7 +86,7 @@ class BookController extends Controller
         ],
         [
         // エラーメッセージ、一覧画面に表示。
-            'isbn.required'        => 'isbn番号を入力してください。',
+            'isbn.required'        => 'isbn番号は必須項目です。',
             'isbn.digits'          => '13桁のisbn番号を入力してください。',
             
             'title.required'       => 'タイトルは必須項目です。',
@@ -161,7 +161,7 @@ class BookController extends Controller
 
     public function confirm_edit(Request $request)
     {
-        // バリデーション（フォーム送信内容）
+        // バリデーション（フォーム入力内容）
         $validated = $request->validate([
             'isbn'        => ['required', 'digits:13'],
             'title'       => ['required', 'string','max:500',],
@@ -171,7 +171,7 @@ class BookController extends Controller
         ],
         [
         // エラーメッセージ、一覧画面に表示。
-            'isbn.required'        => 'isbn番号を入力してください。',
+            'isbn.required'        => 'isbn番号は必須項目です',
             'isbn.digits'          => '13桁のisbn番号を入力してください。',
             
             'title.required'       => 'タイトルは必須項目です。',

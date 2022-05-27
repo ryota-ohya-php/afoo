@@ -67,7 +67,17 @@ class MemberController extends Controller
 
             'email.max'         => 'メールアドレスは255文字以内です。',  
         ]);  
-        return view('members.confirm',['request'=>$request]);
+        // バリデーション（同一会員の新規登録）
+        if (Member::where('name', $request->name)->get()->count() 
+        &&  Member::where('address', $request->address)->get()->count() ) {
+            // 会員一覧画面に遷移
+            return redirect(route('members.index'))
+            ->with('flash_message', 'すでに会員登録されています。会員検索を行ってください');
+        } else{
+            // 編集確認画面へ遷移
+            return view('members.confirm',['request'=>$request]);
+        }
+        
     }
     /**
      * Store a newly created resource in storage.
@@ -149,16 +159,27 @@ class MemberController extends Controller
             'birthday.date'     => '生年月日を正しい形式で入力してください。',
 
             'email.max'         => 'メールアドレスは255文字以内です。',  
+            
         ]);
-       //echo $member->id;exit;
-        $members= Member::find($member->id);
-        $members->name     = $request->name;
-        $members->address  = $request->address;
-        $members->tel      = $request->tel;
-        $members->email    = $request->email;
-        $members->birthday = $request->birthday;
-        $members->save();
-        return redirect(route('members.show',$member->id));
+     // バリデーション（同一会員の新規登録）
+     if (Member::where('name', $request->name)->get()->count() 
+     &&  Member::where('address', $request->address)->get()->count() ) {
+         // 会員一覧画面に遷移
+         return redirect(route('members.index'))
+         ->with('flash_message', 'すでに会員登録されています。会員検索を行ってください');
+     } else{
+         // 編集確認画面へ遷移
+         $members= Member::find($member->id);
+         $members->name     = $request->name;
+         $members->address  = $request->address;
+         $members->tel      = $request->tel;
+         $members->email    = $request->email;
+         $members->birthday = $request->birthday;
+         $members->save();
+         return redirect(route('members.show',$member->id));
+     }
+       
+
     }
 
     /**
