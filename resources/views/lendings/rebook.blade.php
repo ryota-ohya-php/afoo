@@ -7,7 +7,7 @@
 <div class="main_content">
     @include('commons/flash')
     <!--貸出検索-->
-    <form action="{{route('lendings.confirm')}}" method="post" id="form_submit">
+    <form action="{{route('lendings.confirm')}}" method="post" id="form_submit" onsubmit="return nosubmit()>
         @include('lendings/returnform')
     </form>
 
