@@ -95,6 +95,21 @@ class LendingController extends Controller
     }
     public function confirm(Request $request)
     {
+
+        $validated = $request->validate([
+            'member_id'        => ['required',],
+            'lent_date'       => [ 'date','before:now'],
+            'return_date'       => [ 'date','before:now'],
+            'remarks'       => ['nullable', 'string','max:100',],
+        ],
+        [
+            // エラーメッセージ、一覧画面に表示。
+                'member_id.required'        => '会員IDを入力してください。',
+                'lent_date.before'             => '日付が正しくありません。',
+                'return_date.before'             => '日付が正しくありません。',
+                'remarks.max'                   => '備考は100文字以内です。',
+
+            ]);
         //返却確認;
         if (isset($_POST['lend'])) 
         {

@@ -117,6 +117,14 @@ span.f_bold{
     font-weight: bold;
     font-size: 20px;
 }
+p.f_bold{
+    font-weight: bold;
+    font-size: 20px;  
+}
+.lend_btn{
+    height: 30px;
+    margin-left: 10px;
+}
 
 table.hid_table{
     display: none;

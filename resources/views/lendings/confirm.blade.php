@@ -29,7 +29,7 @@
                 </dd>
         </dl>
     </div>
-        <p>貸出情報</p>
+        <p class="f_bold">貸出情報</p>
         <table class="table_center" style="width:700px" >
             <thead>
                 <tr>
@@ -50,6 +50,9 @@
                 @endforeach
             @endforeach
         </table>
+        <button class="button is-primary mamber_button"
+            onclick="location.href='{{ route('lendings.create')}}';history.back()">登録画面に戻る</button>
+        <input type="hidden" name="">
         <form action=" {{($request->lend_or_rebook == 'lend') ? route('lendings.store') : route('lendings.rebooks')}}" method="post">
             @csrf
             {{-- @if($request->lend_or_rebook != 'lend')
