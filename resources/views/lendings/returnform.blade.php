@@ -91,12 +91,12 @@
                 会員ID
             </dt>
                 <dd>    
+
                     <input type="number" name="member_id" id="member_id" min="0" class="lending_inp" style="    width: 130px;
                     ">
                     <button class="member_search button is-primary member_button" type="button"
                     style="height: 30px;">検索</button>
                 </dd>
-
                 @if($_SERVER['REQUEST_URI'] != '/lendings/rebook')
             <dt>
                 在庫
@@ -123,6 +123,7 @@
                 </dd>
         </dl>
     </div>
+
     <p class="member_name"></p>
     <p class="arr_num margin-top"></p>
     <!--<select  id="member" size="5" multiple style="width:400px; height:300px">
@@ -143,3 +144,4 @@
     </table>
 
     <button type="submit" class="button is-warning margin-top">入力確認画面へ</button>
+

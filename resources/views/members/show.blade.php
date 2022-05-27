@@ -22,6 +22,7 @@
             <dd>{{$member->email}}</dd>
         </dl>
     </div>
+    
     <div class="block">
         {{-- 会員一覧画面に戻る --}}
         <button class="button is-primary mamber_button" 
@@ -46,5 +47,39 @@
             }
         }
     </script>
+    <button class="lend_click button is-secondary" style="margin-top: 10px">貸出状況を見る</button>
 </div>
+
+<div class="section">
+    <h2 class="title txt_center">{{$member->name}}(会員ID:{{$member->id}})様の貸出状況</h2>
+        <div class="main_content">
+            <div class="info_dl">
+            <dl>
+            @foreach ($lendinfo as $lend)
+                <dt>本のタイトル</dt>
+                <dd>{{$lend->title}}</dd>
+                <dt>返却期限日</dt>
+                <dd>{{$lend->due_date}}</dd>
+            @endforeach
+            </dl>
+            </div>
+        </div>
+</div>
+<div class="main_content">
+    <button class="button top_button is-success is-small sectionn" onclick="location.href='{{route('lendings.create')}}'">本を貸し出す</button>
+    <button class="button top_button is-danger is-small sectionn" onclick="location.href='{{route('lendings.rebook')}}'">本を返却する</button>
+</div>
+
+<script>
+    $(function() {
+        $('.section').hide();
+        $('.sectionn').hide();
+
+        $('.lend_click').click( function( e ) {
+            $('.section').show();
+            $('.lend_click').hide();
+            $('.sectionn').show();
+                });
+            });
+</script>
 @endsection

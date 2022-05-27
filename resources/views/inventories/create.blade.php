@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h2 class="txt_center title">在庫登録</h2>
+<h2 class="txt_center title">在庫の新規登録</h2>
   <div class="main_content">
      <!-- エラーメッセージ -->
     @include('commons/flash')
