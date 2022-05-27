@@ -35,7 +35,7 @@ class LendingController extends Controller
 
         $lend=Lending::select('lendings.id','member_id','members.name','lendings.inventory_id',
 
-        'books.author','books.title','inventories.lend_flag','lent_date','due_date','new_lend_flag');
+        'books.author','books.title','inventories.lend_flag','lent_date','due_date');
         
         $lend->join('members', 'lendings.member_id', '=', 'members.id');
         $lend->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
@@ -70,11 +70,12 @@ class LendingController extends Controller
         $members=$member->get();
 
         // メンバーの在庫情報取得
-        $inve = Member::select('members.id','members.name','inventories.lend_flag');
+        $inve = Member::select('members.id','members.name','inventories.lend_flag','lendings.return_date');
         $inve->selectRaw('COUNT(members.id) as inv_coun');
         $inve->leftjoin('lendings', 'members.id', '=', 'lendings.member_id');
         $inve->leftjoin('inventories', 'lendings.inventory_id', '=', 'inventories.id');
         $inve->where('inventories.lend_flag','=',1);
+        $inve->wherenull('lendings.return_date');
         $inve->groupBy('members.id');
         
         $test=$inve->get();
