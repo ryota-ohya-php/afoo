@@ -9,7 +9,8 @@
         <dt><label for="isbn">ISBN番号</label></dt>
         <dd>
             {{-- <form action="{{route('books.create')}}" method="GET"> --}}
-                <input type="number" name="isbn" id="isbn" maxlength="13" pattern="^\d{13}$" value="{{old('isbn',$book->isbn)}}" autofocus>
+                <input type="number" name="isbn" id="isbn" maxlength="13" pattern="^\d{13}$" 
+                value="{{old('isbn',$book->isbn)}}" placeholder="ハイフンなしで入力" autofocus>
                 <button id="getBookInfo">ISBN番号で自動補完</button>
             {{-- <button type="submit">ISBN番号で検索する</button>  --}}
             {{-- </form> --}}

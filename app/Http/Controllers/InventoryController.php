@@ -9,16 +9,6 @@ use Illuminate\Http\Request;
 class InventoryController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -29,22 +19,24 @@ class InventoryController extends Controller
         return view('inventories.create', ['book'=>$book]);
     }
 
-    // 確認画面のアクション
+    // 登録確認画面
     public function confirm(Request $request)
     {
-        // validationを追加,確認画面に遷移させない
+        // バリデーション（フォーム送信内容）
         $validated = $request->validate([
             'inventory_num' => ['required', 'digits_between:1,2'],
-            'arrival_date' => ['required', 'date'],
-            'remarks' => ['nullable','string','max:100',],
+            'arrival_date'  => ['required', 'date'],
+            'remarks'       => ['nullable', 'string','max:100',],
         ],
+        // エラーメッセージ
         [
-            // エラーメッセージカスタマイズ
-            'inventory_num.required' => '1回の登録は1～99冊までです。',
-            'inventory_num.digits_between' => '1回の登録は1～99冊までです。',
-            'arrival_date.date' => '日付が正しくありません。',
-            'remarks.max' => '備考は100文字以内です。',  
-        ]);       
+            'inventory_num.required'        => '1回の登録は1～99冊までです。',
+            'inventory_num.digits_between'  => '1回の登録は1～99冊までです。',
+            'arrival_date.date'             => '日付が正しくありません。',
+            'remarks.max'                   => '備考は100文字以内です。',  
+        ]);
+
+        // 確認画面へ遷移       
 		return view('inventories.confirm', ['request' =>$request]);
 	}	
 
@@ -56,14 +48,13 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
-
         // 在庫テーブルにフォーム内容を登録
         $inventory_num = $request->inventory_num;
         for ($i=0; $i < $inventory_num ; $i++) { 
             $inventory = new Inventory;
-            $inventory->book_id = $request->book_id;
+            $inventory->book_id      = $request->book_id;
             $inventory->arrival_date = $request->arrival_date;
-            $inventory->remarks = $request->remarks;
+            $inventory->remarks      = $request->remarks;
             $inventory->save();
 
         }

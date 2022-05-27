@@ -43,6 +43,7 @@ class LendingController extends Controller
         // $lend->where('new_lend_flag', '=',0);
         $lend->whereNull('return_date');
 
+
         }
 
         $lending=$lend->get();
@@ -63,12 +64,27 @@ class LendingController extends Controller
         $inventory->where('lend_flag','=',0);
         $inventories = $inventory->get();
 
-        // dd($inventories);
+        
         // メンバーの情報もってくる
         $member = Member::select('members.id','members.name');
         $members=$member->get();
+
+        // メンバーの在庫情報取得
+        $inve = Member::select('members.id','members.name','inventories.lend_flag');
+        $inve->selectRaw('COUNT(members.id) as inv_coun');
+        $inve->leftjoin('lendings', 'members.id', '=', 'lendings.member_id');
+        $inve->leftjoin('inventories', 'lendings.inventory_id', '=', 'inventories.id');
+        $inve->where('inventories.lend_flag','=',1);
+        $inve->orwhere('inventories.lend_flag','=',0);
+        $inve->groupBy('members.id');
+        $test=$inve->get();
         
-        return view('lendings.create',['inventories'=>$inventories,'members'=>$members]);
+       
+        return view('lendings.create',[
+            'inventories'=>$inventories,
+            'members'=>$members,
+            'test'=>$test,
+        ]);
     }
 
 
@@ -78,7 +94,7 @@ class LendingController extends Controller
     }
     public function confirm(Request $request)
     {
-        //print_r($_POST['lend'][0]);
+        //返却確認;
         if (isset($_POST['lend'])) 
         {
             foreach($_POST['lend'] as $num){
@@ -94,7 +110,7 @@ class LendingController extends Controller
                     'request'=>$request,
                 'data'=>$data]);
         }
-
+        // 貸出確認
         if (isset($_POST['inventory'])) 
         {
             foreach($_POST['inventory'] as $num){
@@ -105,7 +121,6 @@ class LendingController extends Controller
                 $data[]=$n->get();
                }
                $member = Member::find($request->member_id);
-            //    dd($data);
                return view('lendings.confirm-create',[
                 'request'=>$request,
             'data'=>$data]); 
@@ -233,6 +248,7 @@ class LendingController extends Controller
             // $lend->new_lend_flag =1;
             $lend->save();
             
+
             $inv = Lending::select('lendings.id','inventory_id');
             $inv->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
             $inv->where('lendings.id','=',$val);
@@ -248,6 +264,7 @@ class LendingController extends Controller
         }
         
         return redirect('lendings');
+
         
     }
 
@@ -266,7 +283,7 @@ class LendingController extends Controller
         $mem=Lending::select('lendings.id','member_id','members.name','members.tel',
         'inventory_id','books.title','lent_date','due_date','return_date');
         $mem->where('member_id','=',$id)
-        ->whereNull('return_date');
+        ->where('inventories.lend_flag','=',1);
         $mem->join('members', 'lendings.member_id', '=', 'members.id');
         $mem->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
         $mem->join('books', 'inventories.book_id', '=', 'books.id');

@@ -42,30 +42,30 @@ class MemberController extends Controller
     }
     public function confirm(Request $request)
     {
-        // validationを追加,確認画面に遷移させない
+    // バリデーション（フォーム送信内容）
         $validated = $request->validate([
-            'name' => ['required','max:20',],
-            'address' => ['required','string','max:255',],
-            'tel' => ['required','regex:/^(0{1}\d{1,4}-{0,1}\d{1,4}-{0,1}\d{4})$/'],
-            'birthday' => ['required', 'date',],
-            'email' => ['required','string','max:255',],
+            'name'     => ['required', 'string', 'max:20',],
+            'address'  => ['required', 'string', 'max:255',],
+            'tel'      => ['required', 'string', 'min:10','regex:/^(0{1}\d{1,4}-{0,1}\d{1,4}-{0,1}\d{4})$/'],
+            'birthday' => ['required', 'date'  ,],
+            'email'    => ['nullable', 'string', 'max:255',],
         ],
         [
-            // エラーメッセージカスタマイズ
-            'name.required' => '会員名は必須です。',
-            'name.max' => '会員名は20文字以内です。',
+         // エラーメッセージ
+            'name.required'     => '会員名は必須項目です。',
+            'name.max'          => '会員名は20文字以内です。',
 
-            'address.required' => '住所を入力してください。',
-            'address.max' => '住所は255文字以内です。',
+            'address.required'  => '住所は必須項目です。',
+            'address.max'       => '住所は255文字以内です。',
 
-            'tel.required' => '電話番号は必須です。',
-            'tel.regex' => '電話番号をもう一度入力してください。',
+            'tel.required'      => '電話番号は必須項目です。',
+            'tel.min'           => '',
+            'tel.regex'         => '正しい電話番号をもう一度入力してください。',
 
-            'birthday.required' => '生年月日を入力してください。',
-            'birthday.date' => '生年月日を正しい形式で入力してください。',
+            'birthday.required' => '生年月日は必須項目です。',
+            'birthday.date'     => '生年月日を正しい形式で入力してください。',
 
-            'email.required' => 'メールアドレスを入力してください。',
-            'email.max' => 'メールアドレスは255文字以内です。',  
+            'email.max'         => 'メールアドレスは255文字以内です。',  
         ]);  
         return view('members.confirm',['request'=>$request]);
     }
@@ -78,11 +78,11 @@ class MemberController extends Controller
     public function store(Request $request)
     {
         $member= new Member;
-        $member->name=$request->name;
-        $member->address=$request->address;
-        $member->tel=$request->tel;
-        $member->email=$request->email;
-        $member->birthday=$request->birthday;
+        $member->name     = $request->name;
+        $member->address  = $request->address;
+        $member->tel      = $request->tel;
+        $member->email    = $request->email;
+        $member->birthday = $request->birthday;
         $member->save();
         return redirect(route('members.index'));
 
@@ -125,38 +125,38 @@ class MemberController extends Controller
      */
     public function update(Request $request, Member $member)
     {
-        // validationを追加,確認画面に遷移させない
+        // バリデーション（フォーム送信内容）
         $validated = $request->validate([
-            'name' => ['required','max:20',],
-            'address' => ['required','string','max:255',],
-            'tel' => ['required','regex:/^(0{1}\d{1,4}-{0,1}\d{1,4}-{0,1}\d{4})$/'],
-            'birthday' => ['required', 'date',],
-            'email' => ['required','string','max:255',],
+            'name'     => ['required', 'string', 'max:20',],
+            'address'  => ['required', 'string', 'max:255',],
+            'tel'      => ['required', 'string', 'min:10','regex:/^(0{1}\d{1,4}-{0,1}\d{1,4}-{0,1}\d{4})$/'],
+            'birthday' => ['required', 'date'  ,],
+            'email'    => ['nullable', 'string', 'max:255',],
         ],
         [
-            // エラーメッセージカスタマイズ
-            'name.required' => '会員名は必須です。',
-            'name.max' => '会員名は20文字以内です。',
+         // エラーメッセージ
+            'name.required'     => '会員名は必須項目です。',
+            'name.max'          => '会員名は20文字以内です。',
 
-            'address.required' => '住所を入力してください。',
-            'address.max' => '住所は255文字以内です。',
+            'address.required'  => '住所は必須項目です。',
+            'address.max'       => '住所は255文字以内です。',
 
-            'tel.required' => '電話番号は必須です。',
-            'tel.regex' => '電話番号をもう一度入力してください。',
+            'tel.required'      => '電話番号は必須項目です。',
+            'tel.min'           => '',
+            'tel.regex'         => '正しい電話番号をもう一度入力してください。',
 
-            'birthday.required' => '生年月日を入力してください。',
-            'birthday.date' => '生年月日を正しい形式で入力してください。',
+            'birthday.required' => '生年月日は必須項目です。',
+            'birthday.date'     => '生年月日を正しい形式で入力してください。',
 
-            'email.required' => 'メールアドレスを入力してください。',
-            'email.max' => 'メールアドレスは255文字以内です。',  
-        ]);  
+            'email.max'         => 'メールアドレスは255文字以内です。',  
+        ]);
        //echo $member->id;exit;
         $members= Member::find($member->id);
-        $members->name=$request->name;
-        $members->address=$request->address;
-        $members->tel=$request->tel;
-        $members->email=$request->email;
-        $members->birthday=$request->birthday;
+        $members->name     = $request->name;
+        $members->address  = $request->address;
+        $members->tel      = $request->tel;
+        $members->email    = $request->email;
+        $members->birthday = $request->birthday;
         $members->save();
         return redirect(route('members.show',$member->id));
     }

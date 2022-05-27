@@ -54,9 +54,11 @@ class BookController extends Controller
         //  dd($count_inv);
 
         return view('books.index',[
-            'books' => $books,
-            'categories' =>$categories,
-             'count_inv'=>$count_inv
+
+            'books'      => $books,
+            'categories' => $categories,
+            'count_inv'  => $count_inv
+
         ]);
     }
 
@@ -74,33 +76,40 @@ class BookController extends Controller
 
     public function confirm_create(Request $request)
     {
-        // validationを追加,確認画面に遷移させない
+        // バリデーション（フォーム送信内容）
         $validated = $request->validate([
-            'isbn' => ['required', 'digits:13'],
-            'title' => ['required','string','max:500',],
-            'author' => ['required','string','max:255',],
-            'category_id' => ['required','string',],
-            'publisher' => ['required','string','max:100',],
+            'isbn'        => ['required', 'digits:13'],
+            'title'       => ['required', 'string','max:500',],
+            'author'      => ['required', 'string','max:255',],
+            'category_id' => ['required', ],
+            'publisher'   => ['required', 'string','max:100',],
         ],
         [
-            // エラーメッセージカスタマイズ
-            'isbn.required' => 'isbn番号を入力してください。',
-            'isbn.digits' => '13桁のisbn番号を入力してください。',
+        // エラーメッセージ、一覧画面に表示。
+            'isbn.required'        => 'isbn番号を入力してください。',
+            'isbn.digits'          => '13桁のisbn番号を入力してください。',
             
-            'title.required' => 'タイトルは必須です。',
-            'title.max' => 'タイトルは500文字以内です。',
+            'title.required'       => 'タイトルは必須項目です。',
+            'title.max'            => 'タイトルは500文字以内です。',
             
-            'author.required' => '著者は必須です。',
-            'author.max' => '著者は255文字以内です。',
+            'author.required'      => '著者は必須項目です。',
+            'author.max'           => '著者は255文字以内です。',
 
-            'category_id.required' => 'カテゴリーIDは必須です。',
+            'category_id.required' => 'カテゴリーIDは必須項目です。',
 
-            'publisher.required' => '出版社は必須です。',
-            'publisher.max' => '著者は100文字以内です。',
-
-            
+            'publisher.required'   => '出版社は必須項目です。',
+            'publisher.max'        => '出版社は100文字以内です。',
         ]);
-        return view('books.confirm-create',['request'=>$request]);
+
+        // バリデーション（同一書籍の新規登録）
+        if (Book::where('isbn', $request->isbn)->get()->count()) {
+            // 書籍一覧画面に遷移
+            return redirect(route('books.index'))
+            ->with('flash_message', 'すでに書籍登録されています。検索後、在庫登録をしてください。');
+        } else{
+            // 登録確認画面へ遷移
+            return view('books.confirm-create',['request'=>$request]);
+        }
     }
 
     /**
@@ -152,31 +161,40 @@ class BookController extends Controller
 
     public function confirm_edit(Request $request)
     {
-        // validationを追加,確認画面に遷移させない
+        // バリデーション（フォーム送信内容）
         $validated = $request->validate([
-            'isbn' => ['required', 'digits:13'],
-            'title' => ['required','string','max:500',],
-            'author' => ['required','string','max:255',],
-            'category_id' => ['required','string',],
-            'publisher' => ['required','string','max:100',],
+            'isbn'        => ['required', 'digits:13'],
+            'title'       => ['required', 'string','max:500',],
+            'author'      => ['required', 'string','max:255',],
+            'category_id' => ['required', ],
+            'publisher'   => ['required', 'string','max:100',],
         ],
         [
-            // エラーメッセージカスタマイズ
-            'isbn.required' => 'isbn番号を入力してください。',
-            'isbn.digits' => '13桁のisbn番号を入力してください。',
+        // エラーメッセージ、一覧画面に表示。
+            'isbn.required'        => 'isbn番号を入力してください。',
+            'isbn.digits'          => '13桁のisbn番号を入力してください。',
             
-            'title.required' => 'タイトルは必須です。',
-            'title.max' => 'タイトルは500文字以内です。',
+            'title.required'       => 'タイトルは必須項目です。',
+            'title.max'            => 'タイトルは500文字以内です。',
             
-            'author.required' => '著者は必須です。',
-            'author.max' => '著者は255文字以内です。',
+            'author.required'      => '著者は必須項目です。',
+            'author.max'           => '著者は255文字以内です。',
 
-            'category_id.required' => 'カテゴリーIDは必須です。',
-            
-            'publisher.required' => '出版社は必須です。',
-            'publisher.max' => '著者は100文字以内です。',             
+            'category_id.required' => 'カテゴリーIDは必須項目です。',
+
+            'publisher.required'   => '出版社は必須項目です。',
+            'publisher.max'        => '出版社は100文字以内です。',
         ]);
-        return view('books.confirm-edit',['request'=>$request]);
+
+        // バリデーション（同一書籍の新規登録）
+        if (Book::where('isbn', $request->isbn)->get()->count()) {
+            // 書籍一覧画面に遷移
+            return redirect(route('books.index'))
+            ->with('flash_message', 'すでに書籍登録されています。検索後、在庫登録をしてください。');
+        } else{
+            // 編集確認画面へ遷移
+            return view('books.confirm-edit',['request'=>$request]);
+        }
     }
 
 
