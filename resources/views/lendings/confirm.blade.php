@@ -29,7 +29,7 @@
                 </dd>
         </dl>
     </div>
-        <p>貸出情報</p>
+        <p class="f_bold">貸出情報</p>
         <table class="table_center" style="width:700px" >
             <thead>
                 <tr>
