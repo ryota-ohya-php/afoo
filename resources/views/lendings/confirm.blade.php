@@ -34,7 +34,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>資料名</th>
+                    <th style="width:50%">資料名</th>
                     <th>貸出日</th>
                     <th>貸出期限日</th>
                 </tr>

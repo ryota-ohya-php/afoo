@@ -108,6 +108,22 @@ ul.app_ul li.app_li {
     margin: 0 0 0 auto;
 }
 
+
+
+
+
+/*貸出画面*/
+span.f_bold{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+table.hid_table{
+    display: none;
+}
+
+
+
 /*返却画面*/
 ul#member{
     width: 500px;

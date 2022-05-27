@@ -64,9 +64,10 @@
             <dd><div class=""><p class="lend_count"></p></div>
                 <p id="count">
                 @for ($i = 0; $i < $inventories->count(); $i++)
-                        <input type="checkbox" name="inventory[]" class="" value="{{$inventories[$i]['id']}}">
-                        {{-- <input type="hidden" name="book_id[]" value="{{$inventories[$i]['book_id']}}"> --}}
-                        <label for="lending">{{$inventories[$i]['title']}}</label>
+                <label>
+                    <input type="checkbox" name="inventory[]" class="" value="{{$inventories[$i]['id']}}">
+                        {{$inventories[$i]['title']}}
+                </label>
                         <br>
                 @endfor
                 </p>
