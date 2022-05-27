@@ -83,39 +83,41 @@
         });
     
     </script>
-    <dl class="lending_dl margin-bottom">
-        <dt>
-            会員ID
-        </dt>
-            <dd>    
-                <input type="number" name="member_id" id="member_id" min="0">
-                <button class="member_search button is-primary member_button" type="button">検索</button>
-            </dd>
-            @if($_SERVER['REQUEST_URI'] != '/lendings/rebook')
-        <dt>
-            在庫
-        </dt>
-            <dd> 
-                <input type="number" name="inventory_id" id="inventory_id" min="0">
-            </dd>
-            @endif
-        <dt>
-            
-            {{($_SERVER['REQUEST_URI'] == '/lendings/create') ? '貸出日' : '返却';}}
-        </dt>
-            <dd> 
-                <input type="date" 
-                name="{{($_SERVER['REQUEST_URI'] == '/lendings/create') ? 'lent_date' : 'return_date';}}" 
-                value="{{date('Y-m-j')}}" 
-                class="lending_inp">
-            </dd>
-        <dt>
-            備考
-        </dt>
-            <dd> 
-                <input type="text" name="remarks" class="lending_inp">
-            </dd>
-    </dl>
+    <div class="info_dl">
+        <dl class="lending_dl margin-bottom">
+            <dt>
+                会員ID
+            </dt>
+                <dd>    
+                    <input type="number" name="member_id" id="member_id" min="0">
+                    <button class="member_search button is-primary mamber_button" type="button">検索</button>
+                </dd>
+                @if($_SERVER['REQUEST_URI'] != '/lendings/rebook')
+            <dt>
+                在庫
+            </dt>
+                <dd> 
+                    <input type="number" name="inventory_id" id="inventory_id" min="0">
+                </dd>
+                @endif
+            <dt>
+                
+                {{($_SERVER['REQUEST_URI'] == '/lendings/create') ? '貸出日' : '返却';}}
+            </dt>
+                <dd> 
+                    <input type="date" 
+                    name="{{($_SERVER['REQUEST_URI'] == '/lendings/create') ? 'lent_date' : 'return_date';}}" 
+                    value="{{date('Y-m-j')}}" 
+                    class="lending_inp">
+                </dd>
+            <dt>
+                備考
+            </dt>
+                <dd> 
+                    <input type="text" name="remarks" class="lending_inp">
+                </dd>
+        </dl>
+    </div>
     <h2 class="member_name"></h2>
     <p class="arr_num"></p>
     <!--<select  id="member" size="5" multiple style="width:400px; height:300px">
@@ -124,5 +126,5 @@
     <ul id="member">
         
     </ul>
-
-    <button type="submit" class="button is-warning margin-top">入力確認画面へ</button>
+    {{-- 入力確認ボタン --}}
+    <button type="submit" class="page_button button is-warning margin-top">入力確認する</button>

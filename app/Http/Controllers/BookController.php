@@ -106,6 +106,7 @@ class BookController extends Controller
 
             'category_id.required' => 'カテゴリーIDは必須項目です。',
 
+
             'publisher.required'   => '出版社は必須項目です。',
             'publisher.max'        => '出版社は100文字以内です。',
         ]);

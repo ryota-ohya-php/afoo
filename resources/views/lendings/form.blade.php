@@ -23,7 +23,7 @@
                     
             if(data[0]['id'] != ""){
                 var member='会員ID　'+data[0]['member_id']+'会員名　'+data[0]['name']+'電話番号　'+ data[0]['tel'] ;
-                if(!confirm('こちらの会員で間違えないでしょうか？\r\n'+member)){
+                if(!confirm('こちらの会員で間違いないでしょうか？\r\n'+member)){
                     /*　キャンセルの時の処理 */
                     return false;
                 }else{
