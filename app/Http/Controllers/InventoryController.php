@@ -24,15 +24,17 @@ class InventoryController extends Controller
     {
         // バリデーション（フォーム送信内容）
         $validated = $request->validate([
-            'inventory_num' => ['required', 'digits_between:1,2'],
-            'arrival_date'  => ['required', 'date'],
+            'inventory_num' => ['required', 'numeric', 'min:1','digits_between:1,2'],
+            'arrival_date'  => ['required', 'date', 'before:now', ],
             'remarks'       => ['nullable', 'string','max:100',],
         ],
         // エラーメッセージ
         [
             'inventory_num.required'        => '1回の登録は1～99冊までです。',
+            'inventory_num.min'             => '1回の登録は1～99冊までです。',
             'inventory_num.digits_between'  => '1回の登録は1～99冊までです。',
             'arrival_date.date'             => '日付が正しくありません。',
+            'arrival_date.before'           => '登録日より先の入荷は登録できません。',
             'remarks.max'                   => '備考は100文字以内です。',  
         ]);
 
@@ -48,7 +50,7 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
-        // 在庫テーブルにフォーム内容を登録
+        // 在庫テーブルに入力された在庫数分の行を登録
         $inventory_num = $request->inventory_num;
         for ($i=0; $i < $inventory_num ; $i++) { 
             $inventory = new Inventory;
@@ -61,6 +63,10 @@ class InventoryController extends Controller
         return redirect(route('books.show', $request->book_id));
     }
 
+
+
+    // 未使用アクション
+    
     /**
      * Display the specified resource.
      *
