@@ -7,13 +7,15 @@
             var alert ="";
             var js_array = <?php echo $test; ?>;
             var cc=js_array.length;
-           
+            var bk_co='';
             for(var i=0 ; i<cc ; i++){
                 if(member_id == js_array[i]['id']){
-                    var bk_co=js_array[i]['inv_coun'];
+                    bk_co=js_array[i]['inv_coun'];
                 }
             }
-            
+            if(bk_co == ""){
+                bk_co=0;
+            }
             
              alert=$('.lend_count').append('現在選択された会員は<span class="bk_count">'+bk_co+'</span>冊貸出しています。');
             js_array="";
