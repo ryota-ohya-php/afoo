@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
+use App\Models\Lending;
 
 use Illuminate\Http\Request;
 
@@ -97,7 +98,15 @@ class MemberController extends Controller
     public function show(Member $member)
     {
         /*$test=Member::find($member);*/
-        return view('members.show',['member'=>$member]);
+        $lend = Lending::select('books.title','due_date');
+        $lend->join('members', 'lendings.member_id', '=', 'members.id');
+        $lend->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
+        $lend->join('books', 'inventories.book_id', '=', 'books.id');
+        $lend->where('lendings.member_id','=',$member->id);
+        $lend->whereNull('return_date');
+        $lendinfo = $lend->get();
+        // dd($lendinfo);
+        return view('members.show',['member'=>$member,'lendinfo'=>$lendinfo]);
     }
 
     /**
