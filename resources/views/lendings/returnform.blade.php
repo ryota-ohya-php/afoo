@@ -24,6 +24,7 @@
             url:'add/' + id, // 引数も渡せる
             dataType: 'json',
             data:{id:id},
+            
         }).done(function (data,status,xhr){
             var a_count=data.length;
             
@@ -38,6 +39,7 @@
                     return false;
                 }else{
                     /*　OKの時の処理  */
+                    console.log(data)
                     m_name= $('.member_name').text(data[0]['name']+'　様の貸出情報\n');
                     
                     for (i=0;i<a_count; i++){
@@ -51,6 +53,7 @@
                 }
             }else{
                 alert('この会員は本を借りていません')
+                
             }
                 
             }).fail(function(jqXHR, textStatus, errorThrown){

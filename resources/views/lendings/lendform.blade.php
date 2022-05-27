@@ -1,19 +1,38 @@
 @csrf
 <script>
     $(function() {
-        $('input:checkbox').change(function() {
+        $('#member_id').change( function() {
+            var member_id=$(this).val()    
+            $('.lend_count').text('');  
+            var alert ="";
+            var js_array = <?php echo $test; ?>;
+            var cc=js_array.length;
+            var bk_co='';
+            for(var i=0 ; i<cc ; i++){
+                if(member_id == js_array[i]['id']){
+                    bk_co=js_array[i]['inv_coun'];
+                }
+            }
+            if(bk_co == ""){
+                bk_co=0;
+            }
+            
+             alert=$('.lend_count').append('現在選択された会員は<span class="bk_count">'+bk_co+'</span>冊貸出しています。');
+            js_array="";
+        });
+        $('input:checkbox').change(function(bk_co) {
             var cnt = $('#count input:checkbox:checked').length;
-           
-            if (cnt > 5) {
-                alert('5冊以上貸出できません');
+            var cc=$('.bk_count').text();
+            var count=cnt + parseInt( cc );
+
+            
+            if (count > 5) {
+                alert('6冊以上貸出できません\r\n[現在'+cc+'冊借りています]');
                 $('input:checkbox').prop('checked', false);
             }
         }).trigger('change');
 
-        $('#member_id').change( function() {
-            var id=$(this).text();
-            console.log(id);
-        });
+
 
     });
 </script>
@@ -25,13 +44,13 @@
         </dt>
             <dd> 
                     <select name="member_id" id="member_id">
+                        <option></option>
                         @foreach ($members as $member)
                         <option value="{{$member->id}}">{{$member->name}}(ID:{{$member->id}})
                          @foreach($test as $vval)
                                 @if($member->id == $vval->id)
-                                <span>{{$vval->inv_coun}}</span>
+                                    {{$vval->inv_coun}}
                                 @endif
-                        
                             @endforeach  
                         </option>
                         @endforeach  
@@ -42,7 +61,7 @@
         <dt>
             在庫
         </dt>
-            <dd>
+            <dd><div class=""><p class="lend_count"></p></div>
                 <p id="count">
                 @for ($i = 0; $i < $inventories->count(); $i++)
                         <input type="checkbox" name="inventory[]" class="" value="{{$inventories[$i]['id']}}">
@@ -51,7 +70,11 @@
                         <br>
                 @endfor
                 </p>
+                <?php
 
+                $json_array = json_encode($test);
+
+                ?>
                     
             </dd>
         <dt>

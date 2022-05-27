@@ -50,13 +50,13 @@
                 @endforeach
             @endforeach
         </table>
-        <form action=" {{($request->lend_or_rebook == 'lend') ? route('lendings.store') : route('lendings.update',$request->member_id)}}" method="post">
+        <form action=" {{($request->lend_or_rebook == 'lend') ? route('lendings.store') : route('lendings.rebooks')}}" method="post">
             @csrf
-            @if($request->lend_or_rebook != 'lend')
+            {{-- @if($request->lend_or_rebook != 'lend')
         
             @method('patch')
     
-            @endif
+            @endif --}}
             @foreach($data as $val)
                 @foreach($val as $s)
                  <input type="hidden" name="id[]" value="{{$s->id}}">

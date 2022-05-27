@@ -33,13 +33,17 @@ class LendingController extends Controller
 
         }else{
 
-        $lend=Lending::select('lendings.id','member_id','members.name',
+        $lend=Lending::select('lendings.id','member_id','members.name','lendings.inventory_id',
 
-        'books.author','inventory_id','books.title','inventories.lend_flag','lent_date','due_date');
-        $lend->where('lend_flag', '=',1);
+        'books.author','books.title','inventories.lend_flag','lent_date','due_date');
+        
         $lend->join('members', 'lendings.member_id', '=', 'members.id');
         $lend->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
         $lend->join('books', 'inventories.book_id', '=', 'books.id');
+        // $lend->where('new_lend_flag', '=',0);
+        $lend->whereNull('return_date');
+
+
         }
 
         $lending=$lend->get();
@@ -66,16 +70,17 @@ class LendingController extends Controller
         $members=$member->get();
 
         // メンバーの在庫情報取得
-        $inve = Member::select('members.id','members.name','inventories.lend_flag');
+        $inve = Member::select('members.id','members.name','inventories.lend_flag','lendings.return_date');
         $inve->selectRaw('COUNT(members.id) as inv_coun');
         $inve->leftjoin('lendings', 'members.id', '=', 'lendings.member_id');
         $inve->leftjoin('inventories', 'lendings.inventory_id', '=', 'inventories.id');
         $inve->where('inventories.lend_flag','=',1);
-        $inve->orwhere('inventories.lend_flag','=',0);
+        $inve->wherenull('lendings.return_date');
         $inve->groupBy('members.id');
+        
         $test=$inve->get();
         
-        echo $inve->toSql();
+       
         return view('lendings.create',[
             'inventories'=>$inventories,
             'members'=>$members,
@@ -133,53 +138,27 @@ class LendingController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request);
-        // 貸出テーブルに値をインサート
-        // foreach ($request->id as $val)
-        // {
-        //     $lend= new Lending;
-        //     $lend->member_id=$request->member_id;
-        //     $lend->inventory_id=$val;
-        //     $lend->lent_date=$request->lent_date;
-        //     // $lend->due_date=$request->due_date;
-        //     $lend->remarks=$request->remarks;
-        //     $lend->save();
-        //     // 在庫テーブルの貸出情報を貸出中にする
-        //     $inventory= Inventory::find($val);
-        //     $inventory->lend_flag = 1;
-        //     $inventory->save();
-        // }
-        
-        // return redirect('lendings');
-
         foreach($request->id as $val_id){
-            // echo ($val_id);
+
             $in=Inventory::select('books.published_date');
             $in->where('inventories.id','=',$val_id);
             $in->join('books', 'inventories.book_id', '=', 'books.id');
             $published_date[$val_id] = $in->get();
-            // $publised_date[]=$in->published_date;
-            // echo $in->published_date;
-            // exit;
-            // dd($published_date);
-        //  print_r($published_date);
+
             $today=date('Y-m-d');
 
-        /* */ 
-        // foreach($published_date as $key=>$pub){
-        //     foreach($pub as $val){
-            //    dd($published_date[$val_id]);
-            // echo $val->published_date;
-            // exit;
-            // dd(date($val->published_date));
             $pub_date = (strtotime($today) - strtotime($published_date[$val_id]))/86400;
-            // echo $pub_date .'<br>';
+
             
             $pub_mon = $pub_date/30;
             $pub_month = floor($pub_mon);
 
+
             // $pub_month=date('m', strtotime(date($val->published_date)))-date('m', strtotime($today));
+
         
+
+
             $lend= new Lending;
             $lend->member_id=$request->member_id;
             $lend->inventory_id=$val_id;
@@ -193,15 +172,27 @@ class LendingController extends Controller
             $lend->remarks=$request->remarks;
 
             $lend->save();
+
             // echo $lend->toSql();
-            $inventory= Inventory::find($val_id);
-            $inventory->lend_flag = 1;
-            $inventory->save();
+
+            $id =$lend->id;
+
+            $inventory= Lending::select('lendings.id','inventories.lend_flag');
+            $inventory->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
+            $inventory->where('lendings.id','=',$id);
+            $inventory->update(['inventories.lend_flag' => 1]);
+
+            // $inventory = Inventory::select('inventories.id','')
+            
+            
+            // echo $inventory->toSql();
+            // $inventory->save();
             //     }
-            // }
+            //
+
         }
-        
-        // exit;
+       
+
         return redirect('lendings');
 
     }
@@ -235,24 +226,35 @@ class LendingController extends Controller
      * @param  \App\Models\Lending  $lending
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lending $lending)
+    public function rebooks(Request $request, Lending $lending)
     {
-       
+    //    dd($request);
         foreach($request->id as $val){
-            
+            //->id
+            // dd($request->inventory_id);
             $lend= Lending::find($val);
             $lend->return_date=$request->return_date;
             $lend->remarks=$request->remarks;
+            // $lend->new_lend_flag =1;
             $lend->save();
             
-            dd($val);
-            $inv= Inventory::find($request->inventory_id);
-            $inv->lend_flag=0;
-            $inv->save();
+
+            $inv = Lending::select('lendings.id','inventory_id');
+            $inv->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
+            $inv->where('lendings.id','=',$val);
+            $invs[$val] = $inv->get();
+            $ii = $invs[$val]->pluck('inventory_id');
+            // echo $ii[0];
+            // echo 58;
+            // exit;
+            $inven= Inventory::find($ii[0]);
+            $inven->lend_flag=0;
+            $inven->save();
 
         }
         
-        return redirect('lendings/rebook');
+        return redirect('lendings');
+
         
     }
 
@@ -271,7 +273,7 @@ class LendingController extends Controller
         $mem=Lending::select('lendings.id','member_id','members.name','members.tel',
         'inventory_id','books.title','lent_date','due_date','return_date');
         $mem->where('member_id','=',$id)
-        ->where('inventories.lend_flag','=',1);
+        ->wherenull('return_date');
         $mem->join('members', 'lendings.member_id', '=', 'members.id');
         $mem->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
         $mem->join('books', 'inventories.book_id', '=', 'books.id');

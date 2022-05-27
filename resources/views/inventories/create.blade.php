@@ -3,9 +3,8 @@
 @section('content')
 <h2 class="txt_center title">在庫の新規登録</h2>
   <div class="main_content">
-     <!-- バリデーションのエラーメッセージ -->
+     <!-- エラーメッセージ -->
     @include('commons/flash')
-
       <!-- 在庫登録フォーム -->
       <form action="{{ route('inventories.confirm') }}" method="post">
         @csrf
@@ -31,25 +30,22 @@
 
             <dt><label for="arrival_date">入荷年月日</label></dt>
             <dd><input type="date" name="arrival_date" id="arrival_date" 
-                value="<?php echo date('Y-m-d'); ?>" required></dd>
+                       value="<?php echo date('Y-m-d'); ?>" required></dd>
             
             <dt><label for="remarks">備考</label></dt>
             <dd><input type="text" name="remarks" id="remarks"></dd>
           </dl>
         </div>
 
-        <!-- 詳細画面に戻るボタン -->
-        <button type="button" class="page_button button is-primary"
-        onclick="history.back()">書籍詳細画面に戻る</button>
-        <!-- 登録ボタン -->
+        <!-- ボタン -->
+        <button type="button" class="page_button button is-primary"onclick="history.back()">書籍詳細画面に戻る</button>
         <button type="submit" class="page_button button is-warning">入力確認する</button>
 
-        <!-- book_idをhiddenで確認画面へ送る -->
+        <!-- book_idをhiddenでconfirmへ送る -->
         <input type="hidden" name="book_id" 
         value=" @foreach($book as $book_info)
                   {{ $book_info->id }}
                 @endforeach">
       </form>
-
 @endsection
 </div>
