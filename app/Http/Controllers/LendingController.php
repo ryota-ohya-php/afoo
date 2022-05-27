@@ -35,12 +35,13 @@ class LendingController extends Controller
 
         $lend=Lending::select('lendings.id','member_id','members.name',
 
-        'books.author','books.title','inventories.lend_flag','lent_date','due_date');
+        'books.author','books.title','inventories.lend_flag','lent_date','due_date','new_lend_flag');
         
         $lend->join('members', 'lendings.member_id', '=', 'members.id');
         $lend->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
         $lend->join('books', 'inventories.book_id', '=', 'books.id');
-        $lend->where('lend_flag', '=',1);
+        // $lend->where('new_lend_flag', '=',0);
+        $lend->whereNull('return_date');
 
 
         }
@@ -161,25 +162,14 @@ class LendingController extends Controller
             $in->where('inventories.id','=',$val_id);
             $in->join('books', 'inventories.book_id', '=', 'books.id');
             $published_date[$val_id] = $in->get();
-            // $publised_date[]=$in->published_date;
-            // echo $in->published_date;
-            // exit;
-            // dd($published_date);
-        //  print_r($published_date);
             $today=date('Y-m-d');
 
-        /* */ 
-        // foreach($published_date as $key=>$pub){
-        //     foreach($pub as $val){
-            //    dd($published_date[$val_id]);
-            // echo $val->published_date;
-            // exit;
-            // dd(date($val->published_date));
             $pub_date = (strtotime($today) - strtotime($published_date[$val_id]))/86400;
             // echo $pub_date .'<br>';
             
             $pub_mon = $pub_date/30;
             $pub_month = floor($pub_mon);
+
 
             // $pub_month=date('m', strtotime(date($val->published_date)))-date('m', strtotime($today));
         
@@ -197,11 +187,19 @@ class LendingController extends Controller
 
             $lend->save();
             // echo $lend->toSql();
-            $inventory= Inventory::find($val_id);
-            $inventory->lend_flag = 1;
-            $inventory->save();
+
+            $id =$lend->id;
+            $inventory= Lending::select('lendings.id','inventories.lend_flag');
+            $inventory->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
+            $inventory->where('lendings.id','=',$id);
+            $inventory->update(['inventories.lend_flag' => 1]);
+            // $inventory = Inventory::select('inventories.id','')
+            
+            
+            // echo $inventory->toSql();
+            // $inventory->save();
             //     }
-            // }
+            //
         }
         
         // exit;
@@ -247,6 +245,7 @@ class LendingController extends Controller
             $lend= Lending::find($val);
             $lend->return_date=$request->return_date;
             $lend->remarks=$request->remarks;
+            // $lend->new_lend_flag =1;
             $lend->save();
             
 
