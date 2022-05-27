@@ -51,7 +51,7 @@
 </div>
 
 <div class="section">
-    <h2 class="title txt_center">貸出状況</h2>
+    <h2 class="title txt_center">{{$member->name}}(会員ID:{{$member->id}})様の貸出状況</h2>
         <div class="main_content">
             <div class="info_dl">
             <dl>
