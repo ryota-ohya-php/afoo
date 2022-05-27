@@ -35,12 +35,13 @@ class LendingController extends Controller
 
         $lend=Lending::select('lendings.id','member_id','members.name','lendings.inventory_id',
 
-        'books.author','books.title','inventories.lend_flag','lent_date','due_date');
+        'books.author','books.title','inventories.lend_flag','lent_date','due_date','new_lend_flag');
         
         $lend->join('members', 'lendings.member_id', '=', 'members.id');
         $lend->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
         $lend->join('books', 'inventories.book_id', '=', 'books.id');
-        $lend->where('lend_flag', '=',1);
+        // $lend->where('new_lend_flag', '=',0);
+        $lend->whereNull('return_date');
 
 
         }
@@ -145,12 +146,14 @@ class LendingController extends Controller
 
             $today=date('Y-m-d');
 
-
             $pub_date = (strtotime($today) - strtotime($published_date[$val_id]))/86400;
 
             
             $pub_mon = $pub_date/30;
             $pub_month = floor($pub_mon);
+
+
+            // $pub_month=date('m', strtotime(date($val->published_date)))-date('m', strtotime($today));
 
         
 
@@ -168,16 +171,23 @@ class LendingController extends Controller
             $lend->remarks=$request->remarks;
 
             $lend->save();
-            
-            echo $id =$lend->id;
+
+            // echo $lend->toSql();
+
+            $id =$lend->id;
+
             $inventory= Lending::select('lendings.id','inventories.lend_flag');
             $inventory->join('inventories', 'lendings.inventory_id', '=', 'inventories.id');
             $inventory->where('lendings.id','=',$id);
             $inventory->update(['inventories.lend_flag' => 1]);
 
-            /*$inventory->lend_flag = 1;
-            $inventory->save();*/
+            // $inventory = Inventory::select('inventories.id','')
             
+            
+            // echo $inventory->toSql();
+            // $inventory->save();
+            //     }
+            //
 
         }
        
@@ -224,6 +234,7 @@ class LendingController extends Controller
             $lend= Lending::find($val);
             $lend->return_date=$request->return_date;
             $lend->remarks=$request->remarks;
+            // $lend->new_lend_flag =1;
             $lend->save();
             
 
