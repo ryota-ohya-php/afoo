@@ -39,6 +39,16 @@ class BookController extends Controller
         $books = $query->orderBy('published_date','desc')->paginate(10);
         $categories = Category::withCount('books')->get();
 
+        // dd($books);
+
+        if (count($books) ==0) {
+            return view('books.index',[
+                'books'      => $books,
+                'categories' => $categories
+            ]);}
+        
+        // else{
+            // $count_inv = [];
 
         foreach($books as $book){
             // dd($book->id);
@@ -54,12 +64,11 @@ class BookController extends Controller
         //  dd($count_inv);
 
         return view('books.index',[
-
             'books'      => $books,
             'categories' => $categories,
             'count_inv'  => $count_inv
-
         ]);
+        
     }
 
     /**
