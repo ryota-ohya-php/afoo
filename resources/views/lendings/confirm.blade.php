@@ -50,9 +50,12 @@
                 @endforeach
             @endforeach
         </table>
-        <button class="button is-primary mamber_button"
-            onclick="location.href='{{ route('lendings.create')}}';history.back()">登録画面に戻る</button>
-        <input type="hidden" name="">
+        <div class="block margin-top">
+        <div class="sub_block">
+            <button class="button is-primary mamber_button"
+                onclick="location.href='{{ route('lendings.create')}}';history.back()">登録画面に戻る</button>
+        </div>
+        <div class="sub_block">
         <form action=" {{($request->lend_or_rebook == 'lend') ? route('lendings.store') : route('lendings.rebooks')}}" method="post">
             @csrf
             {{-- @if($request->lend_or_rebook != 'lend')
@@ -70,8 +73,9 @@
             <input type="hidden" name="{{isset(($_POST['lent_date']))? 'lent_date' : 'return_date';}}"
              value="{{isset(($_POST['lent_date']))? $request->lent_date : $request->return_date;}}">
             <input type="hidden" name="remarks" value="{{$request->remarks}}">
-        <button type="submit" class="button is-warning">登録する</button>
+        <button type="submit" class="button is-warning"style="height: 33px;">登録する</button>
     </form>
-
+    </div>
+    </div>
 </div>
 @endsection
