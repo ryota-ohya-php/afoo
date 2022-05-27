@@ -84,7 +84,7 @@
             });
 
             $('.submit_return').click( function nosubmit() {
-            var lend_check = $('inv_li input:checkbox:checked').length;
+            var lend_check = $('.inv_li input:checkbox:checked').length;
             if (lend_check == 0) {
                 alert('本が選択されていません')
                 return false;
