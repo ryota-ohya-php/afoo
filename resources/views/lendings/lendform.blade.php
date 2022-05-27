@@ -4,6 +4,7 @@
         $('#member_id').change( function() {
             var member_id=$(this).val()    
             $('.lend_count').text('');  
+            $('input:checkbox').prop('checked', false);
             var alert ="";
             var js_array = <?php echo $test; ?>;
             var cc=js_array.length;
@@ -32,7 +33,13 @@
             }
         }).trigger('change');
 
-
+        $('.submit_lend').click( function nosubmit() {
+            var lend_check = $('#count input:checkbox:checked').length;
+            if (lend_check == 0) {
+                alert('本が選択されていません')
+                return false;
+            }
+        });
 
     });
 </script>
@@ -43,7 +50,7 @@
             会員
         </dt>
             <dd> 
-                    <select name="member_id" id="member_id">
+                    <select name="member_id" id="member_id" required>
                         <option></option>
                         @foreach ($members as $member)
                         <option value="{{$member->id}}">{{$member->name}}(ID:{{$member->id}})
@@ -59,7 +66,7 @@
                 {{-- <input type="number" name="member_id" id="member_id" min="0" required> --}}
             </dd>
         <dt>
-            在庫
+            貸出可能な本の一覧
         </dt>
             <dd><div class=""><p class="lend_count"></p></div>
                 <p id="count">
@@ -103,4 +110,4 @@
     
 </ul>
 <input type="hidden" name="">
-<button type="submit" class="button is-warning">入力確認画面へ</button>
+<button type="submit" class="button is-warning submit_lend">入力確認画面へ</button>

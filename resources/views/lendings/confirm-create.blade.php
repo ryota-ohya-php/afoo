@@ -46,6 +46,13 @@
                 @endforeach
             @endforeach
         </table>
+        <div class="block" >
+
+        <div class="sub_block" style="display: inline-block">
+        <button class="button is-primary mamber_button"
+            onclick="location.href='{{ route('lendings.create')}}';history.back()">登録画面に戻る</button>
+        </div>
+        <input type="hidden" name="">
         <form action=" {{route('lendings.store')}}" method="post">
             @csrf
             @foreach($data as $val)
@@ -60,8 +67,11 @@
             <input type="hidden" name="{{isset(($_POST['lent_date']))? 'lent_date' : 'return_date';}}"
              value="{{isset(($_POST['lent_date']))? $request->lent_date : $request->return_date;}}">
             <input type="hidden" name="remarks" value="{{$request->remarks}}">
-        <button type="submit" class="button is-warning">登録する</button>
-    </form>
+        <div class="sub_block" style="display: inline-block">
+            <button type="submit" class="button is-warning">登録する</button>
+        </div>
+        </form>
+        </div>
 
 </div>
 @endsection

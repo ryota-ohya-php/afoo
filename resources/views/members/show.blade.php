@@ -52,18 +52,22 @@
 
 <div class="section">
     <h2 class="title txt_center">{{$member->name}}(会員ID:{{$member->id}})様の貸出状況</h2>
-        <div class="main_content">
-            <div class="info_dl">
-            <dl>
+    <table class="table_center" style="width:700px" >
+        <thead>
+            <tr>
+                <th>本のタイトル</th>
+                <th>返却期限日</th>
+                {{-- <th>貸出期限日</th> --}}
+            </tr>
             @foreach ($lendinfo as $lend)
-                <dt>本のタイトル</dt>
-                <dd>{{$lend->title}}</dd>
-                <dt>返却期限日</dt>
-                <dd>{{$lend->due_date}}</dd>
+            <tr>
+                <td>{{$lend->title}}</td>
+                <td>{{$lend->due_date}}</td>
+            </tr>
             @endforeach
-            </dl>
-            </div>
-        </div>
+        </thead>
+    </table>
+
 </div>
 <div class="main_content">
     <button class="button top_button is-success is-small sectionn" onclick="location.href='{{route('lendings.create')}}'">本を貸し出す</button>
