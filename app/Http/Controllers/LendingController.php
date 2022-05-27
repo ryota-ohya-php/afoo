@@ -55,8 +55,9 @@ class LendingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+
         // 貸し出されていない在庫の情報を取ってくる
         $inventory=Inventory::select('inventories.id','lend_flag',
         'book_id','books.title');
@@ -80,18 +81,37 @@ class LendingController extends Controller
         
         $test=$inve->get();
         
-       
-        return view('lendings.create',[
-            'inventories'=>$inventories,
-            'members'=>$members,
-            'test'=>$test,
-        ]);
+        if(isset($request->member_id)){
+            $mem=$_GET['member_id'];
+            return view('lendings.create',[
+                'inventories'=>$inventories,
+                'members'=>$members,
+                'test'=>$test,
+                'mem'=>$mem
+            ]);
+        }else{
+            return view('lendings.create',[
+                'inventories'=>$inventories,
+                'members'=>$members,
+                'test'=>$test,
+                
+            ]);
+        }
     }
 
 
-    public function rebook()
+    public function rebook(Request $request)
     {
+        
+        
+        if(isset($request->member_id)){
+            $mem=$_GET['member_id'];
+            
+            return view('lendings.rebook',['mem'=>$mem]);
+        }else{
+            
         return view('lendings.rebook');
+        }
     }
     public function confirm(Request $request)
     {

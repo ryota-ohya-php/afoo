@@ -1,12 +1,35 @@
 @csrf
 <script>
     $(function() {
+        $(document).ready(function(){
+            var member_id=$('#member_id').val()   
+            if(member_id!=""){
+            $('.lend_count').text('');  
+            var alert ="";
+            var js_array = <?php echo $test; ?>;
+            var cc=js_array.length;
+            var bk_co='';
+            for(var i=0 ; i<cc ; i++){
+                if(member_id == js_array[i]['id']){
+                    bk_co=js_array[i]['inv_coun'];
+                }
+            }
+            
+            if(bk_co == ""){
+                bk_co=0;
+            }
+            
+             alert=$('.lend_count').append('現在選択された会員は<span class="bk_count">'+bk_co+'</span>冊貸出しています。');
+            js_array="";
+        } 
+        });
         $('#member_id').change( function() {
             var member_id=$(this).val()    
             $('.lend_count').text('');  
             $('input:checkbox').prop('checked', false);
             var alert ="";
             var js_array = <?php echo $test; ?>;
+            console.log(js_array);
             var cc=js_array.length;
             var bk_co='';
             for(var i=0 ; i<cc ; i++){
@@ -53,7 +76,13 @@
                     <select name="member_id" id="member_id" required>
                         <option></option>
                         @foreach ($members as $member)
-                        <option value="{{$member->id}}">{{$member->name}}(ID:{{$member->id}})
+                            @if(isset($_GET['member_id']))
+                                <option value="{{$member->id}}" {{($mem == $member->id)?'selected':''}}>
+                            @else
+                                <option value="{{$member->id}}">
+                            @endif
+                            {{$member->name}}(ID:{{$member->id}})
+            
                          @foreach($test as $vval)
                                 @if($member->id == $vval->id)
                                     {{$vval->inv_coun}}
