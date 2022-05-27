@@ -18,7 +18,7 @@
                     keyword
                 </dt>
                     <dd> 
-                        <input type="text" name="keyword"><div class="txt_right"><button type="submit" class="button is-primary">検索</button></div>
+                        <input type="text" name="keyword"><button type="submit" class="button is-primary lend_btn">検索</button>
                     </dd>
 
             </dl>

@@ -10,6 +10,5 @@
     <form action="{{route('lendings.confirm')}}" method="post" id="form_submit" onsubmit="return nosubmit()>
         @include('lendings/returnform')
     </form>
-
 </div>
 @endsection

@@ -6,6 +6,10 @@
 
 <h2 class="title txt_center">会員詳細</h2>
 <div class="main_content">
+    <!-- フラッシュメッセージ -->
+    <div class="flash_message">
+            {{ session('flash_message') }}
+    </div>
     <div class="info_dl">
         <dl>
             <dt>会員ID</dt>
