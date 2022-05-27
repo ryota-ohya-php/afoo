@@ -152,7 +152,24 @@
                 return false;
             }
         });
-        });
+
+            $('.test').on('click', function() {
+                if ($(this).prop('checked')) {
+                allCheck('.chk_lend');
+                } else {
+                allRemove('.chk_lend');
+                }
+            });
+
+            function allCheck(value) {
+                $(value).prop('checked', true);
+                
+            }
+            function allRemove(value) {
+                $(value).prop('checked', false);
+                
+            }
+ });
     
     </script>
     <div class="info_dl">
@@ -196,7 +213,7 @@
     <table class="table_center hid_table">
         <thead>
             <tr>
-                <th></th>
+                <th><input type="checkbox" class="test"></th>
                 <th style=width:50%>資料名</th>
                 <th>貸出日</th>
                 <th>貸出期限日</th>

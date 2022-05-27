@@ -24,7 +24,7 @@
                 </dd>
         </dl>
     </div>
-        <p>貸出情報</p>
+        <p class="f_bold">貸出情報</p>
         <table class="table_center" style="width:700px" >
             <thead>
                 <tr>
@@ -46,13 +46,14 @@
                 @endforeach
             @endforeach
         </table>
-        <div class="block" >
+        <div class="block margin-top">
 
-        <div class="sub_block" style="display: inline-block">
+        <div class="sub_block">
         <button class="button is-primary mamber_button"
             onclick="location.href='{{ route('lendings.create')}}';history.back()">登録画面に戻る</button>
         </div>
         <input type="hidden" name="">
+        <div class="sub_block">
         <form action=" {{route('lendings.store')}}" method="post">
             @csrf
             @foreach($data as $val)
@@ -67,8 +68,8 @@
             <input type="hidden" name="{{isset(($_POST['lent_date']))? 'lent_date' : 'return_date';}}"
              value="{{isset(($_POST['lent_date']))? $request->lent_date : $request->return_date;}}">
             <input type="hidden" name="remarks" value="{{$request->remarks}}">
-        <div class="sub_block" style="display: inline-block">
-            <button type="submit" class="button is-warning">登録する</button>
+        
+            <button type="submit" class="button is-warning" style="height: 33px;">登録する</button>
         </div>
         </form>
         </div>
