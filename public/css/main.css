@@ -322,9 +322,11 @@ span.span_red {
 /* 入力フォームのサイジング */
 
 .form-sizing {
-    width: 250px;
+    width: 200px;
 }
-
+div.field{
+    display: inline-block;
+}
 
 /* フラッシュメッセージ */
 
