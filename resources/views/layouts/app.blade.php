@@ -12,12 +12,16 @@
 </head>
 
 <header>
-    <div class="">
+    <div class="block">
             <a href="/"><img src="/imgs/abe_img.png" alt="afoo!"/></a>
         <ul class="app_ul">
-            <li class="app_li"><a href="{{route('members.index')}}">会員管理</a></li>
-            <li class="app_li"><a href="{{route('books.index')}}">書籍管理</a></li>
-            <li class="app_li"><a href="{{route('lendings.index')}}">貸出一覧</a></li>
+             {{-- class="app_ul"> --}}
+            <li class="app_li">
+                <button class="button is-text app_button" onclick="location.href='{{route('members.index')}}'">会員管理</button></li>
+            <li class="app_li">
+                <button class="button is-text app_button" onclick="location.href='{{route('books.index')}}'">書籍管理</button></li>
+            <li class="app_li">
+                <button class="button is-text app_button" onclick="location.href='{{route('lendings.index')}}'">貸出一覧</button></li>
         </ul>
     </div>
     <hr>

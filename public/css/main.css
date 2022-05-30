@@ -16,18 +16,18 @@ li.app_li {
 }
 
 a {
-    color: #e79ae5;
+    color: black;
 }
 
 a:hover {
-    color: #f56477;
+    color: gray;
 }
 
 ul.app_ul li.app_li {
-    padding: 0.5em 0.5em 0.5em 0.5em;
+    /* padding: 0.5em 0.5em 0.5em 0.5em; */
     margin-bottom: 5px;
     line-height: 1.5;
-    background: #dbebf8;
+    /* background: white; */
     vertical-align: middle;
     color: #505050;
     border-radius: 15px 15px 0px 15px;
@@ -41,6 +41,9 @@ ul.app_ul li.app_li:before {
     background: #fff;
     border-radius: 50%;
     margin-right: 8px;
+}
+.app_button{
+    height: 32px;
 }
 
 
@@ -96,21 +99,6 @@ ul.app_ul li.app_li:before {
     width: 800px;
 }
 
-
-/* .book-search_dl{
-    width: 500px;
-    margin: auto;
-}
-    .book-search_dl dl{
-        display: flex;
-        flex-wrap: wrap;
-    }
-    .book-search_dl dt {
-    width: 50%;
-    }
-    .book-search_dl dd {
-    width: 50%;
-    } */
 
 
 /*貸出一覧画面*/
