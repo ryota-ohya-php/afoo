@@ -16,19 +16,17 @@
     </div>
     <!--貸出検索-->
     <form action="{{route('lendings.index')}}" method="get">
-        
-        <div class="info_dl">
-            <dl class="lending_dl margin-bottom">
-                <dt>
-                    keyword
-                </dt>
-                    <dd> 
-                        <input type="text" name="keyword"><button type="submit" class="button is-primary lend_btn">検索</button>
-                    </dd>
-
-            </dl>
+        {{-- 検索フォーム --}}
+        <div class="field">
+            <label class="label">キーワード</label>
+            {{-- 検索ボタン --}}
+            <div class="control">
+                <input type="text" name="keyword" class="input form-sizing">
+                    <button type="submit" class="button is-primary lending_search-button">
+                        検索する
+                    </button>
+            </div>
         </div>
-        
     </form>
 
     <!--貸出一覧表示-->
