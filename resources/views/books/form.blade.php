@@ -23,7 +23,7 @@
         <dd>
             <input type="text" name="author" id="author" size="20" value="{{old('author',$book->author)}}">
         </dd>
-        <dt><label for="category">分類コード(現段階自分で手入力)</label></dt>
+        <dt><label for="category">分類コード</label></dt>
         <dd>
             <select name="category_id" id="category_id">
                 @for ($i = 0; $i < 10; $i++)
@@ -94,26 +94,12 @@
                         $("#published_date").val(date);
                     }
 
-                    // console.log(month);
-                    // let date = new Date(year + "/" + month + "/" + day);
-
-                    // let date = String(year + '-' + month + '-' + day);
-
-                    // console.log(year);
-                    // console.log(month);
-                    // console.log(day);
-                    // console.log("year + '/' + month + '/' + day");
-                    // console.log(date);
-                    // $("#published_date").val(date);
+                    let category = data[0].onix.DescriptiveDetail.Subject[0].SubjectCode;
+                    category_id = category.slice(2,3);
                     console.log(data[0]);
-                    
-                    
 
-                    // $("#volume").val(data[0].summary.volume);
-                    // $("#series").val(data[0].summary.series);
-                    // $("#cover").val(data[0].summary.cover);
-                    // $("#description").val(data[0].onix.CollateralDetail.TextContent[0].Text);
-                    
+                    $("#category_id").val(category_id);
+
                 }
             });
         });
