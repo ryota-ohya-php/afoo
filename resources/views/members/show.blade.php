@@ -34,14 +34,14 @@
 
         {{-- 編集ボタン  --}}
         <button class="button is-link mamber_button" 
-        onclick="location.href='{{ route('members.edit', $member->id)}}'">編集する</button>
+        onclick="location.href='{{ route('members.edit', $member->id)}}'">この会員を編集する</button>
     </div>
 
     <form action="{{route('members.destroy',$member->id)}}" method="post" id="delete-form">
         @csrf
         @method('delete')
         {{-- 会員情報削除ボタン --}}
-        <button class="button is-danger" onclick="deleteMember()">削除する</button>
+        <button class="button is-danger" onclick="deleteMember()">この会員を削除する</button>
     </form>
     <script type="text/javascript">
         function deleteMember() {
@@ -73,11 +73,19 @@
     </table>
 
 </div>
-<div class="main_content">
+@if ($lendinfo->count())
+    <div class="main_content">
     <button class="button top_button is-success is-small sectionn" onclick="location.href='http://localhost:8000/lendings/create?member_id={{$member->id}}'">本を貸し出す</button>
     <!--<button class="button top_button is-danger is-small sectionn" onclick="location.href='{{route('lendings.rebook',$member->id)}}'">本を返却する</button>-->
     <button class="button top_button is-danger is-small sectionn" onclick="location.href='http://localhost:8000/lendings/rebook?member_id={{$member->id}}'">本を返却する</button>
 </div>
+@else
+    <div class="main_content">
+        <h3 class="sectionn">現在借りている本はありません</h3>
+        <button class="button top_button is-success is-small sectionn" onclick="location.href='http://localhost:8000/lendings/create?member_id={{$member->id}}'">本を貸し出す</button>
+    </div>
+        @endif
+
 
 <script>
     $(function() {
