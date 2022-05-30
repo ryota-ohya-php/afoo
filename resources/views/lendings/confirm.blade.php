@@ -29,7 +29,7 @@
                 </dd>
         </dl>
     </div>
-        <p class="f_bold">貸出情報</p>
+        <p class="f_bold">返却情報</p>
         <table class="table_center" style="width:700px" >
             <thead>
                 <tr>
@@ -73,7 +73,7 @@
             <input type="hidden" name="{{isset(($_POST['lent_date']))? 'lent_date' : 'return_date';}}"
              value="{{isset(($_POST['lent_date']))? $request->lent_date : $request->return_date;}}">
             <input type="hidden" name="remarks" value="{{$request->remarks}}">
-        <button type="submit" class="button is-warning"style="height: 33px;">登録する</button>
+        <button type="submit" class="button is-warning"style="height: 33px;">返却する</button>
     </form>
     </div>
     </div>

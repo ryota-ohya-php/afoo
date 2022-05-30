@@ -75,9 +75,9 @@
 </div>
 @if ($lendinfo->count())
     <div class="main_content">
-    <button class="button top_button is-success is-small sectionn" onclick="location.href='http://localhost:8000/lendings/create?member_id={{$member->id}}'">本を貸し出す</button>
+    <button class="button top_button is-success is-small sectionn" style="font-size:20px" onclick="location.href='http://localhost:8000/lendings/create?member_id={{$member->id}}'">本を貸し出す</button>
     <!--<button class="button top_button is-danger is-small sectionn" onclick="location.href='{{route('lendings.rebook',$member->id)}}'">本を返却する</button>-->
-    <button class="button top_button is-danger is-small sectionn" onclick="location.href='http://localhost:8000/lendings/rebook?member_id={{$member->id}}'">本を返却する</button>
+    <button class="button top_button is-danger is-small sectionn" style="font-size:20px" onclick="location.href='http://localhost:8000/lendings/rebook?member_id={{$member->id}}'">本を返却する</button>
 </div>
 @else
     <div class="main_content">

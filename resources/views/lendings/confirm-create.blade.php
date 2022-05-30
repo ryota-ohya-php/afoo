@@ -69,7 +69,7 @@
              value="{{isset(($_POST['lent_date']))? $request->lent_date : $request->return_date;}}">
             <input type="hidden" name="remarks" value="{{$request->remarks}}">
         
-            <button type="submit" class="button is-warning" style="height: 33px;">登録する</button>
+            <button type="submit" class="button is-warning" style="height: 33px;">貸出する</button>
         </div>
         </form>
         </div>
