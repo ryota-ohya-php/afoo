@@ -9,12 +9,12 @@
 <div class="main_content">
     <div class="book_div">
         {{-- 書籍登録ボタン --}}
-        <button class="button is-success book_span" onclick="location.href='{{route('books.create')}}'" >＋書籍を登録する</button>
+        <button class="button is-success book_span" onclick="location.href='{{route('books.create')}}'"     style="margin-bottom: 20px;">＋書籍を登録する</button>
     </div>   
         <form action="{{route('books.index')}}" method="get">
         @include('books.search')
         {{-- 検索ボタン --}}
-        <button type="submit" class="button is-primary page_button">検索する</button>
+        <div><button type="submit" class="button is-primary page_button">検索する</button></div>
         </form>
     
 
