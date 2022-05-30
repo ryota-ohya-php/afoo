@@ -1,24 +1,26 @@
 /*app.layouts*/
-header{
+
+header {
     background-color: #c5f3df;
 }
 
-ul.app_ul{
-    display:inline-block;
+ul.app_ul {
+    display: inline-block;
     position: absolute;
     top: 55px;
     right: 20px;
-    
 }
+
 li.app_li {
     display: inline;
 }
-a{
-    color:#e79ae5;
+
+a {
+    color: #e79ae5;
 }
 
-a:hover{
-    color:#f56477;
+a:hover {
+    color: #f56477;
 }
 
 ul.app_ul li.app_li {
@@ -28,57 +30,73 @@ ul.app_ul li.app_li {
     background: #dbebf8;
     vertical-align: middle;
     color: #505050;
-    border-radius: 15px 15px 0px 15px;/*左側の角丸く*/
-  }
-  ul.app_ul li.app_li:before{ 
+    border-radius: 15px 15px 0px 15px;
+    /*左側の角丸く*/
+}
 
-    content:'';
-    width:1em;
+ul.app_ul li.app_li:before {
+    content: '';
+    width: 1em;
     height: 1em;
     background: #fff;
     border-radius: 50%;
     margin-right: 8px;
-  }
+}
+
+
 /*TOP画面*/
-.main_content{
+
+.main_content {
     text-align: center;
-    margin :auto;
+    margin: auto;
     margin-bottom: 15px;
-    
 }
-.top_button{
-    width:200px;
-    height:200px!important;
-    margin:40px;
+
+.top_button {
+    width: 200px;
+    height: 200px!important;
+    margin: 40px;
 }
+
+
 /*会員一覧画面*/
-.member_div{
-    margin :auto;
-    width:800px;
+
+.member_div {
+    margin: auto;
+    width: 800px;
 }
-.mamber_button{
-    height:32px;
+
+.mamber_button {
+    height: 32px;
 }
-.member_span{
-    display:block;
+
+.member_span {
+    display: block;
     margin: 0 0 0 auto;
 }
-.member_dd{
+
+.member_dd {
     margin-left: 80px;
 }
-.member_search-button{
+
+.member_search-button {
     height: 40px;
 }
 
+
 /*資料一覧画面*/
-.book_span{
-    display:block;
+
+.book_span {
+    display: block;
     margin: 0 0 0 auto;
 }
-.book_div{
-    margin :auto;
-    width:800px;
+
+.book_div {
+    margin: auto;
+    width: 800px;
 }
+
+
 /* .book-search_dl{
     width: 500px;
     margin: auto;
@@ -95,132 +113,169 @@ ul.app_ul li.app_li {
     } */
 
 
-
 /*貸出一覧画面*/
-.lending_dl{
-    width:500px;
-    margin:auto;
+
+.lending_dl {
+    width: 500px;
+    margin: auto;
 }
 
+
 /*資料詳細画面*/
-.book_span{
-    display:block;
+
+.book_span {
+    display: block;
     margin: 0 0 0 auto;
 }
 
 
-
-
-
 /*貸出画面*/
-span.f_bold{
+
+span.f_bold {
     font-weight: bold;
     font-size: 20px;
 }
-p.f_bold{
+
+p.f_bold {
     font-weight: bold;
-    font-size: 20px;  
+    font-size: 20px;
 }
-.lend_btn{
+
+.lend_btn {
     height: 30px;
     margin-left: 10px;
 }
 
-table.hid_table{
+table.hid_table {
     display: none;
 }
 
 
-
 /*返却画面*/
-ul#member{
+
+ul#member {
     width: 500px;
     margin: auto;
 }
-li.inv_li{
+
+li.inv_li {
     border-block-end: solid 2px #ddd;
     padding: 5px;
 }
 
+
 /*その他・共通クラス*/
 
+
 /*テーブルサイズクラス*/
-table{
+
+table {
     width: 60%;
     border-spacing: 0;
-  }
-  
+}
+
+
 /*テーブル内部クラス*/
-table th{
+
+table th {
     border-bottom: solid 2px #c5f3df;
     padding: 10px 0;
-  }
+}
+
+
 /*テーブル内部クラス*/
-table td{
+
+table td {
     border-bottom: solid 2px #ddd;
     text-align: center;
     padding: 10px 0;
-  }
+}
+
 
 /*文字のセンター揃え*/
-.txt_center{
+
+.txt_center {
     text-align: center;
 }
 
+
 /*文字の左揃え*/
-.txt_left{
+
+.txt_left {
     text-align: left;
 }
 
+
 /*文字の右揃え*/
-.txt_right{
+
+.txt_right {
     text-align: right;
 }
+
+
 /*テーブル中央揃え*/
-.table_center{
+
+.table_center {
     margin: auto;
 }
 
+
 /*見出し*/
-h2.title{
+
+h2.title {
     font-size: 20px;
     font-weight: bold;
     border: solid 1px;
     width: 30%;
     margin: auto;
-    padding:10px;
+    padding: 10px;
 }
 
-input{
-    padding:5px;
+input {
+    padding: 5px;
     text-align: center;
 }
-input.lending_inp{
+
+input.lending_inp {
     width: 200px;
     margin-bottom: 10px;
 }
+
+
 /*要素の下に余白を付ける*/
-.margin-bottom{
+
+.margin-bottom {
     margin-bottom: 15px;
 }
+
+
 /*要素の上に余白を付ける*/
-.margin-top{
+
+.margin-top {
     margin-top: 15px;
 }
+
+
 /* ページ進む・戻るボタン */
-.page_button{
-    height:32px;
+
+.page_button {
+    height: 32px;
 }
+
+
 /* 詳細情報の表示 */
-.info_dl{
+
+.info_dl {
     width: 700px;
     margin: auto;
 }
+
 .info_dl dl {
     display: flex;
     flex-wrap: wrap;
-  }
-  .info_dl dt {
+}
+
+.info_dl dt {
     width: 35%;
     padding: 20px;
     background-color: #DADADA;
@@ -230,41 +285,52 @@ input.lending_inp{
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  .info_dl dd {
+}
+
+.info_dl dd {
     width: 65%;
     padding: 20px;
     background-color: #F3F3F3;
     margin: 0 0 10px 0;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
-  }
-  div.sub_block{
-      display: inline-block;
-  }
-
-.w-5{
-    width:20px;
 }
-nav.flex{
+
+div.sub_block {
+    display: inline-block;
+}
+
+.w-5 {
+    width: 20px;
+}
+
+nav.flex {
     text-align: center;
 }
-div.justify-between,p.text-sm{
-    display: none;
 
-} 
-span.span_red{
+div.justify-between,
+p.text-sm {
+    display: none;
+}
+
+span.span_red {
     color: red;
     font-weight: bold;
 }
+
+
 /* 入力フォームのサイジング */
-.form-sizing{
+
+.form-sizing {
     width: 250px;
 }
+
+
 /* フラッシュメッセージ */
-.flash_message{
+
+.flash_message {
     text-align: center;
     font-size: 30px;
     color: red;
-    background-color: #feecf0;
+    /* background-color: #feecf0; */
 }

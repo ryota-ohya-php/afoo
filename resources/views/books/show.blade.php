@@ -75,7 +75,7 @@
                     <dd>{{$book->title}}</dd>
                     <dt>著者</dt>
                     <dd>{{$book->author}}</dd>
-                    <dt>カテゴリーID</dt>
+                    <dt>分類コード</dt>
                     <dd>{{$book->category_id}}</dd>
                     <dt>出版社</dt>
                     <dd>{{$book->publisher}}</dd>
