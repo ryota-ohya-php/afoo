@@ -181,13 +181,18 @@ class LendingController extends Controller
             $published_date[$val_id] = $in->get();
 
             $today=date('Y-m-d');
-
-            $pub_date = (strtotime($today) - strtotime($published_date[$val_id]))/86400;
-
+            var_dump($today);
+            // var_dump($published_date[$val_id]->pluck('published_date'));
+            $pub = $published_date[$val_id]->pluck("published_date");
+            $publishdate = $pub[0];
+            $pub_date = (strtotime($today) - strtotime($publishdate))/86400;
+            var_dump(strtotime($today));
             
             $pub_mon = $pub_date/30;
+            var_dump($pub_mon);
             $pub_month = floor($pub_mon);
-
+            var_dump($pub_month);
+            // exit;
 
             // $pub_month=date('m', strtotime(date($val->published_date)))-date('m', strtotime($today));
 
@@ -199,11 +204,21 @@ class LendingController extends Controller
             $lend->inventory_id=$val_id;
             $lend->lent_date=$request->lent_date;
             /*返却期限日の登録*/ 
-            if($pub_month >= 3){
-                $lend->due_date=date('Y-m-d',strtotime("+15 day"));
-            }else{
-                $lend->due_date=date('Y-m-d',strtotime("+10 day"));
-            }
+            if ($request->lent_date == date('Y-m-d')) {
+                    if($pub_month >= 3){
+                        $lend->due_date=date('Y-m-d',strtotime("+15 day"));
+                    }else{
+                        $lend->due_date=date('Y-m-d',strtotime("+10 day"));
+                    }
+                }
+            else{
+                    if($pub_month >= 3){
+                    $lend->due_date=date('Y-m-d',strtotime(date($request->lent_date).'+15 day'));
+                    }else{
+                    $lend->due_date=date('Y-m-d',strtotime(date($request->lent_date).'+10 day'));
+                    }
+                }
+            
             $lend->remarks=$request->remarks;
 
             $lend->save();

@@ -3,7 +3,49 @@
 @section('content')
 
 
-</form>
+{{-- </form> --}}
+{{-- // この関数でisbn番号からデータ取得して代入 --}}
+<script>
+    $(function() {
+        $(document).ready(function(){
+            //  e.preventDefault();
+            // 定数isbnにidがisbnのvalueを代入している
+            // console.log($("#isbn").val())
+            const isbn = $("#isbn").text();
+            // isbn番号をopenbd(webapi)にgetで送信するurl
+            const url = "https://api.openbd.jp/v1/get?isbn=" + isbn;
+
+            // isbn番号に対するレスポンスがdata[0]に入っている
+            $.getJSON( url, function( data ) {
+                if( data[0].summary.cover == "" ){
+                    $("#book_img").html('<img src=\"\" />');
+                } else {
+                    $("#book_img").html('<img src=\"' + data[0].summary.cover + '\" style=\"border:solid 1px #000000\" />');
+                }
+            });
+        });
+        $(document).on('click','.destroy_book',function nosubmit(){
+                    // event.preventDefault();
+                    // console.log($inventory_flag);
+                    // console.log('a');
+                    // debugger;
+                    // exit;
+                    const invvv = $(".invvv").text();
+                    console.log(invvv);
+                    if (invvv != 0 ) {
+                        alert('在庫があるため削除できません');
+                        return false;
+                    }
+    
+                    if (window.confirm('本当に削除しますか？')) {
+                    document.getElementById('delete-form').submit();
+                    }
+                    else{
+                        return false;
+                    }
+                });
+    });
+</script>
 
 <div class="main_content">
     <div class="book_div">
@@ -15,7 +57,7 @@
         {{-- 在庫登録ボタン --}}
         <form action="{{ route('inventories.create') }}" method="get">
             <input type="hidden" name="book_id" value="{{ $book->id }}">
-            <button type="submit" class="button is-success book_span">＋在庫登録</button>
+            <button type="submit" class="button is-success book_span">＋在庫を登録する</button>
         </form>
         
          {{-- 書籍イメージ --}}
@@ -40,7 +82,7 @@
                     <dt>出版日</dt>
                     <dd>{{$book->published_date}}</dd>
                     <dt>在庫数</dt>
-                    <dd>{{$count_inv->count()}}/{{ $book->inventories->count() }}</dd>
+                    <dd>{{$count_inv->count()}}/ <span class="invvv">{{ $book->inventories->count() }}</span></dd>
                 </dl>
             </div>
         </div>
@@ -52,45 +94,16 @@
             onclick="location.href='{{ route('books.index') }}'">書籍一覧画面に戻る</button>
         {{-- 編集ボタン --}}
         <button class="button is-link page_button" 
-            onclick="location.href='{{ route('books.edit',$book)}}'">編集する</button>
+            onclick="location.href='{{ route('books.edit',$book)}}'">この書籍を編集する</button>
     </div>
     {{-- 削除ボタン --}}
-        <form action="{{route('books.destroy',$book)}}" method="POST" id="delete-form">
+    {{-- <div style="display: none" class="invvv">{{$inventory_flag}}</div> --}}
+        <form action="{{route('books.destroy',$book)}}" method="POST" id="delete-form" onsubmit="return nosubmit()">
             @csrf
             @method('delete')
-            <button class="button is-danger" onclick="deleteBook()">削除する</button>
+            <button class="destroy_book button is-danger">この書籍を削除する</button>
         </form>
-        <script>
-            function deleteBook() {
-                event.preventDefault();
-                if (window.confirm('本当に削除しますか？')) {
-                    document.getElementById('delete-form').submit();
-                }
-            }
-        </script>
-
-    <script>
-        // この関数でisbn番号からデータ取得して代入
-        $(function() {
-            $('#getBookInfo').ready( function( e ) {
-                // e.preventDefault();
-                // 定数isbnにidがisbnのvalueを代入している
-                // console.log($("#isbn").val())
-                const isbn = $("#isbn").text();
-                // isbn番号をopenbd(webapi)にgetで送信するurl
-                const url = "https://api.openbd.jp/v1/get?isbn=" + isbn;
-    
-                // isbn番号に対するレスポンスがdata[0]に入っている
-                $.getJSON( url, function( data ) {
-                    if( data[0].summary.cover == "" ){
-                        $("#book_img").html('<img src=\"\" />');
-                    } else {
-                        $("#book_img").html('<img src=\"' + data[0].summary.cover + '\" style=\"border:solid 1px #000000\" />');
-                    }
-                });
-            });
-        });
+        {{-- <button class="destroy_book"></button> --}}
         
-    </script>
+</div>   
 @endsection
-</div>

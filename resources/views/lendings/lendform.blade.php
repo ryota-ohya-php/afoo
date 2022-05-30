@@ -116,11 +116,11 @@
             </dd>
         <dt>
             
-            {{($_SERVER['REQUEST_URI'] == '/lendings/create') ? '貸出日' : '返却';}}
+            貸出日
         </dt>
             <dd> 
                 <input type="date" 
-                name="{{($_SERVER['REQUEST_URI'] == '/lendings/create') ? 'lent_date' : 'return_date';}}" 
+                name="lent_date" 
                 value="{{date('Y-m-j')}}" 
                 class="lending_inp">
             </dd>

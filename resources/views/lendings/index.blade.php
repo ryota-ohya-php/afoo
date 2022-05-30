@@ -8,6 +8,7 @@
     <div class="book_div">
         {{-- 書籍登録ボタン --}}
         <button class="button is-success book_span" onclick="location.href='{{route('lendings.create')}}'" style="margin-bottom: 10px">貸出手続きをする</button>
+        <button class="button is-success book_span" onclick="location.href='{{route('lendings.rebook')}}'" style="margin-bottom: 10px">返却手続きをする</button>
     </div>
     <!--貸出検索-->
     <form action="{{route('lendings.index')}}" method="get">

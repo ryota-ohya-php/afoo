@@ -11,7 +11,7 @@
     </div>
     <div class="member_div">
         {{-- 会員登録ボタン --}}
-        <button class="button is-success member_span" onclick="location.href='{{route('members.create')}}'" >＋会員登録</button>
+        <button class="button is-success member_span" onclick="location.href='{{route('members.create')}}'" >＋会員を登録する</button>
                 {{-- 会員検索フォーム --}}
                 <form action="{{route('members.index')}}" method="get">
                     <p>
@@ -22,7 +22,7 @@
                         value="{{(isset($keyword)) ? $keyword : '';}}"
                         placeholder="会員ID、会員名、電話番号" class="input form-sizing">
                         {{-- 検索ボタン --}}
-                        <button button type="submit" class="button is-primary member_search-button">検索</button>
+                        <button button type="submit" class="button is-primary member_search-button">検索する</button>
                         </div>
                     </div>
                     </p>
