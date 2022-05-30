@@ -116,7 +116,9 @@
                     var num=$('.arr_num').append(con);
                 }
             }else{
-                alert('この会員は本を借りていません')
+                $('.hid_table').css('display','none');
+                
+                alert('この会員は本を借りていません');
                 
             }
                 
