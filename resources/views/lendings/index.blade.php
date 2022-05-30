@@ -4,6 +4,10 @@
 <!-- body内の記述スタート-->
 @section('content')
 <h2 class="txt_center title">貸出一覧画面</h2>
+<!-- フラッシュメッセージ -->
+<div class="flash_message">
+    {{ session('flash_message') }}
+</div>
 <div class="main_content">
     <div class="book_div">
         {{-- 書籍登録ボタン --}}
