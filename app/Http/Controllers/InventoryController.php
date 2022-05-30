@@ -60,7 +60,8 @@ class InventoryController extends Controller
             $inventory->save();
 
         }
-        return redirect(route('books.show', $request->book_id));
+        return redirect(route('books.show', $request->book_id))
+        ->with('flash_message', '在庫登録が完了しました。');
     }
 
 

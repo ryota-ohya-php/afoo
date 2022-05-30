@@ -243,7 +243,8 @@ class LendingController extends Controller
         }
        
 
-        return redirect('lendings');
+        return redirect('lendings')
+        ->with('flash_message', '貸出手続きが完了しました。');
 
     }
 
@@ -303,7 +304,8 @@ class LendingController extends Controller
 
         }
         
-        return redirect('lendings');
+        return redirect('lendings')
+        ->with('flash_message', '返却手続きが完了しました。');
 
         
     }
