@@ -15,6 +15,7 @@
         @include('books.search')
         {{-- 検索ボタン --}}
         <div><button type="submit" class="button is-primary page_button">検索する</button></div>
+        <hr>
         </form>
     
 
@@ -33,7 +34,7 @@
                <tr>
                 <td>{{$book->isbn}}</td>
                 <td>
-                    <a href="{{route('books.show',$book->id)}}">
+                    <a href="{{route('books.show',$book->id)}}"  class="a_hover">
                         {{$book->title}}</a> 
                 </td>
                 <td>{{$book->author}}</td>
