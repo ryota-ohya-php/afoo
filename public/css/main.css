@@ -19,6 +19,14 @@ a {
     color: black;
 }
 
+a.a_hover:hover {
+    color: rgb(255, 0, 0);
+}
+
+a.a_hover {
+    color: rgb(251, 132, 152);
+}
+
 a:hover {
     color: gray;
 }
@@ -42,7 +50,8 @@ ul.app_ul li.app_li:before {
     border-radius: 50%;
     margin-right: 8px;
 }
-.app_button{
+
+.app_button {
     height: 32px;
 }
 
@@ -100,7 +109,6 @@ ul.app_ul li.app_li:before {
 }
 
 
-
 /*貸出一覧画面*/
 
 .lending_dl {
@@ -115,10 +123,10 @@ ul.app_ul li.app_li:before {
     display: block;
     margin: 0 0 0 auto;
 }
+
 .lending_search-button {
     height: 40px;
 }
-
 
 
 /*貸出画面*/
@@ -316,9 +324,11 @@ span.span_red {
 .form-sizing {
     width: 200px;
 }
-div.field{
+
+div.field {
     display: inline-block;
 }
+
 
 /* フラッシュメッセージ */
 

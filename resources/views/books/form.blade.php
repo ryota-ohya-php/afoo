@@ -96,7 +96,7 @@
 
                     let category = data[0].onix.DescriptiveDetail.Subject[0].SubjectCode;
                     category_id = category.slice(2,3);
-                    console.log(data[0]);
+                    // console.log(data[0]);
 
                     $("#category_id").val(category_id);
 
